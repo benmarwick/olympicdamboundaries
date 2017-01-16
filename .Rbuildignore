@@ -1,0 +1,10 @@
+^packrat/
+^\.Rprofile$
+^.*\.Rproj$
+^\.Rproj\.user$
+^README\.Rmd$
+^README-.*\.png$
+^\.travis.yml$
+^\Dockerfile$
+^\circle.yml$
+^analysis/
