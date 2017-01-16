@@ -83,6 +83,371 @@ The current git commit of this file is `r last_commit@sha`, which is on the `r b
 ## References 
 
 
+```{r eval = FALSE}
+
+###########################################################
+# checking P&M's edits from 14 May 2012
+#
+# clear the workspace
+rm(list = ls())
+#
+# load data
+load("E:/My Documents/My Papers/Journal of Field Archaeology/.RData")
+# 
+setwd("E:\\My Documents\\My Papers\\Journal of Field Archaeology")
+library(foreign)
+ODX_allsites_2010 <- read.dbf("Join_Extract_ArcSite.dbf")
+# 
+# now looking at my analysis journal from 
+# F:\My Documents\My Employment\HUGHES\Clause 7 Report\5thPreliminaryAnalysis
+# 
+# sites per TP
+sites.per.tp <- data.frame(table(na.omit(ODX_allsites_2010$GREGLANDF)))
+# find proportion of all sites in each TP
+sites.per.tp$prop <- sites.per.tp$Freq/sum(sites.per.tp$Freq)*100
+#
+# get counts from density squares
+ODX_allsites_2010$DENCOUNT <- with(ODX_allsites_2010, (as.numeric(levels(DENSQ1)[DENSQ1]))+(as.numeric(levels(DENSQ2)[DENSQ2]))+(as.numeric(levels(DENSQ3)[DENSQ3]))+(as.numeric(levels(DENSQ4)[DENSQ4]))+(as.numeric(levels(DENSQ5)[DENSQ5]))+(as.numeric(levels(DENSQ6)[DENSQ6]))+(as.numeric(levels(DENSQ7)[DENSQ7]))+(as.numeric(levels(DENSQ8)[DENSQ8])+(as.numeric(levels(DENSQ9)[DENSQ9]))/9)*((as.numeric(levels(DIMSIT1)[DIMSIT1]))*(as.numeric(levels(DIMSIT2)[DIMSIT2]))))
+# check if all sites with density square data were processed
+# should return TRUE
+identical(length(na.omit(ODX_allsites_2010$DENSQ1)), length(na.omit(ODX_allsites_2010$DENCOUNT)))
+# check how many sites with density square data
+length(na.omit(ODX_allsites_2010$DENCOUNT))
+#
+# get counts when all artefacts counted
+ODX_allsites_2010$COUNTONLY <- with( ODX_allsites_2010, as.numeric(levels(TOTART)[TOTART]) )
+# check how many are ok
+length(na.omit(ODX_allsites_2010$TOTART)) # should have
+length(na.omit(ODX_allsites_2010$COUNTONLY)) # did get
+#
+# get counts from when only a VISTEST was taken:
+ODX_allsites_2010$VISCOUNT<-with(ODX_allsites_2010, (as.numeric(levels(VISEST)[VISEST]))*((as.numeric(levels(DIMSIT1)[DIMSIT1]))*(as.numeric(levels(DIMSIT2)[DIMSIT2]))))
+# check how many are ok
+length(na.omit(ODX_allsites_2010$VISEST)) # should have
+length(na.omit(ODX_allsites_2010$VISCOUNT)) # did get
+#
+ODX_allsites_2010$artefacts <- as.numeric(with(ODX_allsites_2010, 
+      ifelse(COUNTONLY > 1, COUNTONLY,
+      ifelse(VISCOUNT  > 1 ,  VISCOUNT, 
+      ifelse(DENCOUNT  > 1 , DENCOUNT, "XX")))))
+#                                          
+# have a bit of a look 
+# ODX_allsites_2010[ODX_allsites_2010$VISCOUNT  != 0 ,]
+# ODX_allsites_2010[ODX_allsites_2010$DENCOUNT  != 0 ,]
+# ODX_allsites_2010[ODX_allsites_2010$COUNTONLY != 0 ,]
+#
+# summary(ODX_allsites_2010$VISCOUNT)
+# summary(ODX_allsites_2010$DENCOUNT)
+# summary(ODX_allsites_2010$COUNTONLY)
+#  
+# check how many are ok
+length(na.omit(ODX_allsites_2010$artefacts))
+# 
+# check how many sites in total
+# summary( ODX_allsites_2010[,1:10] )
+# 10636 sites in data, 133 are hearths so 10503 should 
+# have artefact data... in fact 9859 do, so some 644 sites
+# have problems with artefact data, that's only 0.6% so that's
+# not too bad.
+#
+# get total number of artefacts in each TP
+artefacts.per.tp <- aggregate(data = ODX_allsites_2010, artefacts ~ GREGLANDF, FUN = sum)
+#
+# check output
+identical(
+  sum(na.omit(ODX_allsites_2010$artefacts)),
+  sum(artefacts.per.tp$artefacts))
+#
+# how many artefacts missing from summary?
+sum(na.omit(ODX_allsites_2010$artefacts)) - sum(artefacts.per.tp$artefacts)
+# 5926 artefacts missing... why are they missing? not sure
+#
+#
+setwd("E:\\My Documents\\My Papers\\Journal of Field Archaeology")
+library(foreign)
+ODX_TPs_2010 <- read.dbf("CLipped_ODO_terrain_patterns_2010_Ja.dbf")
+# 
+# Calculate the areas of the sampling polygons in ArcMap:
+# 1.  Open the attribute table of the layer you want to edit. 
+# 2.	Right-click the field heading for area (if there is no field for area values, you can add a new field for area by clicking the Options button and selecting the new field option). This must be formatted as a Double not a short integer.
+# 3.	Click Calculate Values. 
+# 4.	Checkmark the Advanced box (this is important - don't forget this!) 
+# 5.	Type the following VBA statement in the first text box (you should be able to copy and paste): 
+# Dim dblArea as double 
+# Dim pArea as IArea 
+# Set pArea = [shape] 
+# dblArea = pArea.area 
+# 6.	Type the variable  dblArea =in the second text box (near the bottom of the dialog box) directly under the area field name. 
+#
+# check areas and proportion of total areas for each TP
+library(data.table)
+ODX_TPs_2010.dt <- data.table(ODX_TPs_2010)
+setkey(ODX_TPs_2010.dt,GREGLANDF)
+ODX_TP_areas <- ODX_TPs_2010.dt[,sum(Clip_Area_), by = GREGLANDF]
+ODX_TP_areas$prop <- (ODX_TP_areas$V1/sum(ODX_TP_areas$V1))*100
+# check that proportions add to 100%
+sum(ODX_TP_areas$prop)
+# check of total area of TPs
+sum(ODX_TP_areas$V1)/(1000*1000)
+#
+# repeat checks for landforms
+ODX_LF_areas <- ODX_TPs_2010.dt[,sum(Clip_Area_), by = LANDFORM]
+ODX_LF_areas$prop <- (ODX_LF_areas$V1/sum(ODX_LF_areas$V1))*100
+# check that proportions add to 100%
+sum(ODX_TP_areas$prop)
+#
+# Plot of TP areas (figure 4 of JFA paper)
+install.packages("ggplot2")
+library(ggplot2)
+ggplot(ODX_TP_areas, aes(reorder(GREGLANDF, prop), prop)) + 
+  geom_bar(fill = "white", colour = "black") +
+  theme_bw(base_size = 17) +
+  opts(axis.text.x = theme_text(size = 17)) + 
+  opts(axis.text.y = theme_text(size = 17)) +
+  opts(axis.title.x = theme_text(size = 17)) + xlab("Terrain pattern") +
+  opts(axis.title.y = theme_text(size = 17, angle = 90)) + ylab("Percentage of study area")
+#
+# check of sites per sq km for each TP
+sites.per.sqkm <- merge(sites.per.tp, ODX_TP_areas, by.x = "Var1", by.y = "GREGLANDF")
+sites.per.sqkm$sites.per <- with(sites.per.sqkm, Freq/V1*1000*1000)
+#
+# check of artefacts per sq km for each TP
+artefacts.per.sqkm <- merge(artefacts.per.tp, ODX_TP_areas)
+artefacts.per.sqkm$artefacts.per <- with(artefacts.per.sqkm, artefacts/V1*1000*1000)
+
+
+# For looking a distance values from features in ArcMap
+# First, polygon features have to be converted to line features.data management tools, features, feature to line.
+# 1.  Open spatial analyst extension
+# 2.	Define extent (LTA_areas is a good one)
+# 3.	Spatial analyst - distance- straight line
+# 4.	Then go to ArcToolbox - Spatial analyst tools - extraction 
+# 5.	'Extract values to points'
+# 6. Then arctoolbox, spatial analysis tools, extraction, extract values to points. point layer is sites, values come from raster, then RASTERVALU is distance field. 
+# 7 .Then join to TP polygon to get TP values in sites dbf.
+setwd("E:\\My Documents\\My Papers\\Journal of Field Archaeology")
+library(foreign)
+ODX_allsites_2010 <- read.dbf("Join_Extract_ArcSite.dbf")
+ODX_allsites_2010 <- ODX_allsites_2010[ !is.na(ODX_allsites_2010$GREGLANDF), ]
+ODX_allsites_2010.s <- subset(ODX_allsites_2010, GREGLANDF=='A4' | GREGLANDF=='Czs4' | GREGLANDF=='Q4' | GREGLANDF=='K4' | GREGLANDF=='Czs5' | GREGLANDF=='Q5' | GREGLANDF=='Q6')
+ODX_allsites_2010.s$GREGLANDF <- factor(ODX_allsites_2010.s$GREGLANDF)
+# order the levels of GREGLANDF for plotting
+# this is the desired order: - A4, Czs4, Q4, K4, Czs5, Q5, Q6
+levels(ODX_allsites_2010.s$GREGLANDF)
+ODX_allsites_2010.s$GREGLANDF <- factor(ODX_allsites_2010.s$GREGLANDF, 
+  levels(ODX_allsites_2010.s$GREGLANDF)[c(1, 2, 5, 4, 3, 6, 7)])
+# plot
+install.packages("ggplot2")
+library(ggplot2)
+ggplot(ODX_allsites_2010.s, aes(GREGLANDF, RASTERVALU)) + 
+  geom_boxplot() + 
+  scale_y_log10(breaks = seq(0,1400,200)) + 
+  theme_bw(base_size = 17) +
+  opts(axis.text.x = theme_text(size = 17)) + 
+  opts(axis.text.y = theme_text(size = 12)) +
+  opts(axis.title.x = theme_text(size = 17)) + xlab("Terrain pattern") +
+  opts(axis.title.y = theme_text(size = 17, angle = 90)) + ylab("Distance of site to boundary (m)")
+
+# anova to see if sig diff between distances...
+fit <- aov(data = ODX_allsites_2010.s, RASTERVALU ~ GREGLANDF)
+plot(TukeyHSD(fit))
+# plot anova
+install.packages("granovaGG", dependencies = TRUE)
+library("granovaGG")
+granovagg.1w(data = ODX_allsites_2010.s$RASTERVALU, group = ODX_allsites_2010.s$GREGLANDF)
+install.packages("granova")
+library("granova")
+granova.1w(data = ODX_allsites_2010.s$RASTERVALU, group = ODX_allsites_2010.s$GREGLANDF)
+
+
+setwd("E:\\My Documents\\My Papers\\Journal of Field Archaeology\\outer_buffers")
+# start with OUTER buffers
+bd_files <- list.files()
+# list in, dataframe out
+library(plyr)
+library(foreign)
+bd.data <- ldply(bd_files, read.dbf)
+bd.data$SiteDens <- with(bd.data, Count_/buf_area * (1000*1000))
+# exclude buffers with less than n sites since they 
+# skew the density calculations 
+n = 15
+bd.data <- bd.data[bd.data$Count_ > n, ]
+unique(bd.data$BUFF_DIST)
+bd.data$Buf <- as.factor(with(bd.data, ifelse(BUFF_DIST == 100, '000-100', ifelse(BUFF_DIST == 200, '100-200', ifelse(BUFF_DIST == 300, '200-300', ifelse(BUFF_DIST == 400, '300-400', ifelse(BUFF_DIST == 500, '400-500','NA')))))))
+
+#  how many sites in each set?
+sum(na.omit(subset(bd.data, GREGLANDF=='Czs4')$Count_))
+sum(na.omit(subset(bd.data, GREGLANDF=='Czs5')$Count_))
+
+# now check the boundary densities for INNER buffers
+setwd("E:\\My Documents\\My Papers\\Journal of Field Archaeology\\inner_buffers")
+inbd.files <- list.files()
+# list in, dataframe out
+library(plyr)
+library(foreign)
+inbd.data <- ldply(inbd.files, read.dbf)
+inbd.data$SiteDens <- with(inbd.data, Join_Count/buf_area * (1000*1000))
+inbd.data <- inbd.data[inbd.data$Join_Count > n, ]
+unique(inbd.data$BUFF_DIST)
+inbd.data$Buf <- as.factor(with( inbd.data, ifelse(is.na(BUFF_DIST), '-100-000', ifelse(BUFF_DIST == -100, '-200-100', ifelse(BUFF_DIST == -200, '-300-200', ifelse(BUFF_DIST == -300, '-400-300', ifelse(BUFF_DIST == -400, '-500-400','NA')))))))
+
+#  how many sites in each set?
+sum(as.numeric((subset(inbd.data[as.numeric(inbd.data$Join_Count),], GREGLANDF=='Czs4'))$Join_Count))
+sum(as.numeric((subset(inbd.data[as.numeric(inbd.data$Join_Count),], GREGLANDF=='Czs5'))$Join_Count))
+
+# combine inner with outer buffers
+inner <- subset(inbd.data, GREGLANDF =='Czs5' | GREGLANDF =='Czs4')[,c('GREGLANDF','SiteDens','Buf')]
+outer <- subset(bd.data, GREGLANDF =='Czs5' | GREGLANDF =='Czs4')  [,c('GREGLANDF','SiteDens','Buf')]
+# colnames(outer)[2] <-  'mean_SiteDens'
+inner_outer <- na.omit(rbind(inner, outer))
+# put the boundary distances in order
+levels(inner_outer$Buf)
+inner_outer$Buf <- factor(inner_outer$Buf, 
+  levels(inner_outer$Buf)[c(5,4,3,2,1,6,7,8,9,10)])
+# remove rows with zero for SiteDens
+inner_outer <- inner_outer[inner_outer[, 'SiteDens']!=0, ]  
+# plot inner and outer together
+library(ggplot2)
+library(grid)
+ggplot(inner_outer,  aes(Buf, SiteDens)) + 
+  geom_point(size = 2) + facet_grid(GREGLANDF ~ .) + 
+  scale_y_log10() + 
+  geom_smooth(aes(group = 1), fill = "grey80", colour = "grey") +
+  theme_bw() + 
+  opts(axis.title.x = theme_text(vjust = -0.5, size = 15)) + 
+  opts(axis.title.y=theme_text(size = 15, angle=90)) + 
+  opts(plot.margin = unit(c(1,1,2,2), "lines")) + 
+  xlab("Distance from boundary in meters (negative values are interior distances, positive values are exterior distances)") + 
+  ylab("Sites per sq km")
+
+# significance tesing for changes in site density over buffers
+# classic ANOVA...
+summary(fit <- aov(data = inner_outer[inner_outer$GREGLANDF == 'Czs5' ,], SiteDens ~ Buf))
+# yes for Csz5, no for Csz4
+# inspect to see if assumptions are ok
+qqnorm(resid(fit), main="Normal Q-Q Plot")
+qqline(resid(fit), col="red")
+# a bit wacky... 
+
+# try permutation ANOVA...
+# install.packages("lmPerm")
+# library(lmPerm)
+# summary(fitp <- aovp(data = inner_outer[inner_outer$GREGLANDF == 'Czs4',], SiteDens ~ Buf, perm="Exact"))
+# yes for Csz5, no for Csz4
+
+library(coin) # library needed for more permutation tests
+# We'll use Monte Carlo simulations to get the p value
+oneway_test(data = inner_outer[inner_outer$GREGLANDF == 'Czs5',], SiteDens ~ Buf, distribution=approximate(B=10000))
+# this is a test of whether 
+# two or more samples from normal distributions have the 
+# same means, variances not assumed equal
+kruskal_test(data = inner_outer[inner_outer$GREGLANDF == 'Czs5',], SiteDens ~ Buf, distribution=approximate(B=10000))
+# yes for Csz5, no for Csz4
+
+
+
+
+# In each of the occurrences of those TPs create buffer zones A (1m to -100m), B (-100m to -200m), C (-200m to -300m).  Then work out the density of sites in each buffer unit and in the whole TP.
+# 
+# Than plot the ratios for each Czs4 and Czs5 Terrain Pattern of:
+# site densities in A/site densities in whole of each TP
+# site densities in B/site densities in whole of each TP
+# site densities in C/site densities in whole of each TP
+
+inner # site densities per buffer area
+sites.per.sqkm # densities per TP
+
+# Czs5
+# site densities in 0-100 m inner buffer divided by total density of TP
+Czs5.inner.100 <- with(inner, inner[GREGLANDF == "Czs5" & Buf == "-100-000",])
+Czs5.inner.100.ratio <- mean(Czs5.inner.100$SiteDens)/with(sites.per.sqkm, sites.per.sqkm[Var1 == "Czs5",])$sites.per
+# site densities in 100-200 m inner buffer divided by total density of TP
+Czs5.inner.200 <- with(inner, inner[GREGLANDF == "Czs5" & Buf == "-200-100",])
+Czs5.inner.200.ratio <- mean(Czs5.inner.200$SiteDens)/with(sites.per.sqkm, sites.per.sqkm[Var1 == "Czs5",])$sites.per
+# site densities in 200-300 m inner buffer divided by total density of TP
+Czs5.inner.300 <- with(inner, inner[GREGLANDF == "Czs5" & Buf == "-300-200",])
+Czs5.inner.300.ratio <- mean(Czs5.inner.300$SiteDens)/with(sites.per.sqkm, sites.per.sqkm[Var1 == "Czs5",])$sites.per
+
+# Czs4
+# site densities in 0-100 m inner buffer divided by total density of TP
+Czs4.inner.100 <- with(inner, inner[GREGLANDF == "Czs4" & Buf == "-100-000",])
+Czs4.inner.100.ratio <- mean(Czs4.inner.100$SiteDens)/with(sites.per.sqkm, sites.per.sqkm[Var1 == "Czs4",])$sites.per
+# site densities in 100-200 m inner buffer divided by total density of TP
+Czs4.inner.200 <- with(inner, inner[GREGLANDF == "Czs4" & Buf == "-200-100",])
+Czs4.inner.200.ratio <- mean(Czs4.inner.200$SiteDens)/with(sites.per.sqkm, sites.per.sqkm[Var1 == "Czs4",])$sites.per
+# site densities in 200-300 m inner buffer divided by total density of TP
+Czs4.inner.300 <- with(inner, inner[GREGLANDF == "Czs4" & Buf == "-300-200",])
+Czs4.inner.300.ratio <- mean(Czs4.inner.300$SiteDens)/with(sites.per.sqkm, sites.per.sqkm[Var1 == "Czs4",])$sites.per
+
+# combine both for plotting
+Czs4 <- c(Czs4.inner.100.ratio, Czs4.inner.200.ratio, Czs4.inner.300.ratio)
+Czs5 <- c(Czs5.inner.100.ratio, Czs5.inner.200.ratio, Czs5.inner.300.ratio)
+bound <- data.frame(cbind(Czs4, Czs5))
+bound$dist <- c("0-100", "100-200", "200-300")
+library(reshape2)
+bound.m <- melt(bound)
+
+# plot
+library(ggplot2)
+ggplot(bound.m, aes(dist,value, colour = variable)) + geom_line(aes(group = variable))
+
+# convert to z-scores....
+Czs4.sc <-  scale(Czs4)
+Czs5.sc <-  scale(Czs5)
+bound.sc <- data.frame(cbind(Czs4.sc, Czs5.sc))
+bound.sc$dist <- c("0-100", "100-200", "200-300")
+colnames(bound.sc) <- c("Czs4", "Czs5", "distance")
+library(reshape2)
+bound.sc.m <- melt(bound.sc)
+colnames(bound.sc.m) <- c("distance", "Terrain Pattern", "density of sites")
+
+# plot scales
+library(ggplot2)
+ggplot(bound.sc.m, aes(x=bound.sc.m[,1], y=bound.sc.m[,3])) + 
+  geom_line(aes(group = bound.sc.m[,2], linetype = bound.sc.m[,2]), size = 1)  +
+  theme_bw() +
+  opts(axis.text.x = theme_text(size = 17)) + 
+  opts(axis.text.y = theme_text(size = 17)) +
+  opts(axis.title.x = theme_text(size = 17)) +
+  opts(axis.title.y = theme_text(size = 17, angle = 90)) + 
+  xlab("interior buffer region (distance in m from \nboundary to the center of the terrain pattern)") + 
+  ylab("z-score of site density in buffer area") +
+  scale_linetype_manual(name="Terrain Pattern", values = c(1,2) ) +
+  opts(legend.text=theme_text(size=14)) +
+  opts(legend.title=theme_text(size=14)) 
+
+
+# checking benefit of mobile GIS
+dat <- read.table(text = "
+Year Pre.2007	2007	2008	2009
+Area.surveyed.(km2)	35	95	275	145
+Rate.of.survey.(km2/person/day)	0	0.3	0.3	0.3
+Total.no.persondays	0 317	917	483
+Approximate.number.of.sites.recorded	665	3900	6600	5500
+No.sites.recorded/person/day	 3.5	12.3	7.2	11.3
+Frequency.of.occurrence.of.sites/km2	19	41	24	38", row.names = 1, header = TRUE)
+
+dat_t <- data.frame(t(dat))
+# quick look
+pairs(dat_t)
+
+# correlation of sites recorded by density of sites
+cor.test(dat_t[,5], dat_t[,6], method = 'pearson')
+# linear model for sites recorded by density of sites
+summary(lm(dat_t[,5] ~ dat_t[,6]))
+
+# subset 2007-2009 data
+dat_t_s <- dat_t[2:4,]
+# linear model for sites recorded by density of sites, 2007-2009
+summary(lm(dat_t_s[,5] ~ dat_t_s[,6]))
+
+# predict given 19 sites/km2
+19 * 0.297  + 0.043 
+
+
+```
+
+
  
 
 
