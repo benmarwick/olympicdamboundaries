@@ -1,54 +1,234 @@
 ---
-title: 'The title'
+title: 'Landform boundary effects on Holocene forager landscape use in arid South Australia'
 author:
-- Ben Marwick
+- Ben Marwick (corresponding author)
+- Peter Hiscock 
+- Philip Hughes 
+- Marjorie Sullivan
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 output:
    bookdown::word_document2:
     fig_caption: yes
     reference_docx: templates/template.docx
-bibliography: references.bib
-csl: journal-of-archaeological-science.csl
 abstract: |
-  This is the abstract.
+  Landscapes throughout a region vary in the resources they contain. We investigate how Holocene forager populations adapted to this variation in the linear sand dune desert of arid South Australia. We use data from surface scatters of stone artefacts collected during pedestrian survey to compare behaviors at landscape boundaries to behaviours at the centers of landforms. We propose a model of human use of the landscape that predicts that the prehistoric occupants of the study are were sensitive to the different economic potential of dissimilar landscapes.  In evaluating the model we find that there are different densities of archaeological sites in each landscape type. We also find indications of a boundary effect resulting from people having used marginal areas of each landscape type in response to the resource characteristics of adjoining landforms. In addition, we make some observations on our field data collection methods, identifying the general conditions where mobile GIS may be optimally efficient for archaeological survey
 ---
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
-```
-
-# Introduction
-
-## R Markdown
-
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-In Table \@ref(tab:carstab) we can see some data about the relationship between pressure and tempurature. We can reference the table by the ID of the code chunk that produces the table, like this: `\@ref(tab:carstab)`
-
-```{r carstab}
 library(knitr)
-kable(head(mtcars), caption = "Data about cars")
+opts_chunk$set(echo = FALSE)
 ```
 
-## Including Plots
 
-You can also embed plots, for example:
 
-```{r pressureplot, echo=FALSE, fig.cap="Plot of car data"}
-plot(pressure)
-```
+Affiliations:
 
-In Figure \@ref(fig:pressureplot) we can see some data about pressure. We can cross-reference the figure like this: `\@ref(fig:pressureplot)`, using the chunk ID as the key to link the cross-reference to the figure. 
+Ben Marwick (corresponding author)
+University of Washington
+Denny Hall 117, Box 353100
+Seattle, WA 98195-3100 USA
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+t. (+1) 206.552.9450 
+f. (+1) 206.543.3285
+bmarwick@uw.edu 
 
-## Citations and References 
+Peter Hiscock   
+The University of Sydney, Sydney NSW, Australia
 
-We can have a citation, using a `.bib` file that holds all the details. To get this: [@Marwick2016repro] we type `[@Marwick2016repro]`. The text after the `@` is the bibtex key that links the in-text citation to the full details in the `.bib` file.
+Philip Hughes    
+Department of Archaeology, Flinders University, GPO Box 2100, Adelaide, SA, 5001
 
-All of the usual variations on in-text citation formatting are possible in markdown, and listed for reference here: <http://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html>
+Marjorie Sullivan    
+The Australian National University, Canberra ACT 0200, Australia and 
+Huonbrook and Environment and Heritage P/L, PO Box 97 Moruya NSW 2537, Australia
 
+##### . 
+<!--- page break --->
+  
+## Introduction
+
+A key step in understanding past human use of landscapes is investigating how people adapted their behaviours to the different landscapes they inhabited. Often this kind of analyses depends on comparing modal attributes of archaeological sites between discrete patches of landscapes (e.g. Barton 2003). Variations in human behavior at landscape boundaries are more challenging to investigate, despite their importance in understanding sensitivity to landscape differences. Previous work on past human behaviors at ecological interfaces has focused on regions of highly contrasting biomes. For example, Epp (1985) found that archaeological sites were more concentrated in an ecotone (i.e. ecological transition area) where plains grasslands meet the boreal forest in Saskatchewan, compared to within those biomes. Epp’s work is typical of much early archaeological work on ecotones, with claims that ecotonal areas contain higher populations and diversities of flora and fauna (Struever 1968, Glassow and Leone 1972 ). This increased variety and density of plants and animals, often described as an ‘edge effect’, was claimed by Harris et al. (1969) to be a causal factor in the emergence of agriculture. This edge effect was also extended to human culture, with Gummerman and Johnson (1971) arguing for increased human cultural diversity in ecotonal zones of central Arizona. 
+
+These uses of the ecotone and edge effect concepts declined in the archaeological literature after several critiques pointed out that archaeologists have been overly simplistic in their use of many ecological concepts (Rhoades 1978, Hardesty 1980, King and Graham 1981). Problems with these previous approaches include ignoring controversies among biologists about the definition of ecotones, and unjustified assumptions about the uniformity of all ecotones, and about edge effects always increasing the amount of food species available to humans. Here we pursue a different approach by focusing on subtle variations in landscape characteristics within a biome, rather than between them. By focusing on continuous variation, rather than step-wise shifts in the archaeological record across ecological interfaces, we introduce a new approach to studying behaviors of prehistoric forager groups at interface zones. 
+
+In this study we demonstrate the use of gradients of change in archaeological materials over distance to explore forager choices of where to carry out activities in respect to environmental boundaries. We test a prediction that prehistoric foragers were sensitive to differences in resource structure as gradients across the landscape. This approach may be contrasted with concepts of linear boundaries with step-wise shifts in habitability that make comparative landscape analysis more tractable in many contexts. The spatial scales of much of the previous work on prehistoric arid zone foragers has ranged from continental (Williams, Ulm et al. 2013) to ecological regions (Holdaway, Douglass et al. 2013). In this paper, we focus on human behavior in the arid zone at a novel scale and location: the interface between two types of subtly different landscapes. We show that prehistoric forager groups’ decisions about how they occupied the study area were sensitive to subtle differences in local landscape characteristics.
+
+Our work is motivated by previous archaeological work on cultural landscapes of foragers that emphasizes the relationship between settlement organization and both exploitable resources and prominent landscape features such as dunes, occurrences of flakeable rocks, pans, springs and salt lakes (Hughes and Hiscock 1982, Veth 1993, Napton and Greathouse 1996, Holdaway 1998, Barton 2003, Smith 2006, Fanning, Holdaway et al. 2008, Smith, Williams et al. 2008, Veth, Smith et al. 2008, Williams, Ulm et al. 2013, Davies, Holdaway et al. 2015). The archaeological signature of landuse typically has been the distribution and composition of surface stone artefact scatters, which are by far the most abundant type of site. In this context, sites are typically small, dense and discrete concentrations of stone artefacts that represent temporary, short-term activity areas. The spatially discrete quality of the majority of sites in these desert regions, such as our study area, means it is possible to distinguish between even quite close sites (<50 m apart) with confidence, unlike many other contexts where artifact distributions are more spatially continuous (Thomas 1975, Foley 1981, Dunnell and Dancey 1983, Kuna 2000). 
+
+Our study area at Olympic Dam, South Australia, offers a unique opportunity to study landscape interfaces for two key reasons. First, in our study area these interfaces are relatively well-defined by landform attributes, such as the spacing between sand dune ridges and the surface geology (TABLE 1). The interfaces in our study area can be recognized as linear boundaries, often following the ridges or swales of the sand dunes, making them convenient for spatial analysis of archaeological features. Landform boundary effects have previously been employed in studying the distribution of artefacts to infer culture group areas (Kimes, Haselgrove et al. 1982). However, archaeological discussions of settlement patterns have typically focused on straight line distances from key resources such as raw materials for stone artefacts, as these are often easier to measure and interpret than landscape boundaries (Daniel 2001, Jones, Beck et al. 2003). With clear landscape unit boundaries, our study area is well-placed to explore relationships between archaeological attributes and distances from these boundaries. 
+
+The second reason why our data is uniquely suited to investigating landscape boundary effects is that we have a large number of sites spread across several landscape types. The relatively high density of sites provides an opportunity to investigate fine-grained gradients of archaeological change over multiple landscapes and their interfaces. More specifically, we can test whether a boundary effect exists at the edge of landscape units by examining how the size and density of surface scatters of stone artefacts changes with their distance from the boundaries. 
+
+## Olympic Dam and investigation of its archaeology
+
+Olympic Dam is located on the southeastern edge of the driest part of the Australian arid zone. Archaeological material is found across the broader region and partly reflects the long period of human occupation, the wide range of locally available resources and the extremely low rates of sediment movement that might otherwise obscure surface artefacts. Optically stimulated luminescence dating of sediments underling buried artefacts at one typical site we investigated indicates a terminus post quem  of 5 k BP for the artifact bearing deposit (Sullivan, Field et al. 2012). Such an age is consistent with the majority of dates for human occupation of sand deserts elsewhere in Australia, where evidence has suggested a substantial expansion of human activity in the last few millennia (Veth, Smith et al. 2001, Smith 2006). A single dated site is insufficient to draw conclusions beyond the local level, however the distinctive implement forms such as backed artefacts, unifacial points and tula adzes at many sites in the study area indicate a mid to late Holocene age for the main period of land use and for most of the surface artefact scatters recorded during the survey (Hughes and Hiscock 2005). This mid to late Holocene period was also a time of broad-scale dune stability, so site visibility is not strongly controlled by dune movement. In 2013 we returned to sites that had been recorded 25 years earlier and found them to be in the same state as originally recorded, indicating that site visibility has changed little over 25 years. 
+
+The Olympic Dam area has been the target of mineral exploration and mining since the 1980s. The extensive records of archaeological sites at Olympic Dam have been created during research-orientated consultancy work related to this exploration and mining activity. In 1980 Hughes, Hiscock and colleagues commenced a range of archaeological investigations for the proposed Olympic Dam mining project. They used terrain patterns based on combining categories of different landforms and surface geology (FIG 2) to develop an environmentally-based model to predict the nature and distribution of archaeological sites (Hughes and Hiscock 1982). The landscape consists of ancient stony plateau (or tableland) surfaces partly overlain by fields of longitudinal east-west dunes. Many of the interdune corridors (or swales) and extensive flat to gently sloping plateau surfaces without dunes are covered by a lag of gravels and cobbles referred to as gibber. Water sources include ephemeral small lakes, claypans and canegrass-vegetated swamps which are subject to high evaporation rates, with no free water available for most of the year. In this region vegetation patterns were also determined by the presence or absence of sand, gibber surfaces and water bodies (Badman 1999). This means that there are long-term relationships between the landscape units employed in the analysis of Hughes and Hiscock (1982), and plant and animal resources exploited by forager communities in the past. 
+
+Hughes and Hiscock’s archaeological model has been described in detail in previous publications (Hughes et al. 2011; Hughes and Hiscock 1982; Hughes and Sullivan 1984). In brief, the model details how the location and character of archaeological sites are influenced by proximity to fresh water, sand on which to camp, and locally available raw materials for flaking stone artefacts. The model results in a series of predictions about the archaeological record expected for each of six landform types (TABLE 1) and five geological regimes (TABLE 2). These predictions specify the frequency of sites and the density and diversity of artefacts were produced for each major landscape unit.
+
+These descriptions were initially tested in the 1980s and 1990s by archaeological surveys of the mining area and infrastructure corridors. The predictive model was based on records from an initial 133 sites and by 2007 additional testing and surveys of water and power supply corridors had resulted in a database totaling 820 archaeological sites  (Hiscock and Hughes 1983, Hiscock 1989).  In 2007 a proposed expansion of the Olympic Dam mine triggered the need for an intensive archaeological survey of an additional area of 515 km2 surrounding the existing mine, to be completed by the end of 2009 (FIG 2). The data collected during this expansion phase is the basis for this study.  
+
+## Methods and Materials 
+
+Between 2007 and 2009 teams of archaeologists and trainees from local Aboriginal groups walking across the entire area recorded more than 16,000 archaeological sites. We achieved close to 90% coverage of 353 km2. The sites consist of stone artefact scatters (87%), artefact scatters with knapping floors (7%), knapping floors (5.5%) and quarries (0.5%) (Hughes, Hiscock et al. 2011). Extended descriptions of site definitions and survey methods have previously been presented in Hughes et al. (2011). 
+
+To collect field data, we used a mobile geographic information system (GIS) on handheld computers to record both background environmental and cadastral information and archaeological information. Our equipment was similar to what is commonly used during field survey (McPherron and Dibble 2003, Bevan and Conolly 2004, Tripcevich 2004, 2004, Given and Hyla 2006, Wagtendonk and De Jeu 2007, de la Vega and Agulla 2010, Tripcevich and Wernke 2010, Fei 2011, Scianna and Villa 2011, Traviglia 2011, Fee, Pettegrew et al. 2013, Newhard, Levine et al. 2013, Cascalheira, Gonçalves et al. 2014, Banning and Hitchings 2015). A detailed description of our specific hardware, software, and justifications for our choices is presented in our SOM. 
+
+We investigated behaviors at landform boundaries by analyzing the contrast between archaeological sites close to the boundary of a landform and the archaeology deeper within the landform. Our test of boundary effects focused on the archaeological evidence from resource-rich landform types/terrain patterns, such as Czs4, bordered by landscapes with lower resource levels, such as landform types 5 or 6. Because Czs4 and Czs5 dominate the 353 km2 sample area and contain the majority of sites, the analyses focused on comparing these two terrain patterns. 
+
+Two approaches were used to diagnose the presence and character of boundary effects. In the first approach, we determined the straight-line distance from every site to the nearest boundary of the terrain pattern in which it was contained. Descriptive statistics for these distances allows testing of the prediction that sites tend to be closer to the edge of some landforms than other landforms. In the second approach, we measured the density of sites at 100 m intervals, or buffer zones, inwards from the boundary of the terrain patterns Csz4 and Csz5, as the best represented terrain patterns. These data were used to test the prediction that site densities tends to be higher towards the center of Csz4, as a resource-rich landform, compared to Csz5, as a resource-poor landform. We created interior buffer polygons at 0-100 m, 101-200 m and 201-300 m from the boundary of the terrain patterns and the number of sites per square kilometer in each buffer was measured. The density of sites in each buffer zone was then divided by the average density for the entire terrain pattern to standardize the density value for the terrain pattern. Finally, z-scores were calculated to put the differences in site density on a comparable scale between the two terrain patterns. Z-scores are a transformation of the data that show how many standard deviations the site density in each buffer polygon varies from the mean density (z = 0) of the buffers in each terrain pattern. This second approach provided a way to minimize the effect of differences in the sizes of landscape units being compared. It does this by limiting analysis to an area 300 m from the boundary of the terrain pattern, thereby excluding sites in the middle of very large area terrain patterns. 
+
+# Results
+
+### Model validation
+
+The data from Olympic Dam allow a preliminary test of the predictions of the landuse model developed for the region in the early 1980s (Hughes, Hiscock et al. 2011). The first prediction tested here is that there was differential use of localities within dunefields. More specifically, areas of widely-spaced longitudinal sand dunes were predicted to have been intensely occupied when compared with areas containing more closely-spaced dunes. This difference is anticipated because of the greater range and density of animal foods and water sources in places where dunes are more widely separated.
+
+A wide variety of landforms and geological regimes were recorded, displayed in FIG 4 as the percentage coverage of each terrain pattern. In total these areas contained about 10,400 archaeological sites. Most of that sample area consists of widely spaced dunes – landform type 4 (46%), moderately spaced dunes – landform type 5 (35%) and closely spaced dunes – landform type 6 (11%), mainly overlying Tertiary stony-plains (Czs4 and Czs5 respectively) but some overlying limestone (A) or quartzite surfaces (K and P). Other terrain patterns make up less than 10% of the 353 km2 study area (FIG 4). 
+
+About 44% of all sites were recorded in these two terrain patterns (Czs4: 33.8%, Czs5: 10.7%) with no other terrain pattern having more than 20% of all sites. When considered as homogenous units, there are marked differences in the frequency of archaeological sites and the density of stone artefacts between these two terrain patterns. As predicted (TABLE 1), sites are more frequent in fields of widely spaced dunes (Czs4) with 53 sites/km2 compared with more closely spaced dunes (Czs5) which have only 21 sites/km2 (t = 5.29, df = 8.6, p-value = 0.0005). Also as predicted by the original model the density of surface-visible stone artefacts was substantially higher in areas of widely spaced dunes (Czs4), at 35,789 artefacts/km2, compared with closely spaced dunes Czs5 at 2,702 artefacts/km2. 
+
+### Landscape boundary effects 
+
+FIG 5 depicts median distances for site distances from terrain pattern boundaries where the dunefields are on average more than 1 km across (FIG 2). The general pattern is clear, with distances being substantially further in widely spaced dunefields such landform type 4 than in more closely spaced dunefields such as landform types 5 and 6. An examination of FIG 2 shows that this relationship is not dependent simply on the size or shape of the terrain patterns.
+
+FIG 6 shows that in Cz4 landscapes the density of sites increases toward the center of the landform while in Cz5 landforms site density decreases towards the center of the landform. These data give support to the prediction that resource-rich landscapes such as Csz4 have sites located away from their margin and far inside the terrain pattern areas while landscapes with lower resource levels such as Csz5 commonly have sites closer to their margins and fewer sites further in their interiors. 
+
+## Discussion
+
+Confirmation of the model predictions were facilitated by two survey characteristics. One is that the extensive survey area, the intensive level of survey and the resulting large sample size of archaeological sites, meant that observation of human choices and behaviour could be obtained at a very high spatial resolution. The second is that objective and robust environmental classifications, creating well-defined terrain patterns, made it possible to quantify landscape diversity in the study area at a high spatial resolution and reduced false associations that could result from less accurate environmental mapping.
+Reprise testing of model predictions…
+Reprise testing of boundary effect predictions… 
+
+This analysis suggests that prehistoric people in the Olympic Dam area were sensitive to the different economic potential of dissimilar terrain patterns. This claim is axiomatic to human behavioural ecology in which different landscapes are commonly compared as homogenous units to improve analytical tractability. The novel element of the data presented here is that the distribution of human activities varies substantially and predictably within as well as between terrain patterns. It is also noteworthy that a relatively subtle geographic differences between landscapes – the different spacing of sand dunes between Czs4 and Czs5 – has a marked visible effect on the distribution of archaeological sites. 
+
+### Efficiency of a mobile GIS compared to paper systems for field survey
+
+Our survey activity in the Olympic Dam region over multiple decades has provided us with an opportunity to collect longitudinal data on site recording methods. Here we briefly explore the question of whether our mobile GIS enabled faster site recording then when we used a paper-pen-GPS method (these methods are described in more detail in our SOM). TABLE 5 shows a summary of the productivity of archaeological survey before and after we implemented our mobile GIS. Although there are many possible metrics of productivity, one that was especially relevant for our project was the number of sites recorded per person per day. This metric is useful because it is easy to measure without burdening field workers with additional data logging tasks. However, we need to take into account possible confounding factors, such as travel time to the day’s survey area, the size and density of the sites in the day’s survey area, skill and efficiency of the individual archaeologist and the sampling strategy. 
+
+Our pre-2007 data were collected by more experienced archaeologists than the 2007-2009 data, using a recording form with less variables than our mobile GIS recording forms, and the pre-2007 survey areas were all closer to the camp, with less travel time compared to the 2007-2009 data. Further, the average site size for the pre-2007 data is less than the 2007-2009 data. TABLE 5 shows that prior to adopting the mobile GIS in 2007 we recorded 3.5 sites per person per day. With the mobile GIS our rate increased substantially to an average of 10.2 sites per person per day for 2007-2009. 
+
+While this is a substantial difference, not all of this increase in the rate of recording can be attributed to the use of the mobile GIS because the rate of recording is strongly correlated with the density of sites (r = 0.97, p = 0.003). To isolate the effect of site density on recording rate we computed a linear model for the 2007-2009 data (rate = site density * 0.297 (0.004)+ 0.062139 (0.146),  r2 = 0.999, p = 0.0002, standard errors in parentheses) and predicted the site recording rate given the density of 19 sites km-2 observed in the pre-2007 data. The resulting rate is 5.7 sites/person/day, which is what we would expect if a mobile GIS had been used to record sites in an area with 19 sites km-2. The difference of 2.2 sites/person/day between the actual pre-2007 average rate of 3.5 and the extrapolated average rate of 5.7 is most likely due to the use of mobile GIS. This represents a sixty percent increase in the site recording rate. This demonstrates an advantage for using mobile GIS in a context where data collection was intensive, a highly structured data collection form could be used, and the start-up and training costs could be amortized over multiple years. 
+
+
+## Conclusion
+
+
+The substantive archaeological contribution of this study, resulting from the use of mobile GIS to record archaeological data, has been to show that when choosing habitations prehistoric people in the Olympic Dam area were sensitive to relatively small variations in the landscape, such as the spacing of dunes. The implication of this finding is that even in relatively homogenous landscapes, such as the desert investigated here, there are gradient-like patterns in the distribution of archaeological sites (cf. Attwell and Fletcher 1987). These gradients allow for more sophisticated interpretations of prehistoric behaviour beyond the obvious attraction of prominent landscape features (Wilson 2007, Kowalewski 2008: 233). Given a large enough dataset, such as the one presented here, these patterns can be quickly quantified using a geographical information system and explained with simple behavioural ecological models. 
+
+
+## Acknowledgments
+
+This work was undertaken under a contract with BHP Billiton that includes research support. Other financial support for Ben Marwick came from a Luce/ACLS Post-doctoral fellowship (B9471 01 180401 7301) and a grant from the Herbert H. Gowen International Studies Endowment (UW Office of Global Affairs). 
+
+
+##### 
+<!--- page break --->
+ 
+## References 
+
+Attwell, M. R. and M. Fletcher (1987). "An analytical technique for investigating spatial relationships." Journal of Archaeological Science 14(1): 1-11.   
+
+Badman, F. J. (1999). "The Lake Eyre South Study: Vegetation." Lake Eyre South Monograph Series 2: 176-200.
+
+Banning, E. B. and P. Hitchings (2015). "Digital Archaeological Survey: Using iPads In Archaeological Survey In Wadi Quseiba, Northern Jordan." The SAA Archaeological Record 15(4): 31-36.
+
+Barton, H. (2003). "The Thin Film of Human Action: interpretations of Arid Zone Archaeology." Australian Archaeology 57: 32-41.
+
+Bevan, A. and J. Conolly (2004). "GIS, Archaeological Survey, and Landscape Archaeology on the Island of Kythera, Greece." Journal of Field Archaeology 29(1-2): 123-138.
+
+Cascalheira, J., C. Gonçalves and N. Bicho (2014). "Smartphones and the use of customized Apps in archaeological projects." The SAA Archaeological Record 14(5): 20-25.
+
+Daniel, I. R., Jr. (2001). "Stone Raw Material Availability and Early Archaic Settlement in the Southeastern United States." American Antiquity 66(2): 237-265.
+
+Davies, B., S. J. Holdaway and P. C. Fanning (2015). "Modelling the palimpsest: An exploratory agent-based model of surface archaeological deposit formation in a fluvial arid Australian landscape." The Holocene: 0959683615609754.
+
+de la Vega, S. G.-D. and S. O. Agulla (2010). Using mobile GIS. for Field Digital Data Acquisition (FDA) in archaeological field survey. Geoinformation Technologies for Geo-Cultural Landscapes: European Perspectives. A. Vassilopoulos, N. Evelpidou, O. Bender and A. Krek: 35-46.
+Dunnell, R. C. and W. S. Dancey (1983). "The Siteless Survey: A Regional Scale Data Collection Strategy." Advances in Archaeological Method and Theory 6: 267-287.
+
+Epp, H. T. (1985). "Ecological Edges and Archaeological Site Location in Saskatchewan, Canada." North American Archaeologist 5(4): 323-336.
+
+Fanning, P. C., S. J. Holdaway and E. J. Rhodes (2008). "A new geoarchaeology of Aboriginal artefact deposits in western NSW, Australia: establishing spatial and temporal geomorphic controls on the surface archaeological record." Geomorphology 101(3): 524-532.
+
+Fee, S. B., D. K. Pettegrew and W. R. Caraher (2013). "Taking Mobile Computing to the Field." Near Eastern Archaeology (NEA) 76(1): 50-55.
+
+Fei, G. (2011). "Data Acquisition of Field Archaeological Supported by PDA+ GPS and ArcPad." Journal of Hefei University (Natural Sciences) 2: 011.
+
+Foley, R. (1981). Off-site archaeology: an alternative approach for the short-sited. Pattern of the past: studies in honour of David Clarke. I. Hodder, G. Isaac and N. Hammond. Cambridge, Cambridge University Press: 157-183.
+
+Given, O. and S. Hyla (2006). "Forging Partnerships in Laos." Expedition 48(1): 38-39.
+Glassow, M. A. and M. Leone (1972 ). Changes in the Adaptations of Southwestern Basketmakers: a Systems Perspective. Contemporary Archaeology. M. Leone, Southern Illinois University Press: 289-302.
+
+Gumerman, G. J. and R. R. Johnson (1971). "Prehistoric human population distribution in a biological transition zone." The distribution of prehistoric population aggregates," edited by George J. Gumerman: 83-102.
+
+Hardesty, D. L. (1980). "The Use of General Ecological Principles in Archaeology." Advances in Archaeological Method and Theory 3: 157-187.
+
+Harris, D. R., P. J. Ucko and G. Dimbleby (1969). "Agricultural systems, ecosystems and the origins of agriculture." The domestication and exploitation of plants and animals.: 3-15.
+
+Hiscock, P. (1989). Artefact recording in the field. Sites and Bytes. Recording Aboriginal places in Australia. J. Flood, I. Johnson and S. Sullivan. Canberra, Australian Government Publishing Service: .20-38.
+
+Hiscock, P. and P. J. Hughes (1983). "One method of recording scatters of stone artefacts during site surveys." Australian Archaeology 17: 87-98.
+
+Holdaway, S. (1998). New approaches to open site spatial archaeology in Sturt National Park, New South Wales, Australia. Archaeology in Oceania.
+
+Holdaway, S. J., M. J. Douglass and P. C. Fanning (2013). "A new ecological framework for understanding human environment interactions in arid Australia." Archaeology in environment and technology intersections and transformations: 51-68.
+
+Hughes, P. and P. Hiscock (2005). The archaeology of the Lake Eyre South area. The archaeology of the Lake Eyre South Region. W. J. H. Slaytor. Adelaide, Royal Geographical Society of South Australia. 6: 1-20.
+
+Hughes, P., P. Hiscock, M. Sullivan and B. Marwick (2011). "An outline of archaeological investigations for the Olympic Dam Expansion in arid northeast South Australia." Journal of the Anthropological Society of South Australia 34: 21-37 
+
+Hughes, P. J. and P. Hiscock (1982). Annex 5. Olympic Dam Draft Environmental Impact Statement. Unpublished Report to Roxby Management Services Pty Ltd through Kinhill Stearns Roger Pty Ltd, Adelaide.
+
+Jones, G. T., C. Beck, E. E. Jones and R. E. Hughes (2003). "Lithic source use and paleoarchaic foraging territories in the Great Basin." American Antiquity 68(1): 5-38.
+
+Kimes, T., C. Haselgrove and I. Hodder (1982). "A method for the identification of the location of regional cultural boundaries." Journal of Anthropological Archaeology 1(2): 113-131.
+
+King, F. B. and R. W. Graham (1981). "Effects of Ecological and Paleoecological Patterns on Subsistence and Paleoenvironmental Reconstructions." American Antiquity 46(1): 128-142.
+
+Kowalewski, S. A. (2008). "Regional settlement pattern studies." Journal of Archaeological Research 16(3): 225-285.
+
+Kuna, M. (2000). Surface artefact studies in the Czech Republic. The Future of Surface Artefact Survey in Europe, Sheffield Academic Press, Sheffield, UK. J. Bintliff, M. Kuna and N. Venclova. Sheffield, Sheffield Archaeological Monographs: 29-44.
+
+McPherron, S. and H. Dibble (2003). "Using computers In adverse field conditions: Tales from the Egyptian desert." The SAA Archaeological Record 3(5): 28-32.
+
+Napton, L. K. and E. A. Greathouse (1996). Archaeological investigations in the Simpson Desert, Northern Territory. Archaeology of Northern Australia. P. Veth and P. Hiscock. Brisbane, University of Queensland. TEMPUS Volume 4: 106-136.
+
+Newhard, J. M. L., N. S. Levine, A. D. Phebus, S. Craft and J. D. Littlefield (2013). "A geoinformatic approach to the collection of archaeological survey data." Cartography and Geographic Information Science 40(1): 3-17.
+
+Rhoades, R. E. (1978). "Archaeological Use and Abuse of Ecological Concepts and Studies: The Ecotone Example." American Antiquity 43(4): 608-614.
+
+Scianna, A. and B. Villa (2011). "GIS applications in archaeology." Archeologia e Calcolatori 22: 337-363.
+
+Smith, M., A. Williams, C. Turney and M. Cupper (2008). "Human—environment interactions in Australian drylands: exploratory time-series analysis of archaeological records." The Holocene 18(3): 389-401.
+
+Smith, M. A. (2006). "Characterizing late Pleistocene and Holocene stone artefact assemblages from Puritjarra rock shelter: a long sequence from the Australian desert." Records of the Australian Museum 58: 371-410.
+
+Struever, S. (1968). Woodland subsistence-settlement systems in the lower Illinois Valley. New perspectives in archaeology. S. R. Binford and L. R. Binford. Chicago, Aldine: 285-312.
+
+Sullivan, M., T. L. Field, P. Hughes, B. Marwick, P. Przystupa and J. K. Feathers (2012). "OSL ages that inform late phases of dune formation and human occupation near Olympic Dam in Northeastern South Australia." Quaternary Australasia 29(1): 4-11.
+
+Thomas, D. H. (1975). Nonsite sampling in archaeology: up the creek without a site. Sampling in archaeology. J. W. Mueller. Tucson, AZ, University of Arizona Press: 61-81.
+Traviglia, A. (2011). Integrated Archaeological Investigations for the Study of the Greater Aquileia Area. The New Technologies for Aquileia, Aquileia, Italy.
+
+Tripcevich, N. (2004). "Flexibility by Design: How Mobile GIS Meets the Needs of Archaeological Survey." Cartography and Geographic Information Science 31(3): 137-151.
+
+Tripcevich, N. (2004). "Mobile GIS in archaeological survey." The SAA Archaeological Record(May).
+
+Tripcevich, N. and S. A. Wernke (2010). "On-site recording of excavation data using mobile GIS." Journal of Field Archaeology 35(4): 380-397.
+
+Veth, P. (1993). "Islands in the Interior: A Model for the Colonisation of Australia's Arid Zone." Archaeology in Oceania 24: 81-92.
+
+Veth, P., M. Smith and M. Haley (2001). "Kaalpi: The archaeology of an outlying range in the dunefields of the Western Desert." Australian Archaeology(52): 9-17.
+
+Veth, P., M. Smith and P. Hiscock (2008). Desert peoples: archaeological perspectives, John Wiley & Sons.
+
+Wagtendonk, A. J. and R. A. M. De Jeu (2007). "Sensible field computing: Evaluating the use of mobile GIS methods in scientific fieldwork." Photogrammetric Engineering and Remote Sensing 73(6): 651.
+
+Williams, A. N., S. Ulm, A. R. Cook, M. C. Langley and M. Collard (2013). "Human refugia in Australia during the Last Glacial Maximum and terminal Pleistocene: A geospatial analysis of the 25–12 ka Australian archaeological record." Journal of Archaeological Science 40(12): 4612-4625.
+
+Wilson, L. (2007). "Understanding prehistoric lithic raw material selection: application of a gravity model." Journal of Archaeological Method and Theory 14(4): 388-411.
+
+##### . 
 
 ### Colophon
 
@@ -63,8 +243,6 @@ kable(data.frame(Setting = names(devtools::session_info()$platform),
       caption = "R session information")
 ```
 
-
-
 ```{r}
 kable(devtools::session_info()$packages,
       caption = "Packages that this report depends on")
@@ -76,12 +254,6 @@ last_commit <- commits(repo)[[1]]
 ```
 
 The current git commit of this file is `r last_commit@sha`, which is on the `r branches(repo)[[1]]@name` branch and was made by `r last_commit@committer@name` on `r when(last_commit)`. The current commit message is "`r last_commit@summary`".
-
-##### 
-<!-- This is a comment, to note that the five has symbols above will create a page break in the word document that is output from this document. This comment will not be visible in the word doc -->
-
-## References 
-
 
 ```{r eval = FALSE}
 
@@ -446,8 +618,5 @@ summary(lm(dat_t_s[,5] ~ dat_t_s[,6]))
 
 
 ```
-
-
- 
 
 
