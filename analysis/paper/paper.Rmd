@@ -264,11 +264,11 @@ The current git commit of this file is `r last_commit@sha`, which is on the `r b
 rm(list = ls())
 #
 # load data
-load("E:/My Documents/My Papers/Journal of Field Archaeology/.RData")
+load("../data/.RData")
 # 
-setwd("E:\\My Documents\\My Papers\\Journal of Field Archaeology")
+
 library(foreign)
-ODX_allsites_2010 <- read.dbf("Join_Extract_ArcSite.dbf")
+ODX_allsites_2010 <- read.dbf("../data/Join_Extract_ArcSite.dbf")
 # 
 # now looking at my analysis journal from 
 # F:\My Documents\My Employment\HUGHES\Clause 7 Report\5thPreliminaryAnalysis
@@ -335,9 +335,8 @@ sum(na.omit(ODX_allsites_2010$artefacts)) - sum(artefacts.per.tp$artefacts)
 # 5926 artefacts missing... why are they missing? not sure
 #
 #
-setwd("E:\\My Documents\\My Papers\\Journal of Field Archaeology")
 library(foreign)
-ODX_TPs_2010 <- read.dbf("CLipped_ODO_terrain_patterns_2010_Ja.dbf")
+ODX_TPs_2010 <- read.dbf("../data/CLipped_ODO_terrain_patterns_2010_Ja.dbf")
 # 
 # Calculate the areas of the sampling polygons in ArcMap:
 # 1.  Open the attribute table of the layer you want to edit. 
@@ -369,15 +368,18 @@ ODX_LF_areas$prop <- (ODX_LF_areas$V1/sum(ODX_LF_areas$V1))*100
 sum(ODX_TP_areas$prop)
 #
 # Plot of TP areas (figure 4 of JFA paper)
-install.packages("ggplot2")
+
 library(ggplot2)
 ggplot(ODX_TP_areas, aes(reorder(GREGLANDF, prop), prop)) + 
-  geom_bar(fill = "white", colour = "black") +
+  geom_bar(stat = "identity",
+           fill = "white", colour = "black") +
   theme_bw(base_size = 17) +
-  opts(axis.text.x = theme_text(size = 17)) + 
-  opts(axis.text.y = theme_text(size = 17)) +
-  opts(axis.title.x = theme_text(size = 17)) + xlab("Terrain pattern") +
-  opts(axis.title.y = theme_text(size = 17, angle = 90)) + ylab("Percentage of study area")
+  theme(axis.text.x = element_text(size = 17),
+        axis.text.y = element_text(size = 17),
+        axis.title.x = element_text(size = 17),
+        axis.title.y = element_text(size = 17, angle = 90)) + 
+  ylab("Percentage of study area") +
+  xlab("Terrain pattern") 
 #
 # check of sites per sq km for each TP
 sites.per.sqkm <- merge(sites.per.tp, ODX_TP_areas, by.x = "Var1", by.y = "GREGLANDF")
@@ -397,9 +399,9 @@ artefacts.per.sqkm$artefacts.per <- with(artefacts.per.sqkm, artefacts/V1*1000*1
 # 5.	'Extract values to points'
 # 6. Then arctoolbox, spatial analysis tools, extraction, extract values to points. point layer is sites, values come from raster, then RASTERVALU is distance field. 
 # 7 .Then join to TP polygon to get TP values in sites dbf.
-setwd("E:\\My Documents\\My Papers\\Journal of Field Archaeology")
+
 library(foreign)
-ODX_allsites_2010 <- read.dbf("Join_Extract_ArcSite.dbf")
+ODX_allsites_2010 <- read.dbf("../data/Join_Extract_ArcSite.dbf")
 ODX_allsites_2010 <- ODX_allsites_2010[ !is.na(ODX_allsites_2010$GREGLANDF), ]
 ODX_allsites_2010.s <- subset(ODX_allsites_2010, GREGLANDF=='A4' | GREGLANDF=='Czs4' | GREGLANDF=='Q4' | GREGLANDF=='K4' | GREGLANDF=='Czs5' | GREGLANDF=='Q5' | GREGLANDF=='Q6')
 ODX_allsites_2010.s$GREGLANDF <- factor(ODX_allsites_2010.s$GREGLANDF)
@@ -408,33 +410,37 @@ ODX_allsites_2010.s$GREGLANDF <- factor(ODX_allsites_2010.s$GREGLANDF)
 levels(ODX_allsites_2010.s$GREGLANDF)
 ODX_allsites_2010.s$GREGLANDF <- factor(ODX_allsites_2010.s$GREGLANDF, 
   levels(ODX_allsites_2010.s$GREGLANDF)[c(1, 2, 5, 4, 3, 6, 7)])
+
 # plot
-install.packages("ggplot2")
 library(ggplot2)
 ggplot(ODX_allsites_2010.s, aes(GREGLANDF, RASTERVALU)) + 
   geom_boxplot() + 
   scale_y_log10(breaks = seq(0,1400,200)) + 
   theme_bw(base_size = 17) +
-  opts(axis.text.x = theme_text(size = 17)) + 
-  opts(axis.text.y = theme_text(size = 12)) +
-  opts(axis.title.x = theme_text(size = 17)) + xlab("Terrain pattern") +
-  opts(axis.title.y = theme_text(size = 17, angle = 90)) + ylab("Distance of site to boundary (m)")
+  theme(axis.text.x =  element_text(size = 17),
+        axis.text.y =  element_text(size = 12),
+        axis.title.x = element_text(size = 17),
+        axis.title.y = element_text(size = 17, 
+                                    angle = 90))  +
+  xlab("Terrain pattern") +
+  ylab("Distance of site to boundary (m)")
 
 # anova to see if sig diff between distances...
 fit <- aov(data = ODX_allsites_2010.s, RASTERVALU ~ GREGLANDF)
 plot(TukeyHSD(fit))
+
 # plot anova
-install.packages("granovaGG", dependencies = TRUE)
+# install.packages("granovaGG", dependencies = TRUE)
 library("granovaGG")
 granovagg.1w(data = ODX_allsites_2010.s$RASTERVALU, group = ODX_allsites_2010.s$GREGLANDF)
-install.packages("granova")
+# install.packages("granova")
 library("granova")
 granova.1w(data = ODX_allsites_2010.s$RASTERVALU, group = ODX_allsites_2010.s$GREGLANDF)
 
 
-setwd("E:\\My Documents\\My Papers\\Journal of Field Archaeology\\outer_buffers")
+
 # start with OUTER buffers
-bd_files <- list.files()
+bd_files <- list.files("../data/outer_buffers", full.names = TRUE)
 # list in, dataframe out
 library(plyr)
 library(foreign)
@@ -452,8 +458,7 @@ sum(na.omit(subset(bd.data, GREGLANDF=='Czs4')$Count_))
 sum(na.omit(subset(bd.data, GREGLANDF=='Czs5')$Count_))
 
 # now check the boundary densities for INNER buffers
-setwd("E:\\My Documents\\My Papers\\Journal of Field Archaeology\\inner_buffers")
-inbd.files <- list.files()
+inbd.files <- list.files("../data/inner_buffers", full.names = TRUE)
 # list in, dataframe out
 library(plyr)
 library(foreign)
@@ -481,15 +486,24 @@ inner_outer <- inner_outer[inner_outer[, 'SiteDens']!=0, ]
 # plot inner and outer together
 library(ggplot2)
 library(grid)
-ggplot(inner_outer,  aes(Buf, SiteDens)) + 
-  geom_point(size = 2) + facet_grid(GREGLANDF ~ .) + 
+library(scales)
+ggplot(inner_outer,  
+       aes(Buf, 
+           SiteDens)) + 
+  geom_point(size = 2) + 
+  facet_grid(GREGLANDF ~ .) + 
   scale_y_log10() + 
-  geom_smooth(aes(group = 1), fill = "grey80", colour = "grey") +
+  geom_smooth(aes(group = 1), 
+              fill = "grey80", 
+              colour = "grey") +
   theme_bw() + 
-  opts(axis.title.x = theme_text(vjust = -0.5, size = 15)) + 
-  opts(axis.title.y=theme_text(size = 15, angle=90)) + 
-  opts(plot.margin = unit(c(1,1,2,2), "lines")) + 
-  xlab("Distance from boundary in meters (negative values are interior distances, positive values are exterior distances)") + 
+  theme(
+  axis.title.x = element_text(vjust = -0.5, 
+                              size = 15),
+  axis.title.y=  element_text(size = 15, 
+                              angle=90), 
+  plot.margin = unit(c(1,1,2,2), "lines")) + 
+  xlab("Distance from boundary in meters \n(negative values are interior distances, \npositive values are exterior distances)") + 
   ylab("Sites per sq km")
 
 # significance tesing for changes in site density over buffers
@@ -510,10 +524,12 @@ qqline(resid(fit), col="red")
 library(coin) # library needed for more permutation tests
 # We'll use Monte Carlo simulations to get the p value
 oneway_test(data = inner_outer[inner_outer$GREGLANDF == 'Czs5',], SiteDens ~ Buf, distribution=approximate(B=10000))
+oneway_test(data = inner_outer[inner_outer$GREGLANDF == 'Czs4',], SiteDens ~ Buf, distribution=approximate(B=10000))
 # this is a test of whether 
 # two or more samples from normal distributions have the 
 # same means, variances not assumed equal
 kruskal_test(data = inner_outer[inner_outer$GREGLANDF == 'Czs5',], SiteDens ~ Buf, distribution=approximate(B=10000))
+kruskal_test(data = inner_outer[inner_outer$GREGLANDF == 'Czs4',], SiteDens ~ Buf, distribution=approximate(B=10000))
 # yes for Csz5, no for Csz4
 
 
@@ -561,7 +577,11 @@ bound.m <- melt(bound)
 
 # plot
 library(ggplot2)
-ggplot(bound.m, aes(dist,value, colour = variable)) + geom_line(aes(group = variable))
+ggplot(bound.m, 
+       aes(dist,
+           value, 
+           colour = variable)) + 
+  geom_line(aes(group = variable))
 
 # convert to z-scores....
 Czs4.sc <-  scale(Czs4)
@@ -575,18 +595,25 @@ colnames(bound.sc.m) <- c("distance", "Terrain Pattern", "density of sites")
 
 # plot scales
 library(ggplot2)
-ggplot(bound.sc.m, aes(x=bound.sc.m[,1], y=bound.sc.m[,3])) + 
-  geom_line(aes(group = bound.sc.m[,2], linetype = bound.sc.m[,2]), size = 1)  +
+ggplot(bound.sc.m, 
+       aes(x=bound.sc.m[,1], 
+           y=bound.sc.m[,3])) + 
+  geom_line(aes(group = bound.sc.m[,2], 
+                linetype = bound.sc.m[,2]), 
+            size = 1)  +
   theme_bw() +
-  opts(axis.text.x = theme_text(size = 17)) + 
-  opts(axis.text.y = theme_text(size = 17)) +
-  opts(axis.title.x = theme_text(size = 17)) +
-  opts(axis.title.y = theme_text(size = 17, angle = 90)) + 
+  theme(
+  axis.text.x =  element_text(size = 17), 
+  axis.text.y =  element_text(size = 17),
+  axis.title.x = element_text(size = 17),
+  axis.title.y = element_text(size = 17,
+                              angle = 90),
+  legend.text =  element_text(size=14),
+  legend.title = element_text(size=14)) + 
   xlab("interior buffer region (distance in m from \nboundary to the center of the terrain pattern)") + 
   ylab("z-score of site density in buffer area") +
-  scale_linetype_manual(name="Terrain Pattern", values = c(1,2) ) +
-  opts(legend.text=theme_text(size=14)) +
-  opts(legend.title=theme_text(size=14)) 
+  scale_linetype_manual(name="Terrain Pattern", values = c(1,2) ) 
+
 
 
 # checking benefit of mobile GIS
