@@ -1,5 +1,5 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-[![Last-changedate](https://img.shields.io/badge/last%20change-2016--10--20-brightgreen.svg)](https://github.com/benmarwick/olympicdamboundaries/commits/master) [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.3.1-brightgreen.svg)](https://cran.r-project.org/) [![Licence](https://img.shields.io/github/license/mashape/apistatus.svg)](http://choosealicense.com/licenses/mit/) [![Travis-CI Build Status](https://travis-ci.org/benmarwick/olympicdamboundaries.png?branch=master)](https://travis-ci.org/benmarwick/olympicdamboundaries) [![Circle CI](https://circleci.com/gh/benmarwick/olympicdamboundaries.svg?style=shield&circle-token=:circle-token)](https://circleci.com/gh/benmarwick/olympicdamboundaries) [![codecov.io](https://codecov.io/github/benmarwick/olympicdamboundaries/coverage.svg?branch=master)](https://codecov.io/github/benmarwick/olympicdamboundaries?branch=master) [![ORCiD](https://img.shields.io/badge/ORCiD-0000--0001--7879--4531-green.svg)](http://orcid.org/0000-0001-7879-4531)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2017--01--23-brightgreen.svg)](https://github.com/benmarwick/olympicdamboundaries/commits/master) [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.3.2-brightgreen.svg)](https://cran.r-project.org/) [![Licence](https://img.shields.io/github/license/mashape/apistatus.svg)](http://choosealicense.com/licenses/mit/) [![Travis-CI Build Status](https://travis-ci.org/benmarwick/olympicdamboundaries.png?branch=master)](https://travis-ci.org/benmarwick/olympicdamboundaries) [![Circle CI](https://circleci.com/gh/benmarwick/olympicdamboundaries.svg?style=shield&circle-token=:circle-token)](https://circleci.com/gh/benmarwick/olympicdamboundaries) [![ORCiD](https://img.shields.io/badge/ORCiD-0000--0001--7879--4531-green.svg)](http://orcid.org/0000-0001-7879-4531)
 
 Research compendium for a report on xxxx
 ----------------------------------------
@@ -61,7 +61,7 @@ We developed and tested the package on this Docker container, so this is the onl
 
 Manuscript: [CC-BY-4.0](http://creativecommons.org/licenses/by/4.0/)
 
-Code: [MIT](http://opensource.org/licenses/MIT) year: 2016, copyright holder: Ben Marwick
+Code: [MIT](http://opensource.org/licenses/MIT) year: 2017, copyright holder: Ben Marwick
 
 Data: [CC-0](http://creativecommons.org/publicdomain/zero/1.0/) attribution requested in reuse
 

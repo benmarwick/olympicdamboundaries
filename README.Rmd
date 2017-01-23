@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 [![Licence](https://img.shields.io/github/license/mashape/apistatus.svg)](http://choosealicense.com/licenses/mit/) 
 [![Travis-CI Build Status](https://travis-ci.org/benmarwick/olympicdamboundaries.png?branch=master)](https://travis-ci.org/benmarwick/olympicdamboundaries) 
 [![Circle CI](https://circleci.com/gh/benmarwick/olympicdamboundaries.svg?style=shield&circle-token=:circle-token)](https://circleci.com/gh/benmarwick/olympicdamboundaries)
-[![codecov.io](https://codecov.io/github/benmarwick/olympicdamboundaries/coverage.svg?branch=master)](https://codecov.io/github/benmarwick/olympicdamboundaries?branch=master) [![ORCiD](https://img.shields.io/badge/ORCiD-0000--0001--7879--4531-green.svg)](http://orcid.org/0000-0001-7879-4531) 
+[![ORCiD](https://img.shields.io/badge/ORCiD-0000--0001--7879--4531-green.svg)](http://orcid.org/0000-0001-7879-4531)
 
 ## Research compendium for a report on xxxx
 

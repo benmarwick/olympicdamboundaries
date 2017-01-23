@@ -16,6 +16,8 @@ abstract: |
 ```{r setup, include=FALSE}
 library(knitr)
 opts_chunk$set(echo = FALSE)
+options(warn=-1)
+# image width should be 90 mm for 1 col, 140 mm for 1.5 col, 190mm for two cols
 ```
 
 
@@ -60,17 +62,63 @@ The second reason why our data is uniquely suited to investigating landscape bou
 
 ## Olympic Dam and investigation of its archaeology
 
-Olympic Dam is located on the southeastern edge of the driest part of the Australian arid zone. Archaeological material is found across the broader region and partly reflects the long period of human occupation, the wide range of locally available resources and the extremely low rates of sediment movement that might otherwise obscure surface artefacts. Optically stimulated luminescence dating of sediments underling buried artefacts at one typical site we investigated indicates a terminus post quem  of 5 k BP for the artifact bearing deposit (Sullivan, Field et al. 2012). Such an age is consistent with the majority of dates for human occupation of sand deserts elsewhere in Australia, where evidence has suggested a substantial expansion of human activity in the last few millennia (Veth, Smith et al. 2001, Smith 2006). A single dated site is insufficient to draw conclusions beyond the local level, however the distinctive implement forms such as backed artefacts, unifacial points and tula adzes at many sites in the study area indicate a mid to late Holocene age for the main period of land use and for most of the surface artefact scatters recorded during the survey (Hughes and Hiscock 2005). This mid to late Holocene period was also a time of broad-scale dune stability, so site visibility is not strongly controlled by dune movement. In 2013 we returned to sites that had been recorded 25 years earlier and found them to be in the same state as originally recorded, indicating that site visibility has changed little over 25 years. 
+```{r overviewmap, fig.cap="Map of region including the study area", fig.width=9}
 
-The Olympic Dam area has been the target of mineral exploration and mining since the 1980s. The extensive records of archaeological sites at Olympic Dam have been created during research-orientated consultancy work related to this exploration and mining activity. In 1980 Hughes, Hiscock and colleagues commenced a range of archaeological investigations for the proposed Olympic Dam mining project. They used terrain patterns based on combining categories of different landforms and surface geology (FIG 2) to develop an environmentally-based model to predict the nature and distribution of archaeological sites (Hughes and Hiscock 1982). The landscape consists of ancient stony plateau (or tableland) surfaces partly overlain by fields of longitudinal east-west dunes. Many of the interdune corridors (or swales) and extensive flat to gently sloping plateau surfaces without dunes are covered by a lag of gravels and cobbles referred to as gibber. Water sources include ephemeral small lakes, claypans and canegrass-vegetated swamps which are subject to high evaporation rates, with no free water available for most of the year. In this region vegetation patterns were also determined by the presence or absence of sand, gibber surfaces and water bodies (Badman 1999). This means that there are long-term relationships between the landscape units employed in the analysis of Hughes and Hiscock (1982), and plant and animal resources exploited by forager communities in the past. 
+knitr::include_graphics("../figures/regional_map.png")
+
+```
+
+Olympic Dam is located on the southeastern edge of the driest part of the Australian arid zone (Figure \@ref(fig:overviewmap)). Archaeological material is found across the broader region and partly reflects the long period of human occupation, the wide range of locally available resources and the extremely low rates of sediment movement that might otherwise obscure surface artefacts. Optically stimulated luminescence dating of sediments underling buried artefacts at one typical site we investigated indicates a terminus post quem  of 5 k BP for the artifact bearing deposit (Sullivan, Field et al. 2012). Such an age is consistent with the majority of dates for human occupation of sand deserts elsewhere in Australia, where evidence has suggested a substantial expansion of human activity in the last few millennia (Veth, Smith et al. 2001, Smith 2006). A single dated site is insufficient to draw conclusions beyond the local level, however the distinctive implement forms such as backed artefacts, unifacial points and tula adzes at many sites in the study area indicate a mid to late Holocene age for the main period of land use and for most of the surface artefact scatters recorded during the survey (Hughes and Hiscock 2005). This mid to late Holocene period was also a time of broad-scale dune stability, so site visibility is not strongly controlled by dune movement. In 2013 we returned to sites that had been recorded 25 years earlier and found them to be in the same state as originally recorded, indicating that site visibility has changed little over 25 years. 
+
+```{r mapofstudyarea1, fig.cap="Map of study area with landforms and terrain patterns", fig.width=9}
+
+knitr::include_graphics("../figures/landforms_only.png")
+
+
+```
+
+```{r mapofstudyarea2, fig.cap="Map of study area with landforms and terrain patterns", fig.width=9}
+
+
+
+knitr::include_graphics("../figures/landforms_and_sites.png")
+
+```
+
+The Olympic Dam area has been the target of mineral exploration and mining since the 1980s. The extensive records of archaeological sites at Olympic Dam have been created during research-orientated consultancy work related to this exploration and mining activity. In 1980 Hughes, Hiscock and colleagues commenced a range of archaeological investigations for the proposed Olympic Dam mining project. They used terrain patterns based on combining categories of different landforms and surface geology (Figure \@ref(fig:mapofstudyarea)) to develop an environmentally-based model to predict the nature and distribution of archaeological sites (Hughes and Hiscock 1982). The landscape consists of ancient stony plateau (or tableland) surfaces partly overlain by fields of longitudinal east-west dunes. Many of the interdune corridors (or swales) and extensive flat to gently sloping plateau surfaces without dunes are covered by a lag of gravels and cobbles referred to as gibber. Water sources include ephemeral small lakes, claypans and canegrass-vegetated swamps which are subject to high evaporation rates, with no free water available for most of the year. In this region vegetation patterns were also determined by the presence or absence of sand, gibber surfaces and water bodies (Badman 1999). This means that there are long-term relationships between the landscape units employed in the analysis of Hughes and Hiscock (1982), and plant and animal resources exploited by forager communities in the past. 
 
 Hughes and Hiscock’s archaeological model has been described in detail in previous publications (Hughes et al. 2011; Hughes and Hiscock 1982; Hughes and Sullivan 1984). In brief, the model details how the location and character of archaeological sites are influenced by proximity to fresh water, sand on which to camp, and locally available raw materials for flaking stone artefacts. The model results in a series of predictions about the archaeological record expected for each of six landform types (TABLE 1) and five geological regimes (TABLE 2). These predictions specify the frequency of sites and the density and diversity of artefacts were produced for each major landscape unit.
 
-These descriptions were initially tested in the 1980s and 1990s by archaeological surveys of the mining area and infrastructure corridors. The predictive model was based on records from an initial 133 sites and by 2007 additional testing and surveys of water and power supply corridors had resulted in a database totaling 820 archaeological sites  (Hiscock and Hughes 1983, Hiscock 1989).  In 2007 a proposed expansion of the Olympic Dam mine triggered the need for an intensive archaeological survey of an additional area of 515 km2 surrounding the existing mine, to be completed by the end of 2009 (FIG 2). The data collected during this expansion phase is the basis for this study.  
+These descriptions were initially tested in the 1980s and 1990s by archaeological surveys of the mining area and infrastructure corridors. The predictive model was based on records from an initial 133 sites and by 2007 additional testing and surveys of water and power supply corridors had resulted in a database totaling 820 archaeological sites  (Hiscock and Hughes 1983, Hiscock 1989).  In 2007 a proposed expansion of the Olympic Dam mine triggered the need for an intensive archaeological survey of an additional area of 515 km2 surrounding the existing mine, to be completed by the end of 2009 (Figure \@ref(fig:mapofstudyarea)). The data collected during this expansion phase is the basis for this study.  
 
 ## Methods and Materials 
 
-Between 2007 and 2009 teams of archaeologists and trainees from local Aboriginal groups walking across the entire area recorded more than 16,000 archaeological sites. We achieved close to 90% coverage of 353 km2. The sites consist of stone artefact scatters (87%), artefact scatters with knapping floors (7%), knapping floors (5.5%) and quarries (0.5%) (Hughes, Hiscock et al. 2011). Extended descriptions of site definitions and survey methods have previously been presented in Hughes et al. (2011). 
+```{r sitetypetally}
+library(foreign)
+library(data.table)
+ODX_allsites_2010 <- read.dbf("../data/Join_Extract_ArcSite.dbf")
+ODX_allsites_2010 <- data.table(ODX_allsites_2010)
+# percentages of each site type
+ODX_site_type_tally <- ODX_allsites_2010[  , by = .(SITTYP), .(.N ), ]
+ODX_site_type_tally$prop <- with(ODX_site_type_tally, round(N / sum(N),3) *100)
+
+artefact_scatters <- with(ODX_site_type_tally, 
+                          ODX_site_type_tally[SITTYP == "Artefact Scatter (AS)", 
+                                              prop])
+as_kf           <- with(ODX_site_type_tally, 
+                          ODX_site_type_tally[SITTYP == "AS + Knapping Floor (KF)", 
+                                              prop])
+knapping_floors  <- with(ODX_site_type_tally, 
+                          ODX_site_type_tally[SITTYP == "Single KF", 
+                                              prop])
+quarries         <- with(ODX_site_type_tally, 
+                          ODX_site_type_tally[SITTYP == "Quarry", 
+                                              prop])
+
+
+```
+
+Between 2007 and 2009 teams of archaeologists and trainees from local Aboriginal groups walking across the entire area recorded more than 16,000 archaeological sites. We achieved close to 90% coverage of 353 km2. The sites consist of stone artefact scatters (`r artefact_scatters`%), artefact scatters with knapping floors (`r as_kf`%), knapping floors (`r knapping_floors`%) and quarries (`r quarries`%) (Hughes, Hiscock et al. 2011). Extended descriptions of site definitions and survey methods have previously been presented in Hughes et al. (2011). 
 
 To collect field data, we used a mobile geographic information system (GIS) on handheld computers to record both background environmental and cadastral information and archaeological information. Our equipment was similar to what is commonly used during field survey (McPherron and Dibble 2003, Bevan and Conolly 2004, Tripcevich 2004, 2004, Given and Hyla 2006, Wagtendonk and De Jeu 2007, de la Vega and Agulla 2010, Tripcevich and Wernke 2010, Fei 2011, Scianna and Villa 2011, Traviglia 2011, Fee, Pettegrew et al. 2013, Newhard, Levine et al. 2013, Cascalheira, Gonçalves et al. 2014, Banning and Hitchings 2015). A detailed description of our specific hardware, software, and justifications for our choices is presented in our SOM. 
 
@@ -84,7 +132,56 @@ Two approaches were used to diagnose the presence and character of boundary effe
 
 The data from Olympic Dam allow a preliminary test of the predictions of the landuse model developed for the region in the early 1980s (Hughes, Hiscock et al. 2011). The first prediction tested here is that there was differential use of localities within dunefields. More specifically, areas of widely-spaced longitudinal sand dunes were predicted to have been intensely occupied when compared with areas containing more closely-spaced dunes. This difference is anticipated because of the greater range and density of animal foods and water sources in places where dunes are more widely separated.
 
-A wide variety of landforms and geological regimes were recorded, displayed in FIG 4 as the percentage coverage of each terrain pattern. In total these areas contained about 10,400 archaeological sites. Most of that sample area consists of widely spaced dunes – landform type 4 (46%), moderately spaced dunes – landform type 5 (35%) and closely spaced dunes – landform type 6 (11%), mainly overlying Tertiary stony-plains (Czs4 and Czs5 respectively) but some overlying limestone (A) or quartzite surfaces (K and P). Other terrain patterns make up less than 10% of the 353 km2 study area (FIG 4). 
+```{r percentcoverageofeachterrainpattern, fig.cap="Terrain pattern percentage coverage of the 2007-2008 study area", fig.width=9}
+# Terrain pattern percentage coverage of the 2007-2008 study area in Figure map
+library(foreign)
+ODX_TPs_2010 <- read.dbf("../data/CLipped_ODO_terrain_patterns_2010_Ja.dbf")
+
+# check areas and proportion of total areas for each TP
+library(data.table)
+ODX_TPs_2010.dt <- data.table(ODX_TPs_2010)
+setkey(ODX_TPs_2010.dt,GREGLANDF)
+ODX_TP_areas <- ODX_TPs_2010.dt[,sum(Clip_Area_), by = GREGLANDF]
+ODX_TP_areas$prop <- (ODX_TP_areas$V1/sum(ODX_TP_areas$V1))*100
+# check that proportions add to 100%
+# sum(ODX_TP_areas$prop)
+# check of total area of TPs
+# sum(ODX_TP_areas$V1)/(1000*1000)
+#
+# repeat checks for landforms
+ODX_LF_areas <- ODX_TPs_2010.dt[,sum(Clip_Area_), by = LANDFORM]
+ODX_LF_areas$prop <- (ODX_LF_areas$V1/sum(ODX_LF_areas$V1))*100
+# check that proportions add to 100%
+# sum(ODX_TP_areas$prop)
+# 
+# get values to use in text
+LF4 <- round(with(ODX_LF_areas, ODX_LF_areas[LANDFORM == "4", prop]),1)
+LF5 <- round(with(ODX_LF_areas, ODX_LF_areas[LANDFORM == "5", prop]),1)
+LF6 <- round(with(ODX_LF_areas, ODX_LF_areas[LANDFORM == "6", prop]),1)
+#
+# Plot of TP areas (figure 4 of JFA paper)
+text_size <- 13
+library(ggplot2)
+ggplot(ODX_TP_areas, aes(reorder(GREGLANDF, prop), prop)) + 
+  geom_bar(stat = "identity",
+           fill = "white", 
+           colour = "black") +
+  theme_bw(base_size = text_size) +
+  theme(axis.text.x = element_text(size = text_size),
+        axis.text.y = element_text(size = text_size),
+        axis.title.x = element_text(size = text_size),
+        axis.title.y = element_text(size = text_size, angle = 90)) + 
+  ylab("Percentage of study area") +
+  xlab("Terrain pattern") +
+  coord_fixed(ratio =  0.618/2)
+  
+# count of all sites per TP
+all_sites_in_study_area <- prettyNum(sum(table(na.omit(ODX_allsites_2010$GREGLANDF))),
+                                     big.mark = ",")
+```
+
+
+A wide variety of landforms and geological regimes were recorded, displayed in figure \@ref(fig:percentcoverageofeachterrainpattern) as the percentage coverage of each terrain pattern. In total these areas contained about `r all_sites_in_study_area` archaeological sites. Most of the study area consists of widely spaced dunes – landform type 4 (`r LF4`%), moderately spaced dunes – landform type 5 (`r LF5`%) and closely spaced dunes – landform type 6 (`r LF6`%), mainly overlying Tertiary stony-plains (Czs4 and Czs5 respectively) but some overlying limestone (A) or quartzite surfaces (K and P). Other terrain patterns make up less than 10% of the 353 km2 study area (Figure \@ref(fig:percentcoverageofeachterrainpattern)). 
 
 About 44% of all sites were recorded in these two terrain patterns (Czs4: 33.8%, Czs5: 10.7%) with no other terrain pattern having more than 20% of all sites. When considered as homogenous units, there are marked differences in the frequency of archaeological sites and the density of stone artefacts between these two terrain patterns. As predicted (TABLE 1), sites are more frequent in fields of widely spaced dunes (Czs4) with 53 sites/km2 compared with more closely spaced dunes (Czs5) which have only 21 sites/km2 (t = 5.29, df = 8.6, p-value = 0.0005). Also as predicted by the original model the density of surface-visible stone artefacts was substantially higher in areas of widely spaced dunes (Czs4), at 35,789 artefacts/km2, compared with closely spaced dunes Czs5 at 2,702 artefacts/km2. 
 
@@ -260,19 +357,8 @@ The current git commit of this file is `r last_commit@sha`, which is on the `r b
 ###########################################################
 # checking P&M's edits from 14 May 2012
 #
-# clear the workspace
-rm(list = ls())
-#
-# load data
-load("../data/.RData")
-# 
-
 library(foreign)
 ODX_allsites_2010 <- read.dbf("../data/Join_Extract_ArcSite.dbf")
-# 
-# now looking at my analysis journal from 
-# F:\My Documents\My Employment\HUGHES\Clause 7 Report\5thPreliminaryAnalysis
-# 
 # sites per TP
 sites.per.tp <- data.frame(table(na.omit(ODX_allsites_2010$GREGLANDF)))
 # find proportion of all sites in each TP
@@ -282,21 +368,22 @@ sites.per.tp$prop <- sites.per.tp$Freq/sum(sites.per.tp$Freq)*100
 ODX_allsites_2010$DENCOUNT <- with(ODX_allsites_2010, (as.numeric(levels(DENSQ1)[DENSQ1]))+(as.numeric(levels(DENSQ2)[DENSQ2]))+(as.numeric(levels(DENSQ3)[DENSQ3]))+(as.numeric(levels(DENSQ4)[DENSQ4]))+(as.numeric(levels(DENSQ5)[DENSQ5]))+(as.numeric(levels(DENSQ6)[DENSQ6]))+(as.numeric(levels(DENSQ7)[DENSQ7]))+(as.numeric(levels(DENSQ8)[DENSQ8])+(as.numeric(levels(DENSQ9)[DENSQ9]))/9)*((as.numeric(levels(DIMSIT1)[DIMSIT1]))*(as.numeric(levels(DIMSIT2)[DIMSIT2]))))
 # check if all sites with density square data were processed
 # should return TRUE
-identical(length(na.omit(ODX_allsites_2010$DENSQ1)), length(na.omit(ODX_allsites_2010$DENCOUNT)))
-# check how many sites with density square data
-length(na.omit(ODX_allsites_2010$DENCOUNT))
-#
+# identical(length(na.omit(ODX_allsites_2010$DENSQ1)), 
+# length(na.omit(ODX_allsites_2010$DENCOUNT)))
+# # check how many sites with density square data
+# length(na.omit(ODX_allsites_2010$DENCOUNT))
+# #
 # get counts when all artefacts counted
 ODX_allsites_2010$COUNTONLY <- with( ODX_allsites_2010, as.numeric(levels(TOTART)[TOTART]) )
 # check how many are ok
-length(na.omit(ODX_allsites_2010$TOTART)) # should have
-length(na.omit(ODX_allsites_2010$COUNTONLY)) # did get
+# length(na.omit(ODX_allsites_2010$TOTART)) # should have
+# length(na.omit(ODX_allsites_2010$COUNTONLY)) # did get
 #
 # get counts from when only a VISTEST was taken:
 ODX_allsites_2010$VISCOUNT<-with(ODX_allsites_2010, (as.numeric(levels(VISEST)[VISEST]))*((as.numeric(levels(DIMSIT1)[DIMSIT1]))*(as.numeric(levels(DIMSIT2)[DIMSIT2]))))
 # check how many are ok
-length(na.omit(ODX_allsites_2010$VISEST)) # should have
-length(na.omit(ODX_allsites_2010$VISCOUNT)) # did get
+# length(na.omit(ODX_allsites_2010$VISEST)) # should have
+# length(na.omit(ODX_allsites_2010$VISCOUNT)) # did get
 #
 ODX_allsites_2010$artefacts <- as.numeric(with(ODX_allsites_2010, 
       ifelse(COUNTONLY > 1, COUNTONLY,
@@ -313,7 +400,7 @@ ODX_allsites_2010$artefacts <- as.numeric(with(ODX_allsites_2010,
 # summary(ODX_allsites_2010$COUNTONLY)
 #  
 # check how many are ok
-length(na.omit(ODX_allsites_2010$artefacts))
+# length(na.omit(ODX_allsites_2010$artefacts))
 # 
 # check how many sites in total
 # summary( ODX_allsites_2010[,1:10] )
