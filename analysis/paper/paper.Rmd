@@ -14,10 +14,17 @@ abstract: |
   Landscapes throughout a region vary in the resources they contain. We investigate how Holocene forager populations adapted to this variation in the linear sand dune desert of arid South Australia. We use data from surface scatters of stone artefacts collected during pedestrian survey to compare behaviors at landscape boundaries to behaviours at the centers of landforms. We propose a model of human use of the landscape that predicts that the prehistoric occupants of the study are were sensitive to the different economic potential of dissimilar landscapes.  In evaluating the model we find that there are different densities of archaeological sites in each landscape type. We also find indications of a boundary effect resulting from people having used marginal areas of each landscape type in response to the resource characteristics of adjoining landforms. In addition, we make some observations on our field data collection methods, identifying the general conditions where mobile GIS may be optimally efficient for archaeological survey
 ---
 ```{r setup, include=FALSE}
-library(knitr)
-opts_chunk$set(echo = FALSE)
-options(warn=-1)
 # image width should be 90 mm for 1 col, 140 mm for 1.5 col, 190mm for two cols
+fig_width_two_cols <- 190/25 # inch
+fig_width_one_col <- 90/25 # inch
+
+library(knitr)
+opts_chunk$set(echo = FALSE,
+               warning = FALSE,
+               message = FALSE,
+               dpi = 600)
+options(warn = -1)
+
 ```
 
 
@@ -52,7 +59,7 @@ A key step in understanding past human use of landscapes is investigating how pe
 
 These uses of the ecotone and edge effect concepts declined in the archaeological literature after several critiques pointed out that archaeologists have been overly simplistic in their use of many ecological concepts (Rhoades 1978, Hardesty 1980, King and Graham 1981). Problems with these previous approaches include ignoring controversies among biologists about the definition of ecotones, and unjustified assumptions about the uniformity of all ecotones, and about edge effects always increasing the amount of food species available to humans. Here we pursue a different approach by focusing on subtle variations in landscape characteristics within a biome, rather than between them. By focusing on continuous variation, rather than step-wise shifts in the archaeological record across ecological interfaces, we introduce a new approach to studying behaviors of prehistoric forager groups at interface zones. 
 
-In this study we demonstrate the use of gradients of change in archaeological materials over distance to explore forager choices of where to carry out activities in respect to environmental boundaries. We test a prediction that prehistoric foragers were sensitive to differences in resource structure as gradients across the landscape. This approach may be contrasted with concepts of linear boundaries with step-wise shifts in habitability that make comparative landscape analysis more tractable in many contexts. The spatial scales of much of the previous work on prehistoric arid zone foragers has ranged from continental (Williams, Ulm et al. 2013) to ecological regions (Holdaway, Douglass et al. 2013). In this paper, we focus on human behavior in the arid zone at a novel scale and location: the interface between two types of subtly different landscapes. We show that prehistoric forager groups’ decisions about how they occupied the study area were sensitive to subtle differences in local landscape characteristics.
+In this study we ask if it is possible to observe gradients of change in archaeological materials over distance to understand forager choices of where to carry out activities in respect to environmental boundaries. We predict that prehistoric foragers were sensitive to differences in resource structure as gradients across the landscape. This approach may be contrasted with concepts of linear boundaries with step-wise shifts in habitability that make comparative landscape analysis more tractable in many contexts. The spatial scales of much of the previous work on prehistoric arid zone foragers has ranged from continental (Williams, Ulm et al. 2013) to ecological regions (Holdaway, Douglass et al. 2013). In this paper, we focus on human behavior in the arid zone at a novel scale and location: the interface between two types of subtly different landscapes. We show that prehistoric forager groups’ decisions about how they occupied the study area were sensitive to subtle differences in local landscape characteristics.
 
 Our work is motivated by previous archaeological work on cultural landscapes of foragers that emphasizes the relationship between settlement organization and both exploitable resources and prominent landscape features such as dunes, occurrences of flakeable rocks, pans, springs and salt lakes (Hughes and Hiscock 1982, Veth 1993, Napton and Greathouse 1996, Holdaway 1998, Barton 2003, Smith 2006, Fanning, Holdaway et al. 2008, Smith, Williams et al. 2008, Veth, Smith et al. 2008, Williams, Ulm et al. 2013, Davies, Holdaway et al. 2015). The archaeological signature of landuse typically has been the distribution and composition of surface stone artefact scatters, which are by far the most abundant type of site. In this context, sites are typically small, dense and discrete concentrations of stone artefacts that represent temporary, short-term activity areas. The spatially discrete quality of the majority of sites in these desert regions, such as our study area, means it is possible to distinguish between even quite close sites (<50 m apart) with confidence, unlike many other contexts where artifact distributions are more spatially continuous (Thomas 1975, Foley 1981, Dunnell and Dancey 1983, Kuna 2000). 
 
@@ -62,7 +69,7 @@ The second reason why our data is uniquely suited to investigating landscape bou
 
 ## Olympic Dam and investigation of its archaeology
 
-```{r overviewmap, fig.cap="Map of region including the study area", fig.width=9}
+```{r overviewmap, fig.cap="Map of region including the study area", fig.width=fig_width_one_col}
 
 knitr::include_graphics("../figures/regional_map.png")
 
@@ -70,26 +77,23 @@ knitr::include_graphics("../figures/regional_map.png")
 
 Olympic Dam is located on the southeastern edge of the driest part of the Australian arid zone (Figure \@ref(fig:overviewmap)). Archaeological material is found across the broader region and partly reflects the long period of human occupation, the wide range of locally available resources and the extremely low rates of sediment movement that might otherwise obscure surface artefacts. Optically stimulated luminescence dating of sediments underling buried artefacts at one typical site we investigated indicates a terminus post quem  of 5 k BP for the artifact bearing deposit (Sullivan, Field et al. 2012). Such an age is consistent with the majority of dates for human occupation of sand deserts elsewhere in Australia, where evidence has suggested a substantial expansion of human activity in the last few millennia (Veth, Smith et al. 2001, Smith 2006). A single dated site is insufficient to draw conclusions beyond the local level, however the distinctive implement forms such as backed artefacts, unifacial points and tula adzes at many sites in the study area indicate a mid to late Holocene age for the main period of land use and for most of the surface artefact scatters recorded during the survey (Hughes and Hiscock 2005). This mid to late Holocene period was also a time of broad-scale dune stability, so site visibility is not strongly controlled by dune movement. In 2013 we returned to sites that had been recorded 25 years earlier and found them to be in the same state as originally recorded, indicating that site visibility has changed little over 25 years. 
 
-```{r mapofstudyarea1, fig.cap="Map of study area with landforms and terrain patterns", fig.width=9}
+```{r mapofstudyarea1, fig.cap="Map of study area with landforms and terrain patterns", fig.width=fig_width_two_cols}
 
 knitr::include_graphics("../figures/landforms_only.png")
 
-
 ```
 
-```{r mapofstudyarea2, fig.cap="Map of study area with landforms and terrain patterns", fig.width=9}
-
-
+```{r mapofstudyarea2, fig.cap="Map of study area showing the distribution of archaeological sites used in this study", fig.width=fig_width_two_cols}
 
 knitr::include_graphics("../figures/landforms_and_sites.png")
 
 ```
 
-The Olympic Dam area has been the target of mineral exploration and mining since the 1980s. The extensive records of archaeological sites at Olympic Dam have been created during research-orientated consultancy work related to this exploration and mining activity. In 1980 Hughes, Hiscock and colleagues commenced a range of archaeological investigations for the proposed Olympic Dam mining project. They used terrain patterns based on combining categories of different landforms and surface geology (Figure \@ref(fig:mapofstudyarea)) to develop an environmentally-based model to predict the nature and distribution of archaeological sites (Hughes and Hiscock 1982). The landscape consists of ancient stony plateau (or tableland) surfaces partly overlain by fields of longitudinal east-west dunes. Many of the interdune corridors (or swales) and extensive flat to gently sloping plateau surfaces without dunes are covered by a lag of gravels and cobbles referred to as gibber. Water sources include ephemeral small lakes, claypans and canegrass-vegetated swamps which are subject to high evaporation rates, with no free water available for most of the year. In this region vegetation patterns were also determined by the presence or absence of sand, gibber surfaces and water bodies (Badman 1999). This means that there are long-term relationships between the landscape units employed in the analysis of Hughes and Hiscock (1982), and plant and animal resources exploited by forager communities in the past. 
+The Olympic Dam area has been the target of mineral exploration and mining since the 1980s. The extensive records of archaeological sites at Olympic Dam have been created during research-orientated consultancy work related to this exploration and mining activity. In 1980 Hughes, Hiscock and colleagues commenced a range of archaeological investigations for the proposed Olympic Dam mining project. They used terrain patterns based on combining categories of different landforms and surface geology (Figure \@ref(fig:mapofstudyarea1)) to develop an environmentally-based model to predict the nature and distribution of archaeological sites (Hughes and Hiscock 1982). The landscape consists of ancient stony plateau (or tableland) surfaces partly overlain by fields of longitudinal east-west dunes. Many of the interdune corridors (or swales) and extensive flat to gently sloping plateau surfaces without dunes are covered by a lag of gravels and cobbles referred to as gibber. Water sources include ephemeral small lakes, claypans and canegrass-vegetated swamps which are subject to high evaporation rates, with no free water available for most of the year. In this region vegetation patterns were also determined by the presence or absence of sand, gibber surfaces and water bodies (Badman 1999). This means that there are long-term relationships between the landscape units employed in the analysis of Hughes and Hiscock (1982), and plant and animal resources exploited by forager communities in the past. 
 
 Hughes and Hiscock’s archaeological model has been described in detail in previous publications (Hughes et al. 2011; Hughes and Hiscock 1982; Hughes and Sullivan 1984). In brief, the model details how the location and character of archaeological sites are influenced by proximity to fresh water, sand on which to camp, and locally available raw materials for flaking stone artefacts. The model results in a series of predictions about the archaeological record expected for each of six landform types (TABLE 1) and five geological regimes (TABLE 2). These predictions specify the frequency of sites and the density and diversity of artefacts were produced for each major landscape unit.
 
-These descriptions were initially tested in the 1980s and 1990s by archaeological surveys of the mining area and infrastructure corridors. The predictive model was based on records from an initial 133 sites and by 2007 additional testing and surveys of water and power supply corridors had resulted in a database totaling 820 archaeological sites  (Hiscock and Hughes 1983, Hiscock 1989).  In 2007 a proposed expansion of the Olympic Dam mine triggered the need for an intensive archaeological survey of an additional area of 515 km2 surrounding the existing mine, to be completed by the end of 2009 (Figure \@ref(fig:mapofstudyarea)). The data collected during this expansion phase is the basis for this study.  
+These descriptions were initially tested in the 1980s and 1990s by archaeological surveys of the mining area and infrastructure corridors. The predictive model was based on records from an initial 133 sites and by 2007 additional testing and surveys of water and power supply corridors had resulted in a database totaling 820 archaeological sites  (Hiscock and Hughes 1983, Hiscock 1989).  In 2007 a proposed expansion of the Olympic Dam mine triggered the need for an intensive archaeological survey of an additional area of 515 km2 surrounding the existing mine, to be completed by the end of 2009. The data collected during this expansion phase is the basis for this study (Figure \@ref(fig:mapofstudyarea2)).  
 
 ## Methods and Materials 
 
@@ -132,7 +136,8 @@ Two approaches were used to diagnose the presence and character of boundary effe
 
 The data from Olympic Dam allow a preliminary test of the predictions of the landuse model developed for the region in the early 1980s (Hughes, Hiscock et al. 2011). The first prediction tested here is that there was differential use of localities within dunefields. More specifically, areas of widely-spaced longitudinal sand dunes were predicted to have been intensely occupied when compared with areas containing more closely-spaced dunes. This difference is anticipated because of the greater range and density of animal foods and water sources in places where dunes are more widely separated.
 
-```{r percentcoverageofeachterrainpattern, fig.cap="Terrain pattern percentage coverage of the 2007-2008 study area", fig.width=9}
+```{r percentcoverageofeachterrainpattern, fig.cap="Terrain pattern percentage coverage of the 2007-2008 study area", fig.width=fig_width_two_cols}
+
 # Terrain pattern percentage coverage of the 2007-2008 study area in Figure map
 library(foreign)
 ODX_TPs_2010 <- read.dbf("../data/CLipped_ODO_terrain_patterns_2010_Ja.dbf")
@@ -162,7 +167,7 @@ LF6 <- round(with(ODX_LF_areas, ODX_LF_areas[LANDFORM == "6", prop]),1)
 # Plot of TP areas (figure 4 of JFA paper)
 text_size <- 13
 library(ggplot2)
-ggplot(ODX_TP_areas, aes(reorder(GREGLANDF, prop), prop)) + 
+ggplot(ODX_TP_areas, aes(reorder(GREGLANDF, -prop), prop)) + 
   geom_bar(stat = "identity",
            fill = "white", 
            colour = "black") +
@@ -183,7 +188,157 @@ all_sites_in_study_area <- prettyNum(sum(table(na.omit(ODX_allsites_2010$GREGLAN
 
 A wide variety of landforms and geological regimes were recorded, displayed in figure \@ref(fig:percentcoverageofeachterrainpattern) as the percentage coverage of each terrain pattern. In total these areas contained about `r all_sites_in_study_area` archaeological sites. Most of the study area consists of widely spaced dunes – landform type 4 (`r LF4`%), moderately spaced dunes – landform type 5 (`r LF5`%) and closely spaced dunes – landform type 6 (`r LF6`%), mainly overlying Tertiary stony-plains (Czs4 and Czs5 respectively) but some overlying limestone (A) or quartzite surfaces (K and P). Other terrain patterns make up less than 10% of the 353 km2 study area (Figure \@ref(fig:percentcoverageofeachterrainpattern)). 
 
-About 44% of all sites were recorded in these two terrain patterns (Czs4: 33.8%, Czs5: 10.7%) with no other terrain pattern having more than 20% of all sites. When considered as homogenous units, there are marked differences in the frequency of archaeological sites and the density of stone artefacts between these two terrain patterns. As predicted (TABLE 1), sites are more frequent in fields of widely spaced dunes (Czs4) with 53 sites/km2 compared with more closely spaced dunes (Czs5) which have only 21 sites/km2 (t = 5.29, df = 8.6, p-value = 0.0005). Also as predicted by the original model the density of surface-visible stone artefacts was substantially higher in areas of widely spaced dunes (Czs4), at 35,789 artefacts/km2, compared with closely spaced dunes Czs5 at 2,702 artefacts/km2. 
+```{r sitesinterrainpatterns, fig.cap="Site density in each terrain pattern. Annotation shows the result of a t-test to compare site densities in the two largest terrain patters, Czs4 and Czs5", fig.width=fig_width_two_cols}
+## sites in each TP
+sitesinterrainpatterns <- ODX_allsites_2010[, .N, by = GREGLANDF][, prop := N/sum(N) * 100]
+
+# prop of sites in Czs4
+sites_in_Czs4 <-  round(with(sitesinterrainpatterns, sitesinterrainpatterns[GREGLANDF == "Czs4", prop]), 1)
+
+# Prop of sites in Czs5 
+sites_in_Czs5 <- round(with(sitesinterrainpatterns, sitesinterrainpatterns[GREGLANDF == "Czs5", prop]), 1)
+
+# no other TP has more than N % of sites...
+sites_in_other_TPs <- round(max(with(sitesinterrainpatterns, sitesinterrainpatterns[!GREGLANDF %in% c("Czs4","Czs5") , prop])),1)
+
+## site density per TP
+
+# join TP areas to site counts per TP
+sites_in_terrain_patterns_and_areas <- ODX_TP_areas[sitesinterrainpatterns]
+# add column of DENSITY of sites per sq km 
+sites_in_terrain_patterns_and_areas <- 
+sites_in_terrain_patterns_and_areas[ , DENSITY := (N / V1) * (1000 * 1000), ] 
+
+# test for difference in sites/km2 in Czs4 and Czs5
+# aggregate to get one row per TP_NO
+ODX_allsites_2010_per_TP_NO <- 
+ODX_allsites_2010[, list(.N, unique(AREA_M2)), by = TP_NO][, sites_per_sqkm := (N/V2) ]
+# split TP_NO col to get TPs in their own col
+ODX_allsites_2010_per_TP_NO <- ODX_allsites_2010_per_TP_NO[, c("TP", "NO") := tstrsplit(TP_NO, "/") ]
+# subset Czs4 and Czs5
+ODX_allsites_2010_per_TP_NO_Czs4_and_Czs5 <- ODX_allsites_2010_per_TP_NO[ TP %in% c("Czs4", "Czs5") , ,  ]
+# t-test for each TP
+t_test_for_two_TPs <-  with(ODX_allsites_2010_per_TP_NO_Czs4_and_Czs5, 
+                            t.test( sites_per_sqkm ~  as.factor(TP)))
+t_test_for_two_TPs_p_value <- round(t_test_for_two_TPs$p.value, 3)
+t_test_for_two_TPs_t_value <- round(t_test_for_two_TPs$statistic, 3)
+t_test_for_two_TPs_df_value <- round(t_test_for_two_TPs$parameter, 3)
+# summary values for 
+
+# density of sites in Czs4
+site_density_in_Czs4 <-  round(mean(with(ODX_allsites_2010_per_TP_NO_Czs4_and_Czs5, ODX_allsites_2010_per_TP_NO_Czs4_and_Czs5[TP == "Czs4", sites_per_sqkm]), 1))
+
+# density of sites in Czs5 
+site_density_in_Czs5 <-  round(mean(with(ODX_allsites_2010_per_TP_NO_Czs4_and_Czs5, ODX_allsites_2010_per_TP_NO_Czs4_and_Czs5[TP == "Czs5", sites_per_sqkm]), 1))
+
+## artefact density per TP
+
+
+## plot site densities and artefact densities per TP
+g <- ggplot(ODX_allsites_2010_per_TP_NO,
+       aes(reorder(TP,
+           -sites_per_sqkm),
+           sites_per_sqkm)) +
+  geom_boxplot() +
+  theme_bw(base_size = text_size) +
+  theme(axis.text.x = element_text(size = text_size),
+        axis.text.y = element_text(size = text_size),
+        axis.title.x = element_text(size = text_size),
+        axis.title.y = element_text(size = text_size, angle = 90)) + 
+  ylab("Sites per square kilometer") +
+  xlab("Terrain pattern") +
+  coord_fixed(ratio =  0.04) 
+
+# add horizontal bars
+hline <- 150
+g <-  g + geom_segment(aes(x = 2, # Czs4
+                            y = hline, 
+                            xend = 10,  # Czs5
+                            yend = hline))
+
+# add vertical bars
+g <-   g + geom_segment(aes(x = c(2), # Czs4
+                            y = c(hline), 
+                            xend = c(2),  # Czs5
+                            yend = c(90)))
+g <-   g + geom_segment(aes(x = c(10), # Czs4
+                            y = c(hline), 
+                            xend = c(10),  # Czs5
+                            yend = c(40)))
+# add annotation
+g <- g + annotate("text", 
+                  x = 6,
+                  y = 160, 
+                  label = paste0("t(", t_test_for_two_TPs_df_value, ") = ",
+                                 t_test_for_two_TPs_t_value, ", p = ",
+                                 t_test_for_two_TPs_p_value))
+# show plot
+g
+```
+
+```{r artefactdensity}
+# get counts from density squares
+ODX_allsites_2010$DENCOUNT <- with(ODX_allsites_2010, (as.numeric(levels(DENSQ1)[DENSQ1]))+(as.numeric(levels(DENSQ2)[DENSQ2]))+(as.numeric(levels(DENSQ3)[DENSQ3]))+(as.numeric(levels(DENSQ4)[DENSQ4]))+(as.numeric(levels(DENSQ5)[DENSQ5]))+(as.numeric(levels(DENSQ6)[DENSQ6]))+(as.numeric(levels(DENSQ7)[DENSQ7]))+(as.numeric(levels(DENSQ8)[DENSQ8])+(as.numeric(levels(DENSQ9)[DENSQ9]))/9)*((as.numeric(levels(DIMSIT1)[DIMSIT1]))*(as.numeric(levels(DIMSIT2)[DIMSIT2]))))
+# check if all sites with density square data were processed
+# should return TRUE
+# identical(length(na.omit(ODX_allsites_2010$DENSQ1)), 
+# length(na.omit(ODX_allsites_2010$DENCOUNT)))
+# # check how many sites with density square data
+# length(na.omit(ODX_allsites_2010$DENCOUNT))
+# #
+# get counts when all artefacts counted
+ODX_allsites_2010$COUNTONLY <- with( ODX_allsites_2010, as.numeric(levels(TOTART)[TOTART]) )
+# check how many are ok
+# length(na.omit(ODX_allsites_2010$TOTART)) # should have
+# length(na.omit(ODX_allsites_2010$COUNTONLY)) # did get
+#
+# get counts from when only a VISTEST was taken:
+ODX_allsites_2010$VISCOUNT<-with(ODX_allsites_2010, (as.numeric(levels(VISEST)[VISEST]))*((as.numeric(levels(DIMSIT1)[DIMSIT1]))*(as.numeric(levels(DIMSIT2)[DIMSIT2]))))
+# check how many are ok
+# length(na.omit(ODX_allsites_2010$VISEST)) # should have
+# length(na.omit(ODX_allsites_2010$VISCOUNT)) # did get
+#
+ODX_allsites_2010$artefacts <- as.numeric(with(ODX_allsites_2010, 
+      ifelse(COUNTONLY > 1, COUNTONLY,
+      ifelse(VISCOUNT  > 1 ,  VISCOUNT, 
+      ifelse(DENCOUNT  > 1 , DENCOUNT, "XX")))))
+#                                          
+# have a bit of a look 
+# ODX_allsites_2010[ODX_allsites_2010$VISCOUNT  != 0 ,]
+# ODX_allsites_2010[ODX_allsites_2010$DENCOUNT  != 0 ,]
+# ODX_allsites_2010[ODX_allsites_2010$COUNTONLY != 0 ,]
+#
+# summary(ODX_allsites_2010$VISCOUNT)
+# summary(ODX_allsites_2010$DENCOUNT)
+# summary(ODX_allsites_2010$COUNTONLY)
+#  
+# check how many are ok
+# length(na.omit(ODX_allsites_2010$artefacts))
+# 
+# check how many sites in total
+# summary( ODX_allsites_2010[,1:10] )
+# 10636 sites in data, 133 are hearths so 10503 should 
+# have artefact data... in fact 9859 do, so some 644 sites
+# have problems with artefact data, that's only 0.6% so that's
+# not too bad.
+#
+# get total number of artefacts in each TP
+artefacts.per.tp <- aggregate(data = ODX_allsites_2010, artefacts ~ GREGLANDF, FUN = sum)
+
+# check of artefacts per sq km for each TP
+artefacts.per.sqkm <- merge(artefacts.per.tp, ODX_TP_areas)
+artefacts.per.sqkm$artefacts.per <- with(artefacts.per.sqkm, artefacts/V1*1000*1000)
+
+# extract values for text 
+artefacts_per_sqkm_Czs4 <- 
+prettyNum(round(with(artefacts.per.sqkm, artefacts.per.sqkm[GREGLANDF == "Czs4", 'artefacts.per']), 0), big.mark = ",")
+
+artefacts_per_sqkm_Czs5 <- 
+prettyNum(round(with(artefacts.per.sqkm, artefacts.per.sqkm[GREGLANDF == "Czs5", 'artefacts.per']), 0), big.mark = ",")
+
+```
+
+About 44% of all sites were recorded in these two terrain patterns (Czs4: `r sites_in_Czs4`%, Czs5: `r sites_in_Czs5`%) with no other terrain pattern having more than `r sites_in_other_TPs`% of all sites. When considered as homogenous units, there are marked differences in the frequency of archaeological sites and the density of stone artefacts between these two terrain patterns. As predicted (TABLE 1), sites are more frequent in fields of widely spaced dunes (Czs4) with `r site_density_in_Czs4` sites/km2 compared with more closely spaced dunes (Czs5) which have only `r site_density_in_Czs5` sites/km2 (t(`r t_test_for_two_TPs_df_value`) = `r t_test_for_two_TPs_t_value`, p-value = `r t_test_for_two_TPs_p_value`) (Figure \@ref(fig:sitesinterrainpatterns). Also as predicted by the original model the density of surface-visible stone artefacts was substantially higher in areas of widely spaced dunes (Czs4), at `r artefacts_per_sqkm_Czs4` artefacts/km2, compared with closely spaced dunes Czs5 at `r artefacts_per_sqkm_Czs5` artefacts/km2. 
 
 ### Landscape boundary effects 
 
