@@ -27,8 +27,6 @@ options(warn = -1)
 
 ```
 
-
-
 Affiliations:
 
 Ben Marwick (corresponding author)
@@ -44,10 +42,9 @@ Peter Hiscock
 The University of Sydney, Sydney NSW, Australia
 
 Philip Hughes    
-Department of Archaeology, Flinders University, GPO Box 2100, Adelaide, SA, 5001
+Huonbrook and Environment and Heritage P/L, PO Box 97 Moruya NSW 2537, Australia
 
 Marjorie Sullivan    
-The Australian National University, Canberra ACT 0200, Australia and 
 Huonbrook and Environment and Heritage P/L, PO Box 97 Moruya NSW 2537, Australia
 
 ##### . 
@@ -55,7 +52,7 @@ Huonbrook and Environment and Heritage P/L, PO Box 97 Moruya NSW 2537, Australia
   
 ## Introduction
 
-A key step in understanding past human use of landscapes is investigating how people adapted their behaviours to the different landscapes they inhabited. Often this kind of analyses depends on comparing modal attributes of archaeological sites between discrete patches of landscapes (e.g. Barton 2003). Variations in human behavior at landscape boundaries are more challenging to investigate, despite their importance in understanding sensitivity to landscape differences. Previous work on past human behaviors at ecological interfaces has focused on regions of highly contrasting biomes. For example, Epp (1985) found that archaeological sites were more concentrated in an ecotone (i.e. ecological transition area) where plains grasslands meet the boreal forest in Saskatchewan, compared to within those biomes. Epp’s work is typical of much early archaeological work on ecotones, with claims that ecotonal areas contain higher populations and diversities of flora and fauna (Struever 1968, Glassow and Leone 1972 ). This increased variety and density of plants and animals, often described as an ‘edge effect’, was claimed by Harris et al. (1969) to be a causal factor in the emergence of agriculture. This edge effect was also extended to human culture, with Gummerman and Johnson (1971) arguing for increased human cultural diversity in ecotonal zones of central Arizona. 
+A key step in understanding past human use of landscapes is investigating how people adapted their behaviors to the different landscapes they inhabited. Often this kind of analyses depends on comparing modal attributes of archaeological sites between discrete patches of landscapes (e.g. Barton 2003). Variations in human behavior at landscape boundaries are more challenging to investigate, despite their importance in understanding sensitivity to landscape differences. Previous work on past human behaviors at ecological interfaces has focused on regions of highly contrasting biomes. For example, Epp (1985) found that archaeological sites were more concentrated in an ecotone (i.e. ecological transition area) where plains grasslands meet the boreal forest in Saskatchewan, compared to within those biomes. Epp’s work is typical of much early archaeological work on ecotones, with claims that ecotonal areas contain higher populations and diversities of flora and fauna (Struever 1968, Glassow and Leone 1972). This increased variety and density of plants and animals, often described as an ‘edge effect’, was claimed by Harris et al. (1969) to be a causal factor in the emergence of agriculture. This edge effect was also extended to human culture, with Gummerman and Johnson (1971) arguing for increased human cultural diversity in ecotonal zones of central Arizona. 
 
 These uses of the ecotone and edge effect concepts declined in the archaeological literature after several critiques pointed out that archaeologists have been overly simplistic in their use of many ecological concepts (Rhoades 1978, Hardesty 1980, King and Graham 1981). Problems with these previous approaches include ignoring controversies among biologists about the definition of ecotones, and unjustified assumptions about the uniformity of all ecotones, and about edge effects always increasing the amount of food species available to humans. Here we pursue a different approach by focusing on subtle variations in landscape characteristics within a biome, rather than between them. By focusing on continuous variation, rather than step-wise shifts in the archaeological record across ecological interfaces, we introduce a new approach to studying behaviors of prehistoric forager groups at interface zones. 
 
@@ -63,7 +60,16 @@ In this study we ask if it is possible to observe gradients of change in archaeo
 
 Our work is motivated by previous archaeological work on cultural landscapes of foragers that emphasizes the relationship between settlement organization and both exploitable resources and prominent landscape features such as dunes, occurrences of flakeable rocks, pans, springs and salt lakes (Hughes and Hiscock 1982, Veth 1993, Napton and Greathouse 1996, Holdaway 1998, Barton 2003, Smith 2006, Fanning, Holdaway et al. 2008, Smith, Williams et al. 2008, Veth, Smith et al. 2008, Williams, Ulm et al. 2013, Davies, Holdaway et al. 2015). The archaeological signature of landuse typically has been the distribution and composition of surface stone artefact scatters, which are by far the most abundant type of site. In this context, sites are typically small, dense and discrete concentrations of stone artefacts that represent temporary, short-term activity areas. The spatially discrete quality of the majority of sites in these desert regions, such as our study area, means it is possible to distinguish between even quite close sites (<50 m apart) with confidence, unlike many other contexts where artifact distributions are more spatially continuous (Thomas 1975, Foley 1981, Dunnell and Dancey 1983, Kuna 2000). 
 
-Our study area at Olympic Dam, South Australia, offers a unique opportunity to study landscape interfaces for two key reasons. First, in our study area these interfaces are relatively well-defined by landform attributes, such as the spacing between sand dune ridges and the surface geology (TABLE 1). The interfaces in our study area can be recognized as linear boundaries, often following the ridges or swales of the sand dunes, making them convenient for spatial analysis of archaeological features. Landform boundary effects have previously been employed in studying the distribution of artefacts to infer culture group areas (Kimes, Haselgrove et al. 1982). However, archaeological discussions of settlement patterns have typically focused on straight line distances from key resources such as raw materials for stone artefacts, as these are often easier to measure and interpret than landscape boundaries (Daniel 2001, Jones, Beck et al. 2003). With clear landscape unit boundaries, our study area is well-placed to explore relationships between archaeological attributes and distances from these boundaries. 
+##### . 
+<!-- page break -->
+
+```{r table1}
+table1 <- read.csv("../data/table_1.csv")
+names(table1) <- c("Landform type", "Archaeological prediction")
+kable(table1, caption = "Landform types and predicted archaeological signature. Adapted from Hughes et al. (2011), Kinhill-Stearns Roger (1982) and Hughes and Sullivan (1984).")
+```
+
+Our study area at Olympic Dam, South Australia, offers a unique opportunity to study landscape interfaces for two key reasons. First, in our study area these interfaces are relatively well-defined by landform attributes, such as the spacing between sand dune ridges and the surface geology (Table \@ref(tab:table1)). The interfaces in our study area can be recognized as linear boundaries, often following the ridges or swales of the sand dunes, making them convenient for spatial analysis of archaeological features. Landform boundary effects have previously been employed in studying the distribution of artefacts to infer culture group areas (Kimes, Haselgrove et al. 1982). However, archaeological discussions of settlement patterns have typically focused on straight line distances from key resources such as raw materials for stone artefacts, as these are often easier to measure and interpret than landscape boundaries (Daniel 2001, Jones, Beck et al. 2003). With clear landscape unit boundaries, our study area is well-placed to explore relationships between archaeological attributes and distances from these boundaries. 
 
 The second reason why our data is uniquely suited to investigating landscape boundary effects is that we have a large number of sites spread across several landscape types. The relatively high density of sites provides an opportunity to investigate fine-grained gradients of archaeological change over multiple landscapes and their interfaces. More specifically, we can test whether a boundary effect exists at the edge of landscape units by examining how the size and density of surface scatters of stone artefacts changes with their distance from the boundaries. 
 
@@ -91,9 +97,19 @@ knitr::include_graphics("../figures/landforms_and_sites.png")
 
 The Olympic Dam area has been the target of mineral exploration and mining since the 1980s. The extensive records of archaeological sites at Olympic Dam have been created during research-orientated consultancy work related to this exploration and mining activity. In 1980 Hughes, Hiscock and colleagues commenced a range of archaeological investigations for the proposed Olympic Dam mining project. They used terrain patterns based on combining categories of different landforms and surface geology (Figure \@ref(fig:mapofstudyarea1)) to develop an environmentally-based model to predict the nature and distribution of archaeological sites (Hughes and Hiscock 1982). The landscape consists of ancient stony plateau (or tableland) surfaces partly overlain by fields of longitudinal east-west dunes. Many of the interdune corridors (or swales) and extensive flat to gently sloping plateau surfaces without dunes are covered by a lag of gravels and cobbles referred to as gibber. Water sources include ephemeral small lakes, claypans and canegrass-vegetated swamps which are subject to high evaporation rates, with no free water available for most of the year. In this region vegetation patterns were also determined by the presence or absence of sand, gibber surfaces and water bodies (Badman 1999). This means that there are long-term relationships between the landscape units employed in the analysis of Hughes and Hiscock (1982), and plant and animal resources exploited by forager communities in the past. 
 
-Hughes and Hiscock’s archaeological model has been described in detail in previous publications (Hughes et al. 2011; Hughes and Hiscock 1982; Hughes and Sullivan 1984). In brief, the model details how the location and character of archaeological sites are influenced by proximity to fresh water, sand on which to camp, and locally available raw materials for flaking stone artefacts. The model results in a series of predictions about the archaeological record expected for each of six landform types (TABLE 1) and five geological regimes (TABLE 2). These predictions specify the frequency of sites and the density and diversity of artefacts were produced for each major landscape unit.
+##### . 
+<!-- page break -->
 
-These descriptions were initially tested in the 1980s and 1990s by archaeological surveys of the mining area and infrastructure corridors. The predictive model was based on records from an initial 133 sites and by 2007 additional testing and surveys of water and power supply corridors had resulted in a database totaling 820 archaeological sites  (Hiscock and Hughes 1983, Hiscock 1989).  In 2007 a proposed expansion of the Olympic Dam mine triggered the need for an intensive archaeological survey of an additional area of 515 km2 surrounding the existing mine, to be completed by the end of 2009. The data collected during this expansion phase is the basis for this study (Figure \@ref(fig:mapofstudyarea2)).  
+```{r table2}
+table2 <- read.csv("../data/table_2.csv")
+names(table2) <- c("Geological regime", "Period", "Description", "Materials for artefact manufacture")
+kable(table2, caption = "Geological regimes in the study area and predicted archaeological importance. Adapted from Hughes et al. (2011).")
+```
+
+
+Hughes and Hiscock’s archaeological model has been described in detail in previous publications (Hughes et al. 2011; Hughes and Hiscock 1982; Hughes and Sullivan 1984). In brief, the model details how the location and character of archaeological sites are influenced by proximity to fresh water, sand on which to camp, and locally available raw materials for flaking stone artefacts. The model results in a series of predictions about the archaeological record expected for each of six landform types (Table \@ref(tab:table1)) and five geological regimes (Table \@ref(tab:table2)). These predictions specify the frequency of sites and the density and diversity of artefacts were produced for each major landscape unit.
+
+These descriptions were initially tested in the 1980s and 1990s by archaeological surveys of the mining area and infrastructure corridors. The predictive model was based on records from an initial 133 sites and by 2007 additional testing and surveys of water and power supply corridors had resulted in a database totaling 820 archaeological sites  (Hiscock and Hughes 1983, Hiscock 1989).  In 2007 a proposed expansion of the Olympic Dam mine triggered the need for an intensive archaeological survey of an additional area of 515 km^2^ surrounding the existing mine, to be completed by the end of 2009. The data collected during this expansion phase is the basis for this study (Figure \@ref(fig:mapofstudyarea2)).  
 
 ## Methods and Materials 
 
@@ -123,15 +139,23 @@ quarries         <- with(ODX_site_type_tally,
 
 ```
 
-Between 2007 and 2009 teams of archaeologists and trainees from local Aboriginal groups walking across the entire area recorded more than 16,000 archaeological sites. We achieved close to 90% coverage of 353 km2. The sites consist of stone artefact scatters (`r artefact_scatters`%), artefact scatters with knapping floors (`r as_kf`%), knapping floors (`r knapping_floors`%) and quarries (`r quarries`%) (Hughes, Hiscock et al. 2011). Extended descriptions of site definitions and survey methods have previously been presented in Hughes et al. (2011). 
+Between 2007 and 2009 teams of archaeologists and trainees from local Aboriginal groups walking across the entire area recorded more than 16,000 archaeological sites. We achieved close to 90% coverage of 353 km^2^. The sites consist of stone artefact scatters (`r artefact_scatters`%), artefact scatters with knapping floors (`r as_kf`%), knapping floors (`r knapping_floors`%) and quarries (`r quarries`%) (Hughes, Hiscock et al. 2011). Extended descriptions of site definitions and survey methods have previously been presented in Hughes et al. (2011). 
 
-To collect field data, we used a mobile geographic information system (GIS) on handheld computers to record both background environmental and cadastral information and archaeological information. Our equipment was similar to what is commonly used during field survey (McPherron and Dibble 2003, Bevan and Conolly 2004, Tripcevich 2004, 2004, Given and Hyla 2006, Wagtendonk and De Jeu 2007, de la Vega and Agulla 2010, Tripcevich and Wernke 2010, Fei 2011, Scianna and Villa 2011, Traviglia 2011, Fee, Pettegrew et al. 2013, Newhard, Levine et al. 2013, Cascalheira, Gonçalves et al. 2014, Banning and Hitchings 2015). A detailed description of our specific hardware, software, and justifications for our choices is presented in our SOM. 
+To collect field data, we used a mobile geographic information system (GIS) on handheld computers to record both background environmental and cadastral information and archaeological information. Our equipment was similar to what is commonly used during field survey (McPherron and Dibble 2003, Bevan and Conolly 2004, Tripcevich 2004, 2004, Given and Hyla 2006, Wagtendonk and De Jeu 2007, de la Vega and Agulla 2010, Tripcevich and Wernke 2010, Fei 2011, Scianna and Villa 2011, Traviglia 2011, Fee, Pettegrew et al. 2013, Newhard, Levine et al. 2013, Cascalheira, Gonçalves et al. 2014, Banning and Hitchings 2015). Our mobile GIS configuration files, recording forms, and scripts are archived online at <http://doi.org/10.5281/zenodo.11833>. A detailed description of our specific hardware, software, and justifications for our choices is presented in our SOM. 
 
-We investigated behaviors at landform boundaries by analyzing the contrast between archaeological sites close to the boundary of a landform and the archaeology deeper within the landform. Our test of boundary effects focused on the archaeological evidence from resource-rich landform types/terrain patterns, such as Czs4, bordered by landscapes with lower resource levels, such as landform types 5 or 6. Because Czs4 and Czs5 dominate the 353 km2 sample area and contain the majority of sites, the analyses focused on comparing these two terrain patterns. 
+### Investigating boundary effects
 
-Two approaches were used to diagnose the presence and character of boundary effects. In the first approach, we determined the straight-line distance from every site to the nearest boundary of the terrain pattern in which it was contained. Descriptive statistics for these distances allows testing of the prediction that sites tend to be closer to the edge of some landforms than other landforms. In the second approach, we measured the density of sites at 100 m intervals, or buffer zones, inwards from the boundary of the terrain patterns Csz4 and Csz5, as the best represented terrain patterns. These data were used to test the prediction that site densities tends to be higher towards the center of Csz4, as a resource-rich landform, compared to Csz5, as a resource-poor landform. We created interior buffer polygons at 0-100 m, 101-200 m and 201-300 m from the boundary of the terrain patterns and the number of sites per square kilometer in each buffer was measured. The density of sites in each buffer zone was then divided by the average density for the entire terrain pattern to standardize the density value for the terrain pattern. Finally, z-scores were calculated to put the differences in site density on a comparable scale between the two terrain patterns. Z-scores are a transformation of the data that show how many standard deviations the site density in each buffer polygon varies from the mean density (z = 0) of the buffers in each terrain pattern. This second approach provided a way to minimize the effect of differences in the sizes of landscape units being compared. It does this by limiting analysis to an area 300 m from the boundary of the terrain pattern, thereby excluding sites in the middle of very large area terrain patterns. 
+We investigated behaviors at landform boundaries by analyzing the contrast between archaeological sites close to the boundary of a landform and the archaeology deeper within the landform. Our test of boundary effects focused on the archaeological evidence from resource-rich landform types/terrain patterns, such as Czs4, bordered by landscapes with lower resource levels, such as landform types 5 or 6. Because Czs4 and Czs5 dominate the 353 km^2^ sample area and contain the majority of sites, the analyses focused on comparing these two terrain patterns. 
 
-# Results
+Two approaches were used to diagnose the presence and character of boundary effects. In the first approach, we determined the straight-line distance from every site to the nearest boundary of the terrain pattern in which it was contained. Descriptive statistics for these distances allows testing of the prediction that sites tend to be closer to the edge of some landforms than other landforms. In the second approach, we measured the density of sites at 100 m intervals, or buffer zones, inwards from the boundary of the terrain patterns Csz4 and Csz5, as the best represented terrain patterns. These data were used to test the prediction that site densities tends to be higher towards the center of Csz4, as a resource-rich landform, compared to Csz5, as a resource-poor landform. We created interior buffer polygons at 0-100 m, 101-200 m and 201-300 m from the boundary of the terrain patterns and the number of sites per square kilometer in each buffer was measured. The density of sites in each buffer zone was then divided by the average density for the entire terrain pattern to standardize the density value for the terrain pattern. 
+
+Finally, z-scores were calculated to put the differences in site density on a comparable scale between the two terrain patterns. Z-scores are a transformation of the data that show how many standard deviations the site density in each buffer polygon varies from the mean density (z = 0) of the buffers in each terrain pattern. This second approach provided a way to minimize the effect of differences in the sizes of landscape units being compared. It does this by limiting analysis to an area 300 m from the boundary of the terrain pattern, thereby excluding sites in the middle of very large area terrain patterns. 
+
+### Reproducibility and open source materials
+
+To enable re-use of our materials and improve reproducibility and transparency according to the principles outlined in Marwick (2016), we include the entire R code used for all the analysis and visualizations contained in this paper in our SOM at <http://dx.doi.org/xxx/xxx>. Also in this version-controlled compendium are the raw data for all the tests reported here, as well as additional regression diagnostics and power tests. All of the figures, tables and statistical test results presented here can be independently reproduced with the code and data in this repository. In our SOM our code is released under the MIT licence, our data as CC-0, and our figures as CC-BY, to enable maximum re-use (for more details, see Marwick 2016).
+
+## Results
 
 ### Model validation
 
@@ -187,7 +211,7 @@ all_sites_in_study_area <- prettyNum(sum(table(na.omit(ODX_allsites_2010$GREGLAN
 ```
 
 
-A wide variety of landforms and geological regimes were recorded, displayed in figure \@ref(fig:percentcoverageofeachterrainpattern) as the percentage coverage of each terrain pattern. In total these areas contained about `r all_sites_in_study_area` archaeological sites. Most of the study area consists of widely spaced dunes – landform type 4 (`r LF4`%), moderately spaced dunes – landform type 5 (`r LF5`%) and closely spaced dunes – landform type 6 (`r LF6`%), mainly overlying Tertiary stony-plains (Czs4 and Czs5 respectively) but some overlying limestone (A) or quartzite surfaces (K and P). Other terrain patterns make up less than 10% of the 353 km2 study area (Figure \@ref(fig:percentcoverageofeachterrainpattern)). 
+A wide variety of landforms and geological regimes were recorded, displayed in figure \@ref(fig:percentcoverageofeachterrainpattern) as the percentage coverage of each terrain pattern. In total these areas contained about `r all_sites_in_study_area` archaeological sites. Most of the study area consists of widely spaced dunes – landform type 4 (`r LF4`%), moderately spaced dunes – landform type 5 (`r LF5`%) and closely spaced dunes – landform type 6 (`r LF6`%), mainly overlying Tertiary stony-plains (Czs4 and Czs5 respectively) but some overlying limestone (A) or quartzite surfaces (K and P). Other terrain patterns make up less than 10% of the 353 km^2^ study area (Figure \@ref(fig:percentcoverageofeachterrainpattern)). 
 
 ```{r sitesinterrainpatterns, fig.cap="Site density in each terrain pattern. Annotation shows the result of a t-test to compare site densities in the two largest terrain patters, Czs4 and Czs5", fig.width=fig_width_two_cols}
 ## sites in each TP
@@ -339,7 +363,7 @@ prettyNum(round(with(artefacts.per.sqkm, artefacts.per.sqkm[GREGLANDF == "Czs5",
 
 ```
 
-About `r round(sites_in_Czs4 + sites_in_Czs5,0)`% of all sites were recorded in these two terrain patterns (Czs4: `r sites_in_Czs4`%, Czs5: `r sites_in_Czs5`%) with no other terrain pattern having more than `r sites_in_other_TPs`% of all sites. When considered as homogenous units, there are marked differences in the frequency of archaeological sites and the density of stone artefacts between these two terrain patterns. As predicted (TABLE 1), sites are more frequent in fields of widely spaced dunes (Czs4) with `r site_density_in_Czs4` sites/km2 compared with more closely spaced dunes (Czs5) which have only `r site_density_in_Czs5` sites/km2 (t(`r t_test_for_two_TPs_df_value`) = `r t_test_for_two_TPs_t_value`, p-value = `r t_test_for_two_TPs_p_value`) (Figure \@ref(fig:sitesinterrainpatterns). Also as predicted by the original model the density of surface-visible stone artefacts was substantially higher in areas of widely spaced dunes (Czs4), at `r artefacts_per_sqkm_Czs4` artefacts/km2, compared with closely spaced dunes Czs5 at `r artefacts_per_sqkm_Czs5` artefacts/km2. 
+About `r round(sites_in_Czs4 + sites_in_Czs5,0)`% of all sites were recorded in these two terrain patterns (Czs4: `r sites_in_Czs4`%, Czs5: `r sites_in_Czs5`%) with no other terrain pattern having more than `r sites_in_other_TPs`% of all sites. When considered as homogeneous units, there are marked differences in the frequency of archaeological sites and the density of stone artefacts between these two terrain patterns. As predicted (Table \@ref(tab:table1)), sites are more frequent in fields of widely spaced dunes (Czs4) with `r site_density_in_Czs4` sites/km^2^ compared with more closely spaced dunes (Czs5) which have only `r site_density_in_Czs5` sites/km^2^ (t(`r t_test_for_two_TPs_df_value`) = `r t_test_for_two_TPs_t_value`, p-value = `r t_test_for_two_TPs_p_value`) (Figure \@ref(fig:sitesinterrainpatterns). Also as predicted by the original model the density of surface-visible stone artefacts was substantially higher in areas of widely spaced dunes (Czs4), at `r artefacts_per_sqkm_Czs4` artefacts/km^2^, compared with closely spaced dunes Czs5 at `r artefacts_per_sqkm_Czs5` artefacts/km^2^. 
 
 ### Landscape boundary effects 
 
@@ -349,7 +373,7 @@ ODX_allsites_2010.s <- subset(ODX_allsites_2010, GREGLANDF=='A4' | GREGLANDF=='C
 ODX_allsites_2010.s$GREGLANDF <- factor(ODX_allsites_2010.s$GREGLANDF)
 # order the levels of GREGLANDF for plotting
 # this is the desired order: - A4, Czs4, Q4, K4, Czs5, Q5, Q6
-levels(ODX_allsites_2010.s$GREGLANDF)
+# levels(ODX_allsites_2010.s$GREGLANDF)
 ODX_allsites_2010.s$GREGLANDF <- factor(ODX_allsites_2010.s$GREGLANDF, 
   levels(ODX_allsites_2010.s$GREGLANDF)[c(1, 2, 5, 4, 3, 6, 7)])
 
@@ -399,7 +423,7 @@ library(foreign)
 inbd.data <- ldply(inbd.files, read.dbf)
 inbd.data$SiteDens <- with(inbd.data, Join_Count/buf_area * (1000*1000))
 inbd.data <- inbd.data[inbd.data$Join_Count > n, ]
-unique(inbd.data$BUFF_DIST)
+# unique(inbd.data$BUFF_DIST)
 inbd.data$Buf <- as.factor(with( inbd.data, ifelse(is.na(BUFF_DIST), '-100-000', ifelse(BUFF_DIST == -100, '-200-100', ifelse(BUFF_DIST == -200, '-300-200', ifelse(BUFF_DIST == -300, '-400-300', ifelse(BUFF_DIST == -400, '-500-400','NA')))))))
 
 #  how many sites in each set?
@@ -513,8 +537,7 @@ ggplot(bound.sc.m,
 
 ```
 
-Figure \@ref(fig:sitesinbuffers) shows that in Cz4 landscapes the density of sites increases toward the center of the landform while in Cz5 landforms site density decreases towards the center of the landform. The results of a two-way ANOVA show that the interaction of terrain patterns and the distances from the boundary have a significant effect on the density of archaeological sites at increasing distance from the boundary of the terrain pattern units (F(`r two_way_anova_df`) = `r two_way_anova_F`, p = `r two_way_anova_p`, excluding the 0-100 m zone). When we use z-scores to standardize for differences in site density between two terrain patterns, we see that the pattern is even more stark. Figure \@ref(fig:zscoresonsitedensitybyzones) shows that in Cz4 landscapes the density of sites increases toward the center of the landform while in Cz5 landforms site density decreases towards the center of the landform. This also minimizes the effects of differences in the sizes of landscape units by limiting analysis to an area 300 m from the boundary of the terrain pattern, thereby excluding sites in the middle of very large area terrain patterns. These analyses give support to the prediction that resource-rich landscapes such as Csz4 have sites located away from their margin and far inside the terrain pattern areas while landscapes with lower resource levels such as Csz5 commonly have sites closer to their margins and fewer sites further in their interiors. 
-
+Figure \@ref(fig:sitesinbuffers) shows that in Czs4 landscapes the density of sites increases toward the center of the landform while in Czs5 landforms site density decreases towards the center of the landform. The results of a two-way ANOVA show that the interaction of terrain patterns and the distances from the boundary have a significant effect on the density of archaeological sites at increasing distance from the boundary of the terrain pattern units (F(`r two_way_anova_df`) = `r two_way_anova_F`, p = `r two_way_anova_p`, excluding the 0-100 m zone). When we use z-scores to standardize for differences in site density between two terrain patterns, we see that the pattern is even more stark. Figure \@ref(fig:zscoresonsitedensitybyzones) shows that in Czs4 landscapes the density of sites increases toward the center of the landform while in Czs5 landforms site density decreases towards the center of the landform. This also minimizes the effects of differences in the sizes of landscape units by limiting analysis to an area 300 m from the boundary of the terrain pattern, thereby excluding sites in the middle of very large area terrain patterns. These analyses give support to the prediction that resource-rich landscapes such as Csz4 have sites located away from their margin and far inside the terrain pattern areas while landscapes with lower resource levels such as Csz5 commonly have sites closer to their margins and fewer sites further in their interiors. 
 
 ## Discussion
 
@@ -522,12 +545,13 @@ In our measurements of site location and site densities, we observed that subtle
 
 We found that in there were both more archaeological sites per square kilometer, and more artefacts per square kilometer, in landforms with more widely spaced dunes. This is consistent with our model, and our field observations that more and denser sites tended to occur occur near exposures of good-quality flakeable stone that are often found in interdunal swales. In areas where the sand dunes are more closely spaced, such as landform types 5 and 6, the dune flanks flow into each other, leaving few or no swales between the dunes where surface outcrops of flakable stone might be exposed. This differential availability of flakable stone may be an important factor that influenced ancient peoples' use of the landscape. 
 
-Our analysis of boundary effects shows people were senstive to subtle gradients of change in the landscape. We found that sites were generally located futher from the terrain pattern boundary in landform type 4, compared to landform types 5 and 6. This indicates that people preferred to be located close to the center of areas with widely-spared dunes, and on the edges of the areas with closely spaced dunes. Looking at this in more detail, we found that for Czs4 and Czs5 there is a clear contrast in the density of sites when we compare areas close to the middle of the terrain patterns with areas further away from the boundary of the terrain patterns.  
-This analysis suggests that prehistoric people in the Olympic Dam area were sensitive to fine-grained differences in the economic potential of dissimilar terrain patterns. This claim is axiomatic to human behavioural ecology in which different landscapes are commonly compared as homogenous units to improve analytical tractability. The novel element of the data presented here is that the distribution of human activities varies substantially and predictably within as well as between terrain patterns. It is also noteworthy that a relatively subtle geographic differences between landscapes – the different spacing of sand dunes between Czs4 and Czs5 – has a marked visible effect on the distribution of archaeological sites. We speculate that this is due to the relationship between dune spacing and the availability of flakable stone. The causes of variation in dune spacing are poorly understood. Previous work has associated sand transport rates and directions, wind regime characteristics, grain size patterns, topography, and substrates with dune spacing, however there are no simple relationships (Lancaster 1988; Wasson and Hyde 1983; Wasson et al. 1988).
+Our analysis of boundary effects shows people were sensitive to subtle gradients of change in the landscape. We found that sites were generally located further from the terrain pattern boundary in landform type 4, compared to landform types 5 and 6. This indicates that people preferred to be located close to the center of areas with widely-spared dunes, and on the edges of the areas with closely spaced dunes. Looking at this in more detail, we found that for Czs4 and Czs5 there is a clear contrast in the density of sites when we compare areas close to the middle of the terrain patterns with areas further away from the boundary of the terrain patterns. 
+
+This analysis suggests that prehistoric people in the Olympic Dam area were sensitive to fine-grained differences in the economic potential of dissimilar terrain patterns. This claim is axiomatic to human behavioral ecology in which different landscapes are commonly compared as homogeneous units to improve analytical tractability. The novel element of the data presented here is that the distribution of human activities varies substantially and predictably within as well as between terrain patterns. It is also noteworthy that a relatively subtle geographic differences between landscapes – the different spacing of sand dunes between Czs4 and Czs5 – has a marked visible effect on the distribution of archaeological sites. We speculate that this is due to the relationship between dune spacing and the availability of flakable stone. The causes of variation in dune spacing are poorly understood. Previous work has associated sand transport rates and directions, wind regime characteristics, grain size patterns, topography, and substrates with dune spacing, however there are no simple relationships (Lancaster 1988; Wasson and Hyde 1983; Wasson et al. 1988).
 
 ### Efficiency of a mobile GIS compared to paper systems for field survey
 
-Our survey activity in the Olympic Dam region over multiple decades has provided us with an opportunity to collect longitudinal data on site recording methods. Here we briefly explore the question of whether our mobile GIS enabled faster site recording then when we used a paper-pen-GPS method (these methods are described in more detail in our SOM). TABLE 5 shows a summary of the productivity of archaeological survey before and after we implemented our mobile GIS. Although there are many possible metrics of productivity, one that was especially relevant for our project was the number of sites recorded per person per day. This metric is useful because it is easy to measure without burdening field workers with additional data-logging tasks. However, we need to take into account possible confounding factors, such as travel time to the day’s survey area, the size and density of the sites in the day’s survey area, skill and efficiency of the individual archaeologist and the sampling strategy. 
+Our survey activity in the Olympic Dam region over multiple decades has provided us with an opportunity to collect longitudinal data on site recording methods. Here we briefly explore the question of whether our mobile GIS enabled faster site recording then when we used a paper-pen-GPS method (these methods are described in more detail in our SOM). Table \@ref(tab:mobilegisefficiency) shows a summary of the productivity of archaeological survey before and after we implemented our mobile GIS. Although there are many possible metrics of productivity, one that was especially relevant for our project was the number of sites recorded per person per day. This metric is useful because it is easy to measure without burdening field workers with additional data-logging tasks. However, we need to take into account possible confounding factors, such as travel time to the day’s survey area, the size and density of the sites in the day’s survey area, skill and efficiency of the individual archaeologist and the sampling strategy. 
 
 ```{r mobilegisefficiency}
 
@@ -541,35 +565,71 @@ Approximate.number.of.sites.recorded	665	3900	6600	5500
 No.sites.recorded/person/day	 3.5	12.3	7.2	11.3
 Frequency.of.occurrence.of.sites/km2	19	41	24	38", row.names = 1, header = TRUE)
 
+display_table <- dat
+display_table$"" <- row.names(display_table)
+row.names(display_table) <- NULL
+display_table <- display_table[ , c(5, 1:4)]
+names(display_table) <- c("", "pre-2007", "2007", "2008", "2009")
+display_table[ , 1] <- gsub("\\.", " ", display_table[ , 1])
+display_table[ , 1] <- gsub("km2", "km^2^", display_table[ , 1])
+display_table[ , 1] <- gsub("persondays", "person-days", display_table[ , 1])
+
+# print table
+kable(display_table, caption = "Summary of archaeological survey productivity at Olympic Dam. The data for sites recorded per person per day for before 2007 come from a survey undertaken in 1982 by Philip Hughes and Peter Hiscock that recorded 176 sites in 50 person days.")
+
+# modelling these data
+
 dat_t <- data.frame(t(dat))
 
-# linear model for sites recorded by density of sites
-mobile_gis_efficiency_lm <- summary(lm(dat_t[,5] ~ dat_t[,6]))
+# rate for pre-2007 and 2007-2009
+rate_for_pre_2007 <- dat_t$No.sites.recorded.person.day[1]  
+rate_for_2007_thru_2009 <-  round(mean(dat_t$No.sites.recorded.person.day[c(2:4)]),1)
 
+# the rate of recording is strongly correlated with the density of sites 
+# linear model for sites recorded by density of sites
+mobile_gis_efficiency_lm <- 
+  summary(mobile_gis_efficiency_lm_out <- lm(dat_t$No.sites.recorded.person.day ~ dat_t$Frequency.of.occurrence.of.sites.km2))
+mobile_gis_efficiency_lm_r_squared <- round(mobile_gis_efficiency_lm$adj.r.squared, 3)
+mobile_gis_efficiency_lm_p_value <- round(mobile_gis_efficiency_lm$coefficients[2, 4]  , 3)
+
+# a linear model for the 2007-2009 data
 # subset 2007-2009 data
 dat_t_s <- dat_t[2:4,]
 # linear model for sites recorded by density of sites, 2007-2009
-mobile_gis_efficiency_lm_2007_2009 <- summary(lm(dat_t_s[,5] ~ dat_t_s[,6]))
+mobile_gis_efficiency_lm_2007_2009 <-
+ summary(mobile_gis_efficiency_lm_2007_2009_out <- 
+ lm(dat_t_s$No.sites.recorded.person.day ~ dat_t_s$Frequency.of.occurrence.of.sites.km2))
 
-# predict given 19 sites/km2
-19 * 0.297  + 0.043 
+# display model
+mobile_gis_efficiency_lm_2007_2009_est <- round(mobile_gis_efficiency_lm_2007_2009$coefficients[2,1], 3)
+mobile_gis_efficiency_lm_2007_2009_est_error <-  round(mobile_gis_efficiency_lm_2007_2009$coefficients[2,2], 3)
+mobile_gis_efficiency_lm_2007_2009_inter <-  round(mobile_gis_efficiency_lm_2007_2009$coefficients[1,1], 3)
+mobile_gis_efficiency_lm_2007_2009_inter_error <-   round(mobile_gis_efficiency_lm_2007_2009$coefficients[1,2], 3)
+mobile_gis_efficiency_lm_2007_2009_r_sq_adj <- round(mobile_gis_efficiency_lm_2007_2009$adj.r.squared, 3)
+mobile_gis_efficiency_lm_2007_2009_p_value <- round(mobile_gis_efficiency_lm_2007_2009$coefficients[2, 4], 3)
+
+# predict given 19 sites/km2 of pre-2007
+resulting_rate <- round(19 * mobile_gis_efficiency_lm_2007_2009_est + mobile_gis_efficiency_lm_2007_2009_inter, 2)
+
+# difference in rates, pre-2007 and 2007-2009
+difference_in_rates_pre_2007_and_2007_2009 <- 
+resulting_rate - rate_for_pre_2007
+
+# percentage increase
+percentage_increase <- round((resulting_rate - rate_for_pre_2007) / rate_for_pre_2007 * 100, 0)
 ```
 
+Our pre-2007 data were collected by more experienced archaeologists than the 2007-2009 data, using a recording form with less variables than our mobile GIS recording forms, and the pre-2007 survey areas were all closer to the camp, with less travel time compared to the 2007-2009 data. Further, the average site size for the pre-2007 data is less than the 2007-2009 data. These conditions should favor a higher rate of recording for the 2007-2009 data. Table \@ref(tab:mobilegisefficiency) shows that prior to adopting the mobile GIS in 2007 we recorded `r rate_for_pre_2007` sites per person per day. With the mobile GIS our rate increased substantially to an average of `r rate_for_2007_thru_2009` sites per person per day for 2007-2009. 
 
-Our pre-2007 data were collected by more experienced archaeologists than the 2007-2009 data, using a recording form with less variables than our mobile GIS recording forms, and the pre-2007 survey areas were all closer to the camp, with less travel time compared to the 2007-2009 data. Further, the average site size for the pre-2007 data is less than the 2007-2009 data. These conditions should favor a higher rate of recording for the 2007-2009 data. TABLE 5 shows that prior to adopting the mobile GIS in 2007 we recorded 3.5 sites per person per day. With the mobile GIS our rate increased substantially to an average of 10.2 sites per person per day for 2007-2009. 
-
-While this is a substantial difference, not all of this increase in the rate of recording can be attributed to the use of the mobile GIS because the rate of recording is strongly correlated with the density of sites (r = 0.97, p = 0.003). To isolate the effect of site density on recording rate we computed a linear model for the 2007-2009 data (rate = site density * 0.297 (0.004)+ 0.062139 (0.146),  r2 = 0.999, p = 0.0002, standard errors in parentheses) and predicted the site recording rate given the density of 19 sites km-2 observed in the pre-2007 data. The resulting rate is 5.7 sites/person/day, which is what we would expect if a mobile GIS had been used to record sites in an area with 19 sites km-2. The difference of 2.2 sites/person/day between the actual pre-2007 average rate of 3.5 and the extrapolated average rate of 5.7 is most likely due to the use of mobile GIS. This represents a sixty percent increase in the site recording rate. This demonstrates an advantage for using mobile GIS in a context where data collection was intensive, a highly structured data collection form could be used, and the start-up and training costs could be amortized over multiple years. 
-
+While this is a substantial difference, not all of this increase in the rate of recording can be attributed to the use of the mobile GIS because the rate of recording is strongly predicted by the density of sites (R^2^~adj~ = `r mobile_gis_efficiency_lm_r_squared`, p = `r mobile_gis_efficiency_lm_p_value`). To isolate the effect of site density on recording rate we computed a linear model for the 2007-2009 data , which resulted in a rate of site recording that can by predicted by site density * `r mobile_gis_efficiency_lm_2007_2009_est` (`r mobile_gis_efficiency_lm_2007_2009_est_error`) + `r mobile_gis_efficiency_lm_2007_2009_inter` (`r mobile_gis_efficiency_lm_2007_2009_inter_error`) (standard errors in parentheses). This model gave a good fit (R^2^~adj~ = `r mobile_gis_efficiency_lm_2007_2009_r_sq_adj`, p = `r mobile_gis_efficiency_lm_2007_2009_p_value`), and was then used to predict the site recording rate given the density of 19 sites/km^2^ observed in the pre-2007 data. The resulting rate is `r resulting_rate` sites/person/day, which is what the model predicts if a mobile GIS had been used to record sites in an area with 19 sites/km^2^. The difference of `r difference_in_rates_pre_2007_and_2007_2009` sites/person/day between the actual pre-2007 average rate of `r rate_for_pre_2007` and the predicted average rate of `r resulting_rate` is most likely due to the use of mobile GIS. This represents a `r percentage_increase`% increase in the site recording rate, although we caution that this may be an overestimate due to overfitting from the relatively small number of data points in our efficiency analysis. Nevertheless, this demonstrates an advantage for using mobile GIS in a context where data collection was intensive, a highly structured data collection form could be used, and the start-up and training costs could be amortized over multiple years. 
 
 ## Conclusion
 
-
-The substantive archaeological contribution of this study, resulting from the use of mobile GIS to record archaeological data, has been to show that when choosing habitations prehistoric people in the Olympic Dam area were sensitive to relatively small variations in the landscape, such as the spacing of dunes. The implication of this finding is that even in relatively homogenous landscapes, such as the desert investigated here, there are gradient-like patterns in the distribution of archaeological sites (cf. Attwell and Fletcher 1987). These gradients allow for more sophisticated interpretations of prehistoric behaviour beyond the obvious attraction of prominent landscape features (Wilson 2007, Kowalewski 2008: 233). Given a large enough dataset, such as the one presented here, these patterns can be quickly quantified using a geographical information system and explained with simple behavioural ecological models. 
-
+The substantive archaeological contribution of this study has been to show that when choosing habitations, prehistoric people in the Olympic Dam area were sensitive to relatively small variations in the landscape, such as the spacing of dunes. The implication of this finding is that even in relatively homogeneous landscapes, such as the desert investigated here, there are gradient-like patterns in the distribution of archaeological sites (cf. Attwell and Fletcher 1987). These gradients allow for more sophisticated interpretations of prehistoric behaviour beyond the obvious attraction of prominent landscape features (Wilson 2007, Kowalewski 2008: 233). Given a large enough dataset, such as the one presented here, these patterns can be quickly quantified using a geographical information system and explained with relatively simple behavioral ecological models. We hope that this data-intensive approach to using gradients of changes in archaeological site attributes across the landscape might suggest a new direction for investigating past human behaviour at ecological interfaces, avoiding the problematic assumptions of previous work on edge effects.  
 
 ## Acknowledgments
 
-This work was undertaken under a contract with BHP Billiton that includes research support. Other financial support for Ben Marwick came from a Luce/ACLS Post-doctoral fellowship (B9471 01 180401 7301) and a grant from the Herbert H. Gowen International Studies Endowment (UW Office of Global Affairs). 
+This work was undertaken under a contract with BHP Billiton that includes research support. Other financial support for Ben Marwick came from a Luce/ACLS Post-doctoral fellowship (B9471 01 180401 7301), a grant from the Herbert H. Gowen International Studies Endowment (UW Office of Global Affairs), and an Australian Research Council Future Fellowship (FT140100101).
 
 
 ##### 
@@ -607,6 +667,7 @@ Fei, G. (2011). "Data Acquisition of Field Archaeological Supported by PDA+ GPS 
 Foley, R. (1981). Off-site archaeology: an alternative approach for the short-sited. Pattern of the past: studies in honour of David Clarke. I. Hodder, G. Isaac and N. Hammond. Cambridge, Cambridge University Press: 157-183.
 
 Given, O. and S. Hyla (2006). "Forging Partnerships in Laos." Expedition 48(1): 38-39.
+
 Glassow, M. A. and M. Leone (1972 ). Changes in the Adaptations of Southwestern Basketmakers: a Systems Perspective. Contemporary Archaeology. M. Leone, Southern Illinois University Press: 289-302.
 
 Gumerman, G. J. and R. R. Johnson (1971). "Prehistoric human population distribution in a biological transition zone." The distribution of prehistoric population aggregates," edited by George J. Gumerman: 83-102.
@@ -688,9 +749,6 @@ Williams, A. N., S. Ulm, A. R. Cook, M. C. Langley and M. Collard (2013). "Human
 
 Wilson, L. (2007). "Understanding prehistoric lithic raw material selection: application of a gravity model." Journal of Archaeological Method and Theory 14(4): 388-411.
 
-
-
-
 ##### . 
 
 ### Colophon
@@ -716,413 +774,4 @@ repo <- repository(path = "../..")
 last_commit <- commits(repo)[[1]]
 ```
 
-The current git commit of this file is `r last_commit@sha`, which is on the `r branches(repo)[[1]]@name` branch and was made by `r last_commit@committer@name` on `r when(last_commit)`. The current commit message is "`r last_commit@summary`".
-
-```{r eval = FALSE}
-
-###########################################################
-# checking P&M's edits from 14 May 2012
-#
-library(foreign)
-ODX_allsites_2010 <- read.dbf("../data/Join_Extract_ArcSite.dbf")
-# sites per TP
-sites.per.tp <- data.frame(table(na.omit(ODX_allsites_2010$GREGLANDF)))
-# find proportion of all sites in each TP
-sites.per.tp$prop <- sites.per.tp$Freq/sum(sites.per.tp$Freq)*100
-#
-# get counts from density squares
-ODX_allsites_2010$DENCOUNT <- with(ODX_allsites_2010, (as.numeric(levels(DENSQ1)[DENSQ1]))+(as.numeric(levels(DENSQ2)[DENSQ2]))+(as.numeric(levels(DENSQ3)[DENSQ3]))+(as.numeric(levels(DENSQ4)[DENSQ4]))+(as.numeric(levels(DENSQ5)[DENSQ5]))+(as.numeric(levels(DENSQ6)[DENSQ6]))+(as.numeric(levels(DENSQ7)[DENSQ7]))+(as.numeric(levels(DENSQ8)[DENSQ8])+(as.numeric(levels(DENSQ9)[DENSQ9]))/9)*((as.numeric(levels(DIMSIT1)[DIMSIT1]))*(as.numeric(levels(DIMSIT2)[DIMSIT2]))))
-# check if all sites with density square data were processed
-# should return TRUE
-# identical(length(na.omit(ODX_allsites_2010$DENSQ1)), 
-# length(na.omit(ODX_allsites_2010$DENCOUNT)))
-# # check how many sites with density square data
-# length(na.omit(ODX_allsites_2010$DENCOUNT))
-# #
-# get counts when all artefacts counted
-ODX_allsites_2010$COUNTONLY <- with( ODX_allsites_2010, as.numeric(levels(TOTART)[TOTART]) )
-# check how many are ok
-# length(na.omit(ODX_allsites_2010$TOTART)) # should have
-# length(na.omit(ODX_allsites_2010$COUNTONLY)) # did get
-#
-# get counts from when only a VISTEST was taken:
-ODX_allsites_2010$VISCOUNT<-with(ODX_allsites_2010, (as.numeric(levels(VISEST)[VISEST]))*((as.numeric(levels(DIMSIT1)[DIMSIT1]))*(as.numeric(levels(DIMSIT2)[DIMSIT2]))))
-# check how many are ok
-# length(na.omit(ODX_allsites_2010$VISEST)) # should have
-# length(na.omit(ODX_allsites_2010$VISCOUNT)) # did get
-#
-ODX_allsites_2010$artefacts <- as.numeric(with(ODX_allsites_2010, 
-      ifelse(COUNTONLY > 1, COUNTONLY,
-      ifelse(VISCOUNT  > 1 ,  VISCOUNT, 
-      ifelse(DENCOUNT  > 1 , DENCOUNT, "XX")))))
-#                                          
-# have a bit of a look 
-# ODX_allsites_2010[ODX_allsites_2010$VISCOUNT  != 0 ,]
-# ODX_allsites_2010[ODX_allsites_2010$DENCOUNT  != 0 ,]
-# ODX_allsites_2010[ODX_allsites_2010$COUNTONLY != 0 ,]
-#
-# summary(ODX_allsites_2010$VISCOUNT)
-# summary(ODX_allsites_2010$DENCOUNT)
-# summary(ODX_allsites_2010$COUNTONLY)
-#  
-# check how many are ok
-# length(na.omit(ODX_allsites_2010$artefacts))
-# 
-# check how many sites in total
-# summary( ODX_allsites_2010[,1:10] )
-# 10636 sites in data, 133 are hearths so 10503 should 
-# have artefact data... in fact 9859 do, so some 644 sites
-# have problems with artefact data, that's only 0.6% so that's
-# not too bad.
-#
-# get total number of artefacts in each TP
-artefacts.per.tp <- aggregate(data = ODX_allsites_2010, artefacts ~ GREGLANDF, FUN = sum)
-#
-# check output
-identical(
-  sum(na.omit(ODX_allsites_2010$artefacts)),
-  sum(artefacts.per.tp$artefacts))
-#
-# how many artefacts missing from summary?
-sum(na.omit(ODX_allsites_2010$artefacts)) - sum(artefacts.per.tp$artefacts)
-# 5926 artefacts missing... why are they missing? not sure
-#
-#
-library(foreign)
-ODX_TPs_2010 <- read.dbf("../data/CLipped_ODO_terrain_patterns_2010_Ja.dbf")
-# 
-# Calculate the areas of the sampling polygons in ArcMap:
-# 1.  Open the attribute table of the layer you want to edit. 
-# 2.	Right-click the field heading for area (if there is no field for area values, you can add a new field for area by clicking the Options button and selecting the new field option). This must be formatted as a Double not a short integer.
-# 3.	Click Calculate Values. 
-# 4.	Checkmark the Advanced box (this is important - don't forget this!) 
-# 5.	Type the following VBA statement in the first text box (you should be able to copy and paste): 
-# Dim dblArea as double 
-# Dim pArea as IArea 
-# Set pArea = [shape] 
-# dblArea = pArea.area 
-# 6.	Type the variable  dblArea =in the second text box (near the bottom of the dialog box) directly under the area field name. 
-#
-# check areas and proportion of total areas for each TP
-library(data.table)
-ODX_TPs_2010.dt <- data.table(ODX_TPs_2010)
-setkey(ODX_TPs_2010.dt,GREGLANDF)
-ODX_TP_areas <- ODX_TPs_2010.dt[,sum(Clip_Area_), by = GREGLANDF]
-ODX_TP_areas$prop <- (ODX_TP_areas$V1/sum(ODX_TP_areas$V1))*100
-# check that proportions add to 100%
-sum(ODX_TP_areas$prop)
-# check of total area of TPs
-sum(ODX_TP_areas$V1)/(1000*1000)
-#
-# repeat checks for landforms
-ODX_LF_areas <- ODX_TPs_2010.dt[,sum(Clip_Area_), by = LANDFORM]
-ODX_LF_areas$prop <- (ODX_LF_areas$V1/sum(ODX_LF_areas$V1))*100
-# check that proportions add to 100%
-sum(ODX_TP_areas$prop)
-#
-# Plot of TP areas (figure 4 of JFA paper)
-
-library(ggplot2)
-ggplot(ODX_TP_areas, aes(reorder(GREGLANDF, prop), prop)) + 
-  geom_bar(stat = "identity",
-           fill = "white", colour = "black") +
-  theme_bw(base_size = 17) +
-  theme(axis.text.x = element_text(size = 17),
-        axis.text.y = element_text(size = 17),
-        axis.title.x = element_text(size = 17),
-        axis.title.y = element_text(size = 17, angle = 90)) + 
-  ylab("Percentage of study area") +
-  xlab("Terrain pattern") 
-#
-# check of sites per sq km for each TP
-sites.per.sqkm <- merge(sites.per.tp, ODX_TP_areas, by.x = "Var1", by.y = "GREGLANDF")
-sites.per.sqkm$sites.per <- with(sites.per.sqkm, Freq/V1*1000*1000)
-#
-# check of artefacts per sq km for each TP
-artefacts.per.sqkm <- merge(artefacts.per.tp, ODX_TP_areas)
-artefacts.per.sqkm$artefacts.per <- with(artefacts.per.sqkm, artefacts/V1*1000*1000)
-
-
-# For looking a distance values from features in ArcMap
-# First, polygon features have to be converted to line features.data management tools, features, feature to line.
-# 1.  Open spatial analyst extension
-# 2.	Define extent (LTA_areas is a good one)
-# 3.	Spatial analyst - distance- straight line
-# 4.	Then go to ArcToolbox - Spatial analyst tools - extraction 
-# 5.	'Extract values to points'
-# 6. Then arctoolbox, spatial analysis tools, extraction, extract values to points. point layer is sites, values come from raster, then RASTERVALU is distance field. 
-# 7 .Then join to TP polygon to get TP values in sites dbf.
-
-library(foreign)
-ODX_allsites_2010 <- read.dbf("../data/Join_Extract_ArcSite.dbf")
-ODX_allsites_2010 <- ODX_allsites_2010[ !is.na(ODX_allsites_2010$GREGLANDF), ]
-ODX_allsites_2010.s <- subset(ODX_allsites_2010, GREGLANDF=='A4' | GREGLANDF=='Czs4' | GREGLANDF=='Q4' | GREGLANDF=='K4' | GREGLANDF=='Czs5' | GREGLANDF=='Q5' | GREGLANDF=='Q6')
-ODX_allsites_2010.s$GREGLANDF <- factor(ODX_allsites_2010.s$GREGLANDF)
-# order the levels of GREGLANDF for plotting
-# this is the desired order: - A4, Czs4, Q4, K4, Czs5, Q5, Q6
-levels(ODX_allsites_2010.s$GREGLANDF)
-ODX_allsites_2010.s$GREGLANDF <- factor(ODX_allsites_2010.s$GREGLANDF, 
-  levels(ODX_allsites_2010.s$GREGLANDF)[c(1, 2, 5, 4, 3, 6, 7)])
-
-# plot
-library(ggplot2)
-ggplot(ODX_allsites_2010.s, aes(GREGLANDF, RASTERVALU)) + 
-  geom_boxplot() + 
-  scale_y_log10(breaks = seq(0,1400,200)) + 
-  theme_bw(base_size = 17) +
-  theme(axis.text.x =  element_text(size = 17),
-        axis.text.y =  element_text(size = 12),
-        axis.title.x = element_text(size = 17),
-        axis.title.y = element_text(size = 17, 
-                                    angle = 90))  +
-  xlab("Terrain pattern") +
-  ylab("Distance of site to boundary (m)")
-
-# anova to see if sig diff between distances...
-fit <- aov(data = ODX_allsites_2010.s, RASTERVALU ~ GREGLANDF)
-plot(TukeyHSD(fit))
-
-# plot anova
-# install.packages("granovaGG", dependencies = TRUE)
-library("granovaGG")
-granovagg.1w(data = ODX_allsites_2010.s$RASTERVALU, group = ODX_allsites_2010.s$GREGLANDF)
-# install.packages("granova")
-library("granova")
-granova.1w(data = ODX_allsites_2010.s$RASTERVALU, group = ODX_allsites_2010.s$GREGLANDF)
-
-
-
-# start with OUTER buffers
-bd_files <- list.files("../data/outer_buffers", full.names = TRUE)
-# list in, dataframe out
-library(plyr)
-library(foreign)
-bd.data <- ldply(bd_files, read.dbf)
-bd.data$SiteDens <- with(bd.data, Count_/buf_area * (1000*1000))
-# exclude buffers with less than n sites since they 
-# skew the density calculations 
-n = 15
-bd.data <- bd.data[bd.data$Count_ > n, ]
-unique(bd.data$BUFF_DIST)
-bd.data$Buf <- as.factor(with(bd.data, ifelse(BUFF_DIST == 100, '000-100', ifelse(BUFF_DIST == 200, '100-200', ifelse(BUFF_DIST == 300, '200-300', ifelse(BUFF_DIST == 400, '300-400', ifelse(BUFF_DIST == 500, '400-500','NA')))))))
-
-#  how many sites in each set?
-sum(na.omit(subset(bd.data, GREGLANDF=='Czs4')$Count_))
-sum(na.omit(subset(bd.data, GREGLANDF=='Czs5')$Count_))
-
-# now check the boundary densities for INNER buffers
-inbd.files <- list.files("../data/inner_buffers", full.names = TRUE)
-# list in, dataframe out
-library(plyr)
-library(foreign)
-inbd.data <- ldply(inbd.files, read.dbf)
-inbd.data$SiteDens <- with(inbd.data, Join_Count/buf_area * (1000*1000))
-inbd.data <- inbd.data[inbd.data$Join_Count > n, ]
-unique(inbd.data$BUFF_DIST)
-inbd.data$Buf <- as.factor(with( inbd.data, ifelse(is.na(BUFF_DIST), '-100-000', ifelse(BUFF_DIST == -100, '-200-100', ifelse(BUFF_DIST == -200, '-300-200', ifelse(BUFF_DIST == -300, '-400-300', ifelse(BUFF_DIST == -400, '-500-400','NA')))))))
-
-#  how many sites in each set?
-sum(as.numeric((subset(inbd.data[as.numeric(inbd.data$Join_Count),], GREGLANDF=='Czs4'))$Join_Count))
-sum(as.numeric((subset(inbd.data[as.numeric(inbd.data$Join_Count),], GREGLANDF=='Czs5'))$Join_Count))
-
-# combine inner with outer buffers
-inner <- subset(inbd.data, GREGLANDF =='Czs5' | GREGLANDF =='Czs4')[,c('GREGLANDF','SiteDens','Buf')]
-outer <- subset(bd.data, GREGLANDF =='Czs5' | GREGLANDF =='Czs4')  [,c('GREGLANDF','SiteDens','Buf')]
-# colnames(outer)[2] <-  'mean_SiteDens'
-inner_outer <- na.omit(rbind(inner, outer))
-# put the boundary distances in order
-levels(inner_outer$Buf)
-inner_outer$Buf <- factor(inner_outer$Buf, 
-  levels(inner_outer$Buf)[c(5,4,3,2,1,6,7,8,9,10)])
-# remove rows with zero for SiteDens
-inner_outer <- inner_outer[inner_outer[, 'SiteDens']!=0, ]  
-# plot inner and outer together
-library(ggplot2)
-library(grid)
-library(scales)
-ggplot(inner_outer,  
-       aes(Buf, 
-           SiteDens)) + 
-  geom_point(size = 2) + 
-  facet_grid(GREGLANDF ~ .) + 
-  scale_y_log10() + 
-  geom_smooth(aes(group = 1), 
-              fill = "grey80", 
-              colour = "grey") +
-  theme_bw() + 
-  theme(
-  axis.title.x = element_text(vjust = -0.5, 
-                              size = 15),
-  axis.title.y=  element_text(size = 15, 
-                              angle=90)) + 
-  xlab("Distance from boundary in meters \n(negative values are interior distances, \npositive values are exterior distances)") + 
-  ylab("Sites per sq km")
-
-# significance tesing for changes in site density over buffers
-# classic ANOVA...
-summary(fit <- aov(data = inner_outer[inner_outer$GREGLANDF == 'Czs5' ,], SiteDens ~ Buf))
-# yes for Csz5, no for Csz4
-# inspect to see if assumptions are ok
-qqnorm(resid(fit), main="Normal Q-Q Plot")
-qqline(resid(fit), col="red")
-# a bit wacky... 
-
-# two-way ANOVA
-inner_outer$Buf <- as.character(inner_outer$Buf)
-two_way_anova_data <- inner_outer[inner_outer$GREGLANDF %in% c('Czs5','Czs4') &
-                                      !inner_outer$Buf %in% c("-100-000", "000-100"), ]
-summary(fit <- aov(data = two_way_anova_data, 
-                   SiteDens ~  GREGLANDF * Buf))
-
-
-
-# try permutation ANOVA...
-# install.packages("lmPerm")
-# library(lmPerm)
-# summary(fitp <- aovp(data = inner_outer[inner_outer$GREGLANDF == 'Czs4',], SiteDens ~ Buf, perm="Exact"))
-# yes for Csz5, no for Csz4
-
-library(coin) # library needed for more permutation tests
-# We'll use Monte Carlo simulations to get the p value
-oneway_test(data = inner_outer[inner_outer$GREGLANDF == 'Czs5',], SiteDens ~ Buf, distribution=approximate(B=10000))
-oneway_test(data = inner_outer[inner_outer$GREGLANDF == 'Czs4',], SiteDens ~ Buf, distribution=approximate(B=10000))
-# this is a test of whether 
-# two or more samples from normal distributions have the 
-# same means, variances not assumed equal
-kruskal_test(data = inner_outer[inner_outer$GREGLANDF == 'Czs5',], SiteDens ~ Buf, distribution=approximate(B=10000))
-kruskal_test(data = inner_outer[inner_outer$GREGLANDF == 'Czs4',], SiteDens ~ Buf, distribution=approximate(B=10000))
-# yes for Csz5, no for Csz4
-
-
-
-
-# In each of the occurrences of those TPs create buffer zones A (1m to -100m), B (-100m to -200m), C (-200m to -300m).  Then work out the density of sites in each buffer unit and in the whole TP.
-# 
-# Than plot the ratios for each Czs4 and Czs5 Terrain Pattern of:
-# site densities in A/site densities in whole of each TP
-# site densities in B/site densities in whole of each TP
-# site densities in C/site densities in whole of each TP
-
-inner # site densities per buffer area
-sites.per.sqkm # densities per TP
-
-# Czs5
-# site densities in 0-100 m inner buffer divided by total density of TP
-Czs5.inner.100 <- with(inner, inner[GREGLANDF == "Czs5" & Buf == "-100-000",])
-Czs5.inner.100.ratio <- mean(Czs5.inner.100$SiteDens)/with(sites.per.sqkm, sites.per.sqkm[Var1 == "Czs5",])$sites.per
-# site densities in 100-200 m inner buffer divided by total density of TP
-Czs5.inner.200 <- with(inner, inner[GREGLANDF == "Czs5" & Buf == "-200-100",])
-Czs5.inner.200.ratio <- mean(Czs5.inner.200$SiteDens)/with(sites.per.sqkm, sites.per.sqkm[Var1 == "Czs5",])$sites.per
-# site densities in 200-300 m inner buffer divided by total density of TP
-Czs5.inner.300 <- with(inner, inner[GREGLANDF == "Czs5" & Buf == "-300-200",])
-Czs5.inner.300.ratio <- mean(Czs5.inner.300$SiteDens)/with(sites.per.sqkm, sites.per.sqkm[Var1 == "Czs5",])$sites.per
-
-# Czs4
-# site densities in 0-100 m inner buffer divided by total density of TP
-Czs4.inner.100 <- with(inner, inner[GREGLANDF == "Czs4" & Buf == "-100-000",])
-Czs4.inner.100.ratio <- mean(Czs4.inner.100$SiteDens)/with(sites.per.sqkm, sites.per.sqkm[Var1 == "Czs4",])$sites.per
-# site densities in 100-200 m inner buffer divided by total density of TP
-Czs4.inner.200 <- with(inner, inner[GREGLANDF == "Czs4" & Buf == "-200-100",])
-Czs4.inner.200.ratio <- mean(Czs4.inner.200$SiteDens)/with(sites.per.sqkm, sites.per.sqkm[Var1 == "Czs4",])$sites.per
-# site densities in 200-300 m inner buffer divided by total density of TP
-Czs4.inner.300 <- with(inner, inner[GREGLANDF == "Czs4" & Buf == "-300-200",])
-Czs4.inner.300.ratio <- mean(Czs4.inner.300$SiteDens)/with(sites.per.sqkm, sites.per.sqkm[Var1 == "Czs4",])$sites.per
-
-# combine both for plotting
-Czs4 <- c(Czs4.inner.100.ratio, Czs4.inner.200.ratio, Czs4.inner.300.ratio)
-Czs5 <- c(Czs5.inner.100.ratio, Czs5.inner.200.ratio, Czs5.inner.300.ratio)
-bound <- data.frame(cbind(Czs4, Czs5))
-bound$dist <- c("0-100", "100-200", "200-300")
-library(reshape2)
-bound.m <- melt(bound)
-
-# plot
-library(ggplot2)
-ggplot(bound.m, 
-       aes(dist,
-           value, 
-           colour = variable)) + 
-  geom_line(aes(group = variable))
-
-# convert to z-scores....
-Czs4.sc <-  scale(Czs4)
-Czs5.sc <-  scale(Czs5)
-bound.sc <- data.frame(cbind(Czs4.sc, Czs5.sc))
-bound.sc$dist <- c("0-100", "100-200", "200-300")
-colnames(bound.sc) <- c("Czs4", "Czs5", "distance")
-library(reshape2)
-bound.sc.m <- melt(bound.sc)
-colnames(bound.sc.m) <- c("distance", "Terrain Pattern", "density of sites")
-
-# plot scales
-library(ggplot2)
-ggplot(bound.sc.m, 
-       aes(x=bound.sc.m[,1], 
-           y=bound.sc.m[,3])) + 
-  geom_line(aes(group = bound.sc.m[,2], 
-                linetype = bound.sc.m[,2]), 
-            size = 1)  +
-  theme_bw() +
-  theme(
-  axis.text.x =  element_text(size = 17), 
-  axis.text.y =  element_text(size = 17),
-  axis.title.x = element_text(size = 17),
-  axis.title.y = element_text(size = 17,
-                              angle = 90),
-  legend.text =  element_text(size=14),
-  legend.title = element_text(size=14)) + 
-  xlab("interior buffer region (distance in m from \nboundary to the center of the terrain pattern)") + 
-  ylab("z-score of site density in buffer area") +
-  scale_linetype_manual(name="Terrain Pattern", values = c(1,2) ) 
-
-# dot-plot
-library(viridis)
-ggplot(bound.sc.m, 
-       aes(x=distance, 
-           y=`density of sites`,
-           shape = `Terrain Pattern`,
-           colour = `Terrain Pattern`)) + 
-  geom_point(size = 5)  +
-  geom_line(aes(group = `Terrain Pattern`)) +
-  theme_bw(base_size = text_size) +
-  coord_flip() +
-  scale_color_viridis(discrete = TRUE) +
-  theme(axis.title.y = element_text(angle = 90)) + 
-  xlab("interior buffer region (distance in m from \nboundary to the center of the terrain pattern)") + 
-  ylab("z-score of site density in buffer area")  +
-  labs(shape="Terrain\nPattern", colour="Terrain\nPattern") 
-
-
-
-
-# checking benefit of mobile GIS
-dat <- read.table(text = "
-Year Pre.2007	2007	2008	2009
-Area.surveyed.(km2)	35	95	275	145
-Rate.of.survey.(km2/person/day)	0	0.3	0.3	0.3
-Total.no.persondays	0 317	917	483
-Approximate.number.of.sites.recorded	665	3900	6600	5500
-No.sites.recorded/person/day	 3.5	12.3	7.2	11.3
-Frequency.of.occurrence.of.sites/km2	19	41	24	38", row.names = 1, header = TRUE)
-
-dat_t <- data.frame(t(dat))
-# quick look
-pairs(dat_t)
-
-# correlation of sites recorded by density of sites
-cor.test(dat_t[,5], dat_t[,6], method = 'pearson')
-# linear model for sites recorded by density of sites
-summary(lm(dat_t[,5] ~ dat_t[,6]))
-
-# subset 2007-2009 data
-dat_t_s <- dat_t[2:4,]
-# linear model for sites recorded by density of sites, 2007-2009
-summary(lm(dat_t_s[,5] ~ dat_t_s[,6]))
-
-# predict given 19 sites/km2
-19 * 0.297  + 0.043 
-
-
-```
-
-
+The current git commit of this file is `r last_commit@sha`, which is on the `r branches(repo)[[1]]@name` branch and was made by `r last_commit@committer@name` on `r when(last_commit)`. The current commit message is "`r last_commit@summary`". The repository is online at <https://github.com/benmarwick/olympicdamboundaries>
