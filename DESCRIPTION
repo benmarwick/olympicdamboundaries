@@ -11,7 +11,8 @@ Encoding: UTF-8
 LazyData: true
 Suggests: testthat,
           knitr,
-          data.frame,
-          ggplot,
+          data.table,
+          ggplot2,
           ggforce,
+          ggfortify,
           plyr
