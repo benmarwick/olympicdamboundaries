@@ -8,6 +8,10 @@ COPY . /olympicdamboundaries
  # go into the repo directory
 RUN . /etc/environment \
 
+ # need this for ggforce::geom_sina
+  && sudo apt-get update \
+  && sudo apt-get install libudunits2-dev -y \
+
   # build this compendium package, get deps from MRAN
   # set date here manually
   && R -e "options(repos='https://mran.microsoft.com/snapshot/2017-01-17'); devtools::install('/olympicdamboundaries', dep=TRUE)" \
