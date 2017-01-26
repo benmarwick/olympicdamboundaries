@@ -1,6 +1,6 @@
 Package: olympicdamboundaries
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Research compendium for a study
 Version: 0.1.0
 Author: Who wrote it
 Maintainer: The package maintainer <yourself@somewhere.net>
@@ -9,4 +9,9 @@ Description: More about what it does (maybe more than one line)
 License: What license is it under?
 Encoding: UTF-8
 LazyData: true
-Suggests: testthat
+Suggests: testthat,
+          knitr,
+          data.frame,
+          ggplot,
+          ggforce,
+          plyr
