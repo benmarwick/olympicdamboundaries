@@ -153,7 +153,7 @@ Finally, z-scores were calculated to put the differences in site density on a co
 
 ### Reproducibility and open source materials
 
-To enable re-use of our materials and improve reproducibility and transparency according to the principles outlined in Marwick (2016), we include the entire R code used for all the analysis and visualizations contained in this paper in our SOM at <http://dx.doi.org/xxx/xxx>. Also in this version-controlled compendium are the raw data for all the tests reported here, as well as additional regression diagnostics and power tests. All of the figures, tables and statistical test results presented here can be independently reproduced with the code and data in this repository. In our SOM our code is released under the MIT licence, our data as CC-0, and our figures as CC-BY, to enable maximum re-use (for more details, see Marwick 2016).
+To enable re-use of our materials and improve reproducibility and transparency according to the principles outlined in Marwick (2016), we include the entire R code used for all the analysis and visualizations contained in this paper in our SOM at <http://dx.doi.org/10.17605/OSF.IO/RMKGE>. Also in this version-controlled compendium are the raw data for all the tests reported here, as well as additional regression diagnostics and power tests. All of the figures, tables and statistical test results presented here can be independently reproduced with the code and data in this repository. In our SOM our code is released under the MIT licence, our data as CC-0, and our figures as CC-BY, to enable maximum re-use (for more details, see Marwick 2016).
 
 ## Results
 
