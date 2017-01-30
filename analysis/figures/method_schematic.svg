@@ -15,7 +15,7 @@
    version="1.1"
    inkscape:version="0.91 r13725"
    sodipodi:docname="method_schematic.svg"
-   inkscape:export-filename="F:\My Documents\My Papers\Journal of Field Archaeology\method_schematic.png"
+   inkscape:export-filename="E:\My Documents\My Papers\Journal of Archaeological Science\Marwick, Hughes et al 2016\olympicdamboundaries\analysis\figures\method_schematic.png"
    inkscape:export-xdpi="600"
    inkscape:export-ydpi="600">
   <defs
@@ -241,9 +241,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.4346365"
+     inkscape:zoom="0.71731825"
      inkscape:cx="304.85628"
-     inkscape:cy="378.12142"
+     inkscape:cy="362.00696"
      inkscape:document-units="px"
      inkscape:current-layer="layer3"
      showgrid="false"
@@ -268,6 +268,13 @@
      inkscape:groupmode="layer"
      id="layer3"
      inkscape:label="buf">
+    <rect
+       style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:2.6338625;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect3401"
+       width="541.26978"
+       height="301.4877"
+       x="91.826302"
+       y="500.12286" />
     <path
        style="opacity:0.19711537;fill:none;stroke:#000000;stroke-width:63.00708771;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
        d="m 384.50609,568.97744 c 14.28659,-11.1049 96.03447,-14.83991 108.57143,-8.57143 16.09415,8.04708 16.30555,33.44842 25.71428,42.85715 10.92334,10.92333 54.25395,-0.0318 60,5.71428 7.12108,7.12107 1.42162,25.70037 5.71429,34.28572 2.281,4.562 6.62849,22.9144 2.85714,28.57142 -4.99658,7.49487 -12.13601,23.56459 -17.14285,28.57143 -15.27962,15.27962 -102.37922,4.52468 -122.85715,-5.71428 -3.80952,-1.90477 -10.47619,1.90476 -14.28571,0 -16.32337,-8.16169 -22.38925,-22.38925 -31.42857,-31.42857 -21.53841,-21.53841 -5.25191,-64.55834 -17.14286,-94.28572 z"
@@ -275,38 +282,26 @@
        inkscape:connector-curvature="0" />
     <text
        xml:space="preserve"
-       style="font-size:40px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial Narrow;-inkscape-font-specification:Arial Narrow"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:125%;font-family:'Arial Narrow';-inkscape-font-specification:'Arial Narrow';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
        x="405.87244"
        y="783.67194"
        id="text9796"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
-         id="tspan9798"
          x="405.87244"
-         y="783.67194">2. Exterior site </tspan><tspan
-         sodipodi:role="line"
-         x="405.87244"
-         y="833.67194"
-         id="tspan13663">density</tspan></text>
+         y="783.67194"
+         id="tspan13663">B</tspan></text>
     <text
        xml:space="preserve"
-       style="font-size:40px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial Narrow;-inkscape-font-specification:Arial Narrow"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:125%;font-family:'Arial Narrow';-inkscape-font-specification:'Arial Narrow';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
        x="109.24085"
        y="783.67194"
        id="text9796-2"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
-         id="tspan9798-6"
          x="109.24085"
-         y="783.67194">1. Interior site </tspan><tspan
-         sodipodi:role="line"
-         x="109.24085"
-         y="833.67194"
-         id="tspan9821">distance to </tspan><tspan
-         sodipodi:role="line"
-         x="109.24085"
-         y="883.67194"
-         id="tspan13661">boundary</tspan></text>
+         y="783.67194"
+         id="tspan13661">A</tspan></text>
   </g>
   <g
      inkscape:label="Layer 1"
