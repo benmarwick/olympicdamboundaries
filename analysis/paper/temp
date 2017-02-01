@@ -7,24 +7,34 @@ library(knitr)
 opts_chunk$set(echo = FALSE,
                warning = FALSE,
                message = FALSE,
-               dpi = 600)
+               dpi = 900)
 options(warn = -1)
 
+
+## ----table1--------------------------------------------------------------
+table1 <- read.csv("../data/table_1.csv")
+names(table1) <- c("Landform type", "Archaeological prediction")
+kable(table1, caption = "Landform types and predicted archaeological signature. Adapted from Hughes et al. (2011); Kinhill-Stearns Roger (1982); Hughes and Sullivan (1984); and Sullivan et al. (2014a).")
 
 ## ----overviewmap, fig.cap="Map of region including the study area", fig.width=fig_width_one_col----
 
 knitr::include_graphics("../figures/regional_map.png")
 
 
-## ----mapofstudyarea1, fig.cap="Map of study area with landforms and terrain patterns", fig.width=fig_width_two_cols----
+## ----mapofstudyarea1, fig.cap="Map of our study area within the Roxby dunefield, showing landforms and terrain patterns", fig.width=fig_width_two_cols----
 
 knitr::include_graphics("../figures/landforms_only.png")
 
 
-## ----mapofstudyarea2, fig.cap="Map of study area showing the distribution of archaeological sites used in this study", fig.width=fig_width_two_cols----
+## ----mapofstudyarea2, fig.cap="Map of study area showing the distribution of archaeological sites sampled for this study", fig.width=fig_width_two_cols----
 
 knitr::include_graphics("../figures/landforms_and_sites.png")
 
+
+## ----table2--------------------------------------------------------------
+table2 <- read.csv("../data/table_2.csv")
+names(table2) <- c("Geological regime", "Period", "Description", "Materials for artefact manufacture")
+kable(table2, caption = "Geological regimes in the study area and predicted archaeological importance. Adapted from Hughes et al. (2011).")
 
 ## ----sitetypetally-------------------------------------------------------
 library(foreign)
@@ -49,6 +59,13 @@ quarries         <- with(ODX_site_type_tally,
                           ODX_site_type_tally[SITTYP == "Quarry", 
                                               prop])
 
+# how many sites?
+total_number_of_sites <- prettyNum(nrow(ODX_allsites_2010), big.mark = ",")
+
+
+## ----methodschematic, fig.cap="Schematic of two approaches used to investigate boundary effects in the Roxby duenfields, South Australia. A: the straight-line distances from sites to the boundaries of the terrain patterns that they are contained it was measured. B: the number of sites per square kilometer was measured in a series of buffer areas, an example of a buffer area is indicated here by a grey region at the exterior of the terrain pattern area.", fig.width=fig_width_two_cols----
+
+knitr::include_graphics("../figures/method_schematic.png")
 
 
 ## ----percentcoverageofeachterrainpattern, fig.cap="Terrain pattern percentage coverage of the 2007-2008 study area", fig.width=fig_width_two_cols----
@@ -146,11 +163,13 @@ site_density_in_Czs5 <-  round(mean(with(ODX_allsites_2010_per_TP_NO_Czs4_and_Cz
 
 
 ## plot site densities and artefact densities per TP
+library(ggforce)
 g <- ggplot(ODX_allsites_2010_per_TP_NO,
        aes(reorder(TP,
            -sites_per_sqkm),
            sites_per_sqkm)) +
   geom_boxplot() +
+  geom_sina(alpha = 0.03) +
   theme_bw(base_size = text_size) +
   theme(axis.text.x = element_text(size = text_size),
         axis.text.y = element_text(size = text_size),
@@ -253,7 +272,7 @@ ODX_allsites_2010.s <- subset(ODX_allsites_2010, GREGLANDF=='A4' | GREGLANDF=='C
 ODX_allsites_2010.s$GREGLANDF <- factor(ODX_allsites_2010.s$GREGLANDF)
 # order the levels of GREGLANDF for plotting
 # this is the desired order: - A4, Czs4, Q4, K4, Czs5, Q5, Q6
-levels(ODX_allsites_2010.s$GREGLANDF)
+# levels(ODX_allsites_2010.s$GREGLANDF)
 ODX_allsites_2010.s$GREGLANDF <- factor(ODX_allsites_2010.s$GREGLANDF, 
   levels(ODX_allsites_2010.s$GREGLANDF)[c(1, 2, 5, 4, 3, 6, 7)])
 
@@ -299,7 +318,7 @@ library(foreign)
 inbd.data <- ldply(inbd.files, read.dbf)
 inbd.data$SiteDens <- with(inbd.data, Join_Count/buf_area * (1000*1000))
 inbd.data <- inbd.data[inbd.data$Join_Count > n, ]
-unique(inbd.data$BUFF_DIST)
+# unique(inbd.data$BUFF_DIST)
 inbd.data$Buf <- as.factor(with( inbd.data, ifelse(is.na(BUFF_DIST), '-100-000', ifelse(BUFF_DIST == -100, '-200-100', ifelse(BUFF_DIST == -200, '-300-200', ifelse(BUFF_DIST == -300, '-400-300', ifelse(BUFF_DIST == -400, '-500-400','NA')))))))
 
 #  how many sites in each set?
@@ -433,7 +452,7 @@ display_table[ , 1] <- gsub("km2", "km^2^", display_table[ , 1])
 display_table[ , 1] <- gsub("persondays", "person-days", display_table[ , 1])
 
 # print table
-kable(display_table, caption = "Summary of archaeological survey productivity at Olympic Dam. The data for sites recorded per person per day for before 2007 come from a survey undertaken in 1982 by Philip Hughes and Peter Hiscock that recorded 176 sites in 50 person days.")
+kable(display_table, caption = "Summary of archaeological survey productivity in the Roxby dunefield. The data for sites recorded per person per day for before 2007 come from a survey undertaken in 1982 by Philip Hughes and Peter Hiscock that recorded 176 sites in 50 person days.")
 
 # modelling these data
 
@@ -449,6 +468,8 @@ mobile_gis_efficiency_lm <-
   summary(mobile_gis_efficiency_lm_out <- lm(dat_t$No.sites.recorded.person.day ~ dat_t$Frequency.of.occurrence.of.sites.km2))
 mobile_gis_efficiency_lm_r_squared <- round(mobile_gis_efficiency_lm$adj.r.squared, 3)
 mobile_gis_efficiency_lm_p_value <- round(mobile_gis_efficiency_lm$coefficients[2, 4]  , 3)
+mobile_gis_efficiency_lm_df <- round(mobile_gis_efficiency_lm$df[2] , 3)
+mobile_gis_efficiency_lm_F <- round(mobile_gis_efficiency_lm$fstatistic[1] , 3)
 
 # a linear model for the 2007-2009 data
 # subset 2007-2009 data
@@ -475,7 +496,6 @@ resulting_rate - rate_for_pre_2007
 
 # percentage increase
 percentage_increase <- round((resulting_rate - rate_for_pre_2007) / rate_for_pre_2007 * 100, 0)
-
 
 ## ------------------------------------------------------------------------
 # which R packages and versions?
