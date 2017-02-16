@@ -1,5 +1,5 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-[![Last-changedate](https://img.shields.io/badge/last%20change-2017--01--26-brightgreen.svg)](https://github.com/benmarwick/olympicdamboundaries/commits/master) [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.3.2-brightgreen.svg)](https://cran.r-project.org/) [![Licence](https://img.shields.io/github/license/mashape/apistatus.svg)](http://choosealicense.com/licenses/mit/) [![Travis-CI Build Status](https://travis-ci.org/benmarwick/olympicdamboundaries.png?branch=master)](https://travis-ci.org/benmarwick/olympicdamboundaries) [![Circle CI](https://circleci.com/gh/benmarwick/olympicdamboundaries.svg?style=shield&circle-token=:circle-token)](https://circleci.com/gh/benmarwick/olympicdamboundaries) [![ORCiD](https://img.shields.io/badge/ORCiD-0000--0001--7879--4531-green.svg)](http://orcid.org/0000-0001-7879-4531)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2017--02--16-brightgreen.svg)](https://github.com/benmarwick/olympicdamboundaries/commits/master) [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.3.2-brightgreen.svg)](https://cran.r-project.org/) [![Licence](https://img.shields.io/github/license/mashape/apistatus.svg)](http://choosealicense.com/licenses/mit/) [![Travis-CI Build Status](https://travis-ci.org/benmarwick/olympicdamboundaries.png?branch=master)](https://travis-ci.org/benmarwick/olympicdamboundaries) [![Circle CI](https://circleci.com/gh/benmarwick/olympicdamboundaries.svg?style=shield&circle-token=:circle-token)](https://circleci.com/gh/benmarwick/olympicdamboundaries) [![ORCiD](https://img.shields.io/badge/ORCiD-0000--0001--7879--4531-green.svg)](http://orcid.org/0000-0001-7879-4531)
 
 Research compendium for a report on xxxx
 ----------------------------------------
@@ -8,7 +8,7 @@ Research compendium for a report on xxxx
 
 <http://dx.doi.org/10.17605/OSF.IO/RMKGE>
 
-The files at the URL above will generate the results as found in the publication. The files hosted at github.com/benmarwick/olympicdamboundaries are the development versions and may have changed since the report was published
+The files at the URL above will generate the results as found in the publication. The files hosted at <https://github.com/benmarwick/olympicdamboundaries> are the development versions and may have changed since the report was published
 
 ### Authors of this repository:
 
@@ -20,14 +20,13 @@ Marwick, B, xxxxx
 
 ### Overview of contents
 
-This repository is our research compendium for our analysis of xxxx. The compendium contains all data, code, and text associated with the publication. The `Rmd` files in the `analysis/paper/` directory contain details of how all the analyses reported in the paper were conducted, as well as instructions on how to rerun the analysis to reproduce the results. The `data/` directory in the `analysis/` directory contains all the raw data.
+This repository is our research compendium for our analysis of xxxx. The compendium contains all code, and text associated with the publication (data are not included for reasons explained in the manuscript). The `Rmd` files in the `analysis/paper/` directory contain details of how all the analyses reported in the paper were conducted, as well as instructions on how to rerun the analysis to reproduce the results. The `data/` directory in the `analysis/` directory contains all the raw data.
 
 ### The supplementary files
 
 The `analysis/` directory contains:
 
 -   the manuscript as submitted (in MS Word format) and it's Rmd source file
--   all the data files (in CSV format, in the `data/` directory)
 -   supplementary information source files (in R markdown format) and executed versions
 -   all the figures that are included in the paper (in the `figures/` directory)
 

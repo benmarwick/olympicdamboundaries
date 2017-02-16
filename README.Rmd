@@ -26,7 +26,7 @@ knitr::opts_chunk$set(
  
 http://dx.doi.org/10.17605/OSF.IO/RMKGE
 
-The files at the URL above will generate the results as found in the publication. The files hosted at github.com/benmarwick/olympicdamboundaries are the development versions and may have changed since the report was published
+The files at the URL above will generate the results as found in the publication. The files hosted at <https://github.com/benmarwick/olympicdamboundaries> are the development versions and may have changed since the report was published
 
 ### Authors  of this repository:
 
@@ -38,14 +38,13 @@ Marwick, B,  xxxxx
 
 ### Overview of contents
 
-This repository is our research compendium for our analysis of xxxx. The compendium contains all data, code, and text associated with the publication. The `Rmd` files in the `analysis/paper/` directory contain details of how all the analyses reported in the paper were conducted, as well as instructions on how to rerun the analysis to reproduce the results. The `data/` directory in the `analysis/` directory contains all the raw data. 
+This repository is our research compendium for our analysis of xxxx. The compendium contains all code, and text associated with the publication (data are not included for reasons explained in the manuscript). The `Rmd` files in the `analysis/paper/` directory contain details of how all the analyses reported in the paper were conducted, as well as instructions on how to rerun the analysis to reproduce the results. The `data/` directory in the `analysis/` directory contains all the raw data. 
 
 ### The supplementary files
 
 The `analysis/` directory contains:
 
 - the manuscript as submitted (in MS Word format) and it's Rmd source file
-- all the data files (in CSV format, in the `data/` directory)    
 - supplementary information source files (in R markdown format) and executed versions
 - all the figures that are included in the paper (in the `figures/` directory)
 
