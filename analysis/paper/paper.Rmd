@@ -2,9 +2,9 @@
 title: 'Landform boundary effects on Holocene forager landscape use in arid South Australia'
 author:
 - Ben Marwick (corresponding author)
+- Marjorie Sullivan
 - Peter Hiscock 
 - Philip Hughes 
-- Marjorie Sullivan
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 output:
    bookdown::word_document2:
@@ -35,18 +35,18 @@ Denny Hall 117, Box 353100
 Seattle, WA 98195-3100 USA
 
 t. (+1) 206.552.9450 
-f. (+1) 206.543.3285
+f. (+1) 206.543.3285    
 bmarwick@uw.edu 
 
 Peter Hiscock   
-The University of Sydney, Sydney NSW, Australia
-
-Philip Hughes  
-Flinders University, Adelaide, South Australia, Australia
-Huonbrook and Environment and Heritage P/L, PO Box 97 Moruya NSW 2537, Australia
+The University of Sydney, Sydney NSW, Australia     
 
 Marjorie Sullivan   
-The University of Sydney, Sydney NSW, Australia
+The University of Sydney, Sydney NSW, Australia      
+Huonbrook and Environment and Heritage P/L, PO Box 97 Moruya NSW 2537, Australia
+
+Philip Hughes  
+Flinders University, Adelaide, South Australia, Australia     
 Huonbrook and Environment and Heritage P/L, PO Box 97 Moruya NSW 2537, Australia
 
 ##### . 
@@ -68,7 +68,7 @@ Our work is motivated by previous archaeological work on cultural landscapes of 
 ```{r table1}
 table1 <- read.csv("../data/table_1.csv")
 names(table1) <- c("Landform type", "Archaeological prediction")
-kable(table1, caption = "Landform types and predicted archaeological signature. Adapted from Hughes et al. (2011); Kinhill-Stearns Roger (1982); Hughes and Sullivan (1984); and Sullivan et al. (2014a).")
+kable(table1, caption = "Landform types and predicted archaeological signature. Adapted from Hughes et al. (2011), Kinhill-Stearns Roger (1982), Hughes and Sullivan (1984), and Sullivan et al. (2014a).")
 ```
 
 Our study area in the Roxby dunefield in northern South Australia, offers a unique opportunity to study landscape interfaces for two key reasons. First, in our study area these interfaces are relatively well-defined by landform attributes, such as the spacing between sand dune ridges and the surface geology (Table \@ref(tab:table1)). The interfaces in our study area can be recognized as linear boundaries, often following the ridges or swales of the sand dunes, making them convenient for spatial analysis of archaeological features. With clear landscape unit boundaries, our study area is well-placed to explore relationships between archaeological attributes and distances from these boundaries. 
@@ -83,7 +83,7 @@ knitr::include_graphics("../figures/regional_map.png")
 
 ```
 
-The Roxby dunefield is in the driest part of the Australian arid zone (Figure \@ref(fig:overviewmap)). Archaeological material is found across the broader region and partly reflects the long period of human occupation, the wide range of locally available resources and the extremely low rates of sediment movement that might otherwise obscure surface artefacts. Optically stimulated luminescence (OSL) dating of sediments underling buried artefacts in several sites demonstrate episodic human use of the area from the late Pleistocene deglacial period (from around 19 ka, Hughes et al. 2014b; Sullivan et al. 2012; Sullivan et al. 2014b). No organic materials have been found at any of the open sites or in the excavated deposits. Distinctive implement forms such as backed artefacts, unifacial points and tula adzes at many sites in the study area indicate a mid to late Holocene age for the main period of land use and for most of the surface artefact clusters recorded during the survey (Hughes and Hiscock 2005). A study of 78 OSL ages from geological contexts in the study area has shown that the mid to late Holocene period was a time of broad-scale dune stability (Hughes et al. 2014b). This means that site preservation and visibility is not strongly controlled by dune movement. In 2013 we returned to sites that had been recorded 25 years earlier and found them to be in the same state as originally recorded, indicating that site visibility has changed little over 25 years. 
+The Roxby dunefield is in the driest part of the Australian arid zone (Figure \@ref(fig:overviewmap)). Archaeological material is found across the broader region and partly reflects the long period of human occupation, the wide range of locally available resources and the extremely low rates of sediment movement that might otherwise obscure surface artefacts. Optically stimulated luminescence (OSL) dating of sediments underling buried artefacts in several sites demonstrate episodic human use of the area from the late Pleistocene deglacial period (from around 19 ka, Hughes et al. 2014b; Sullivan et al. 2012; Sullivan et al. 2014b). No organic materials have been found at any of the open sites or in the excavated deposits. Distinctive implement forms such as backed artefacts, unifacial points and tula adzes at many sites in the study area indicate a mid to late Holocene age for the main period of land use and for most of the surface artefact clusters recorded during the survey (Hughes and Hiscock 2005). A study of 78 OSL ages from geological contexts in the study area has shown that the mid to late Holocene period was a time of broad-scale dune stability (Hughes et al. 2014b). This means that site preservation and visibility is not strongly controlled by dune movement during that period. In 2013 we returned to sites that had been recorded 25 years earlier and found them to be in the same state as originally recorded, indicating that site visibility has changed little over 25 years. 
 
 ```{r mapofstudyarea1, fig.cap="Map of our study area within the Roxby dunefield, showing landforms and terrain patterns", fig.width=fig_width_two_cols}
 
@@ -111,7 +111,7 @@ kable(table2, caption = "Geological regimes in the study area and predicted arch
 
 Hughes and Hiscock’s archaeological model has been described in detail in previous publications (Hughes et al. 2011; Hughes and Hiscock 1982). In brief, the model details how the location and character of archaeological sites are influenced by proximity to fresh water, sand on which to camp, and locally available raw materials for flaking stone artefacts. The model results in a series of predictions about the archaeological record expected for each of six landform types (Table \@ref(tab:table1)) and five geological regimes (Table \@ref(tab:table2)). These predictions specify the frequency of sites and the density and diversity of artefacts were produced for each major landscape unit.
 
-These descriptions were initially tested in the 1980s and 1990s by archaeological surveys of the mining area and infrastructure corridors. The predictive model was based on records from an initial 133 sites and by 2007 additional testing and surveys of water and power supply corridors had resulted in a database totaling 820 archaeological sites (Hiscock and Hughes 1983; Hiscock 1989). In 2007 a proposed expansion of the existing mine triggered the need for an intensive archaeological survey of an additional area of 515 km^2^ surrounding the existing mine, to be completed by the end of 2009. The data collected during this expansion phase is the basis for this study (Figure \@ref(fig:mapofstudyarea2)).  
+These descriptions were initially tested in the 1980s and 1990s by archaeological surveys of the mining area and infrastructure corridors. The predictive model was based on records from an initial 133 sites and by 2007 additional testing and surveys of water and power supply corridors had resulted in a database totaling 820 archaeological sites (Hiscock and Hughes 1983; Hiscock 1989). In 2007 a proposed expansion of the existing mine triggered the need for an intensive archaeological survey of an additional area of 515 km^2^ surrounding the existing mine, to be completed by the end of 2009. The data collected during that survey is the basis for this study (Figure \@ref(fig:mapofstudyarea2)).  
 
 ## Methods and Materials 
 
@@ -163,7 +163,7 @@ In the second approach, we measured the density of sites per square kilometer at
 
 ### Reproducibility and open source materials
 
-To enable re-use of our materials and improve reproducibility and transparency according to the principles outlined in Marwick (2016), we include the entire R code used for all the analysis and visualizations contained in this paper in our SOM at <http://dx.doi.org/10.17605/OSF.IO/RMKGE>. Also in this version-controlled compendium are additional regression diagnostics. To respect the wishes of our stakeholders and protect the site locations from damage we have not made our data openly available. In our SOM our code is released under the MIT license, and our figures as CC-BY, to enable maximum re-use (for more details, see Marwick 2016).
+To enable re-use of our materials and improve reproducibility and transparency according to the principles outlined in Marwick (2016), we include the entire R code used for all the analysis and visualizations contained in this paper in our SOM at <http://dx.doi.org/10.17605/OSF.IO/RMKGE>. Also in this version-controlled compendium are additional regression diagnostics. To respect the wishes of our stakeholders and protect the site locations from potential damage we have not made our data openly available. In our SOM our code is released under the MIT license, and our figures as CC-BY, to enable maximum re-use (for more details, see Marwick 2016).
 
 ## Results
 
