@@ -2,9 +2,9 @@
 title: 'Landform boundary effects on Holocene forager landscape use in arid South Australia'
 author:
 - Ben Marwick (corresponding author)
-- Marjorie Sullivan
-- Peter Hiscock 
-- Philip Hughes 
+- Peter Hiscock      
+- Marjorie Sullivan     
+- Philip Hughes       
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 output:
    bookdown::word_document2:
@@ -73,7 +73,7 @@ kable(table1, caption = "Landform types and predicted archaeological signature. 
 
 Our study area in the Roxby dunefield in northern South Australia, offers a unique opportunity to study landscape interfaces for two key reasons. First, in our study area these interfaces are relatively well-defined by landform attributes, such as the spacing between sand dune ridges and the surface geology (Table \@ref(tab:table1)). The interfaces in our study area can be recognized as linear boundaries, often following the ridges or swales of the sand dunes, making them convenient for spatial analysis of archaeological features. With clear landscape unit boundaries, our study area is well-placed to explore relationships between archaeological attributes and distances from these boundaries. 
 
-The second reason why our data is uniquely suited to investigating landscape boundary effects is that we have a large number of sites spread across several landscape types. The relatively high density of sites provides an opportunity to investigate fine-grained gradients of archaeological change over multiple landscapes and their interfaces. More specifically, we can test whether a boundary effect exists at the edge of landscape units by examining how the size and density of surface clusters of stone artefacts changes with their distance from the boundaries. 
+The second reason why our data are uniquely suited to investigating landscape boundary effects is that we have a large number of sites spread across several landscape types. The relatively high density of sites provides an opportunity to investigate fine-grained gradients of archaeological change over multiple landscapes and their interfaces. More specifically, we can test whether a boundary effect exists at the edge of landscape units by examining how the size and density of surface clusters of stone artefacts changes with their distance from the boundaries. 
 
 ## The Roxby dunefield and investigation of its archaeology
 
@@ -166,6 +166,84 @@ In the second approach, we measured the density of sites per square kilometer at
 To enable re-use of our materials and improve reproducibility and transparency according to the principles outlined in Marwick (2016), we include the entire R code used for all the analysis and visualizations contained in this paper in our SOM at <http://dx.doi.org/10.17605/OSF.IO/RMKGE>. Also in this version-controlled compendium are additional regression diagnostics. To respect the wishes of our stakeholders and protect the site locations from potential damage we have not made our data openly available. In our SOM our code is released under the MIT license, and our figures as CC-BY, to enable maximum re-use (for more details, see Marwick 2016).
 
 ## Results
+
+### Efficiency of a mobile GIS compared to paper systems for field survey
+
+Our survey activity in the Roxby dunefield region over multiple decades has provided us with an opportunity to collect longitudinal data on site recording methods. Here we briefly explore the question of whether our mobile GIS enabled faster site recording compared to when we used a paper-pen-GPS method (these methods are described in more detail in our SOM). Table \@ref(tab:mobilegisefficiency) shows a summary of the productivity of archaeological survey before and after we implemented our mobile GIS. Although there are many possible metrics of productivity, one that was especially relevant for our project was the number of sites recorded per person per day. This metric is useful because it is easy to measure without burdening field workers with additional data-logging tasks. However, we need to take into account possible confounding factors, such as travel time to the day’s survey area, the size and density of the sites in the day’s survey area, skill and efficiency of the individual archaeologist and the sampling strategy. 
+
+```{r mobilegisefficiency}
+
+# checking benefit of mobile GIS
+dat <- read.table(text = "
+Year Pre.2007	2007	2008	2009
+Area.surveyed.(km2)	35	95	275	145
+Rate.of.survey.(km2/person/day)	0	0.3	0.3	0.3
+Total.no.persondays	0 317	917	483
+Approximate.number.of.sites.recorded	665	3900	6600	5500
+No.sites.recorded/person/day	 3.5	12.3	7.2	11.3
+Frequency.of.occurrence.of.sites/km2	19	41	24	38", row.names = 1, header = TRUE)
+
+display_table <- dat
+display_table$"" <- row.names(display_table)
+row.names(display_table) <- NULL
+display_table <- display_table[ , c(5, 1:4)]
+names(display_table) <- c("", "pre-2007", "2007", "2008", "2009")
+display_table[ , 1] <- gsub("\\.", " ", display_table[ , 1])
+display_table[ , 1] <- gsub("km2", "km^2^", display_table[ , 1])
+display_table[ , 1] <- gsub("persondays", "person-days", display_table[ , 1])
+
+# print table
+kable(display_table, caption = "Summary of archaeological survey productivity in the Roxby dunefield. The data for sites recorded per person per day for before 2007 come from a survey undertaken in 1982 by Philip Hughes and Peter Hiscock that recorded 176 sites in 50 person days.")
+
+# modelling these data
+
+dat_t <- data.frame(t(dat))
+
+# rate for pre-2007 and 2007-2009
+rate_for_pre_2007 <- dat_t$No.sites.recorded.person.day[1]  
+rate_for_2007_thru_2009 <-  round(mean(dat_t$No.sites.recorded.person.day[c(2:4)]),1)
+
+# the rate of recording is strongly correlated with the density of sites 
+# linear model for sites recorded by density of sites
+mobile_gis_efficiency_lm <- 
+  summary(mobile_gis_efficiency_lm_out <- lm(dat_t$No.sites.recorded.person.day ~ dat_t$Frequency.of.occurrence.of.sites.km2))
+mobile_gis_efficiency_lm_r_squared <- round(mobile_gis_efficiency_lm$adj.r.squared, 3)
+mobile_gis_efficiency_lm_p_value <- round(mobile_gis_efficiency_lm$coefficients[2, 4]  , 3)
+mobile_gis_efficiency_lm_df <- round(mobile_gis_efficiency_lm$df[2] , 3)
+mobile_gis_efficiency_lm_F <- round(mobile_gis_efficiency_lm$fstatistic[1] , 3)
+
+# a linear model for the 2007-2009 data
+# subset 2007-2009 data
+dat_t_s <- dat_t[2:4,]
+# linear model for sites recorded by density of sites, 2007-2009
+mobile_gis_efficiency_lm_2007_2009 <-
+ summary(mobile_gis_efficiency_lm_2007_2009_out <- 
+ lm(dat_t_s$No.sites.recorded.person.day ~ dat_t_s$Frequency.of.occurrence.of.sites.km2))
+
+# display model
+mobile_gis_efficiency_lm_2007_2009_est <- round(mobile_gis_efficiency_lm_2007_2009$coefficients[2,1], 3)
+mobile_gis_efficiency_lm_2007_2009_est_error <-  round(mobile_gis_efficiency_lm_2007_2009$coefficients[2,2], 3)
+mobile_gis_efficiency_lm_2007_2009_inter <-  round(mobile_gis_efficiency_lm_2007_2009$coefficients[1,1], 3)
+mobile_gis_efficiency_lm_2007_2009_inter_error <-   round(mobile_gis_efficiency_lm_2007_2009$coefficients[1,2], 3)
+mobile_gis_efficiency_lm_2007_2009_r_sq_adj <- round(mobile_gis_efficiency_lm_2007_2009$adj.r.squared, 3)
+mobile_gis_efficiency_lm_2007_2009_p_value <- round(mobile_gis_efficiency_lm_2007_2009$coefficients[2, 4], 3)
+
+# predict given 19 sites/km2 of pre-2007
+resulting_rate <- round(19 * mobile_gis_efficiency_lm_2007_2009_est + mobile_gis_efficiency_lm_2007_2009_inter, 2)
+
+# difference in rates, pre-2007 and 2007-2009
+difference_in_rates_pre_2007_and_2007_2009 <- 
+resulting_rate - rate_for_pre_2007
+
+# percentage increase
+percentage_increase <- round((resulting_rate - rate_for_pre_2007) / rate_for_pre_2007 * 100, 0)
+```
+
+Our pre-2007 data were collected by more experienced archaeologists than the 2007-2009 data, using a recording form with less variables than our mobile GIS recording forms, and the pre-2007 survey areas were all closer to the camp, with less travel time compared to the 2007-2009 data. Further, the average site size for the pre-2007 data is less than the 2007-2009 data. These conditions should favor a higher rate of recording for the 2007-2009 data. Table \@ref(tab:mobilegisefficiency) shows that prior to adopting the mobile GIS in 2007 we recorded `r rate_for_pre_2007` sites per person per day. With the mobile GIS our rate increased substantially to an average of `r rate_for_2007_thru_2009` sites per person per day for 2007-2009. 
+
+While this is a substantial difference, not all of this increase in the rate of recording can be attributed to the use of the mobile GIS. This is because the rate of recording is strongly predicted by the density of sites (F(1, `r mobile_gis_efficiency_lm_df`) = `r mobile_gis_efficiency_lm_F`, R^2^~adj~ = `r mobile_gis_efficiency_lm_r_squared`, p = `r mobile_gis_efficiency_lm_p_value`). To isolate the effect of site density on recording rate we computed a linear model for the 2007-2009 data, which resulted in a rate of site recording that can by predicted by `r mobile_gis_efficiency_lm_2007_2009_inter` (`r mobile_gis_efficiency_lm_2007_2009_inter_error`) + `r mobile_gis_efficiency_lm_2007_2009_est`(site density) (`r mobile_gis_efficiency_lm_2007_2009_est_error`) +  (standard errors in parentheses). This model gave a good fit (R^2^~adj~ = `r mobile_gis_efficiency_lm_2007_2009_r_sq_adj`, p = `r mobile_gis_efficiency_lm_2007_2009_p_value`), and was then used to predict the site recording rate using a mobile GIS given the density of 19 sites/km^2^ observed in the pre-2007 data. The resulting rate is `r resulting_rate` sites/person/day, which is what the model predicts if a mobile GIS had been used to record sites in an area with 19 sites/km^2^. The difference of `r difference_in_rates_pre_2007_and_2007_2009` sites/person/day between the actual pre-2007 average rate of `r rate_for_pre_2007` and the predicted average rate of `r resulting_rate` is most likely due to the use of mobile GIS. This represents a `r percentage_increase`% increase in the site recording rate, although we caution that this may be an overestimate due to overfitting from the relatively small number of data points in our efficiency analysis. 
+
+Nevertheless, this demonstrates an advantage for using mobile GIS in a context where data collection was intensive, data volume was high, a highly structured data collection form was used, and the start-up, purchasing, and training costs could be amortized over multiple years of data collection. Our gain of `r percentage_increase`% is within the range documented by other studies using mobile data collection technologies. For example, Poehler and Ellis (2012) report a 371% increase in efficiency using iPads at Pompeii, and Austin (2014) reports a 21-32% increase when using Open Data Kit (Hartung et al. 2010) to record skeletal remains. This wide variation in efficiency gains suggests that the magnitude of the gain is highly dependent on the context in which the mobile technologies are employed. 
 
 ### Model validation
 
@@ -563,87 +641,9 @@ Our analysis of boundary effects shows people were sensitive to subtle gradients
 
 This analysis suggests that prehistoric people in the Roxby dunefield  area were sensitive to fine-grained differences in the economic potential of dissimilar terrain patterns. The novel element of the data presented here is that the distribution of human activities varies substantially and predictably within as well as between terrain patterns. It is also noteworthy that relatively subtle geographic differences between landscapes – the different spacing of sand dunes between Czs4 and Czs5 – has a marked effect on the distribution of archaeological sites. We speculate that this is due to the relationship between dune spacing and the availability of flakable stone, as well as other resources. The causes of variation in dune spacing are poorly understood. Previous work has associated sand transport rates and directions, wind regime characteristics, grain size patterns, topography, and substrates with dune spacing, however there are no simple relationships (Lancaster 1988; Wasson and Hyde 1983; Wasson et al. 1988).
 
-### Efficiency of a mobile GIS compared to paper systems for field survey
-
-In addition to these observations about landscape use, our survey activity in the Roxby dunefield region over multiple decades has provided us with an opportunity to collect longitudinal data on site recording methods. Here we briefly explore the question of whether our mobile GIS enabled faster site recording then when we used a paper-pen-GPS method (these methods are described in more detail in our SOM). Table \@ref(tab:mobilegisefficiency) shows a summary of the productivity of archaeological survey before and after we implemented our mobile GIS. Although there are many possible metrics of productivity, one that was especially relevant for our project was the number of sites recorded per person per day. This metric is useful because it is easy to measure without burdening field workers with additional data-logging tasks. However, we need to take into account possible confounding factors, such as travel time to the day’s survey area, the size and density of the sites in the day’s survey area, skill and efficiency of the individual archaeologist and the sampling strategy. 
-
-```{r mobilegisefficiency}
-
-# checking benefit of mobile GIS
-dat <- read.table(text = "
-Year Pre.2007	2007	2008	2009
-Area.surveyed.(km2)	35	95	275	145
-Rate.of.survey.(km2/person/day)	0	0.3	0.3	0.3
-Total.no.persondays	0 317	917	483
-Approximate.number.of.sites.recorded	665	3900	6600	5500
-No.sites.recorded/person/day	 3.5	12.3	7.2	11.3
-Frequency.of.occurrence.of.sites/km2	19	41	24	38", row.names = 1, header = TRUE)
-
-display_table <- dat
-display_table$"" <- row.names(display_table)
-row.names(display_table) <- NULL
-display_table <- display_table[ , c(5, 1:4)]
-names(display_table) <- c("", "pre-2007", "2007", "2008", "2009")
-display_table[ , 1] <- gsub("\\.", " ", display_table[ , 1])
-display_table[ , 1] <- gsub("km2", "km^2^", display_table[ , 1])
-display_table[ , 1] <- gsub("persondays", "person-days", display_table[ , 1])
-
-# print table
-kable(display_table, caption = "Summary of archaeological survey productivity in the Roxby dunefield. The data for sites recorded per person per day for before 2007 come from a survey undertaken in 1982 by Philip Hughes and Peter Hiscock that recorded 176 sites in 50 person days.")
-
-# modelling these data
-
-dat_t <- data.frame(t(dat))
-
-# rate for pre-2007 and 2007-2009
-rate_for_pre_2007 <- dat_t$No.sites.recorded.person.day[1]  
-rate_for_2007_thru_2009 <-  round(mean(dat_t$No.sites.recorded.person.day[c(2:4)]),1)
-
-# the rate of recording is strongly correlated with the density of sites 
-# linear model for sites recorded by density of sites
-mobile_gis_efficiency_lm <- 
-  summary(mobile_gis_efficiency_lm_out <- lm(dat_t$No.sites.recorded.person.day ~ dat_t$Frequency.of.occurrence.of.sites.km2))
-mobile_gis_efficiency_lm_r_squared <- round(mobile_gis_efficiency_lm$adj.r.squared, 3)
-mobile_gis_efficiency_lm_p_value <- round(mobile_gis_efficiency_lm$coefficients[2, 4]  , 3)
-mobile_gis_efficiency_lm_df <- round(mobile_gis_efficiency_lm$df[2] , 3)
-mobile_gis_efficiency_lm_F <- round(mobile_gis_efficiency_lm$fstatistic[1] , 3)
-
-# a linear model for the 2007-2009 data
-# subset 2007-2009 data
-dat_t_s <- dat_t[2:4,]
-# linear model for sites recorded by density of sites, 2007-2009
-mobile_gis_efficiency_lm_2007_2009 <-
- summary(mobile_gis_efficiency_lm_2007_2009_out <- 
- lm(dat_t_s$No.sites.recorded.person.day ~ dat_t_s$Frequency.of.occurrence.of.sites.km2))
-
-# display model
-mobile_gis_efficiency_lm_2007_2009_est <- round(mobile_gis_efficiency_lm_2007_2009$coefficients[2,1], 3)
-mobile_gis_efficiency_lm_2007_2009_est_error <-  round(mobile_gis_efficiency_lm_2007_2009$coefficients[2,2], 3)
-mobile_gis_efficiency_lm_2007_2009_inter <-  round(mobile_gis_efficiency_lm_2007_2009$coefficients[1,1], 3)
-mobile_gis_efficiency_lm_2007_2009_inter_error <-   round(mobile_gis_efficiency_lm_2007_2009$coefficients[1,2], 3)
-mobile_gis_efficiency_lm_2007_2009_r_sq_adj <- round(mobile_gis_efficiency_lm_2007_2009$adj.r.squared, 3)
-mobile_gis_efficiency_lm_2007_2009_p_value <- round(mobile_gis_efficiency_lm_2007_2009$coefficients[2, 4], 3)
-
-# predict given 19 sites/km2 of pre-2007
-resulting_rate <- round(19 * mobile_gis_efficiency_lm_2007_2009_est + mobile_gis_efficiency_lm_2007_2009_inter, 2)
-
-# difference in rates, pre-2007 and 2007-2009
-difference_in_rates_pre_2007_and_2007_2009 <- 
-resulting_rate - rate_for_pre_2007
-
-# percentage increase
-percentage_increase <- round((resulting_rate - rate_for_pre_2007) / rate_for_pre_2007 * 100, 0)
-```
-
-Our pre-2007 data were collected by more experienced archaeologists than the 2007-2009 data, using a recording form with less variables than our mobile GIS recording forms, and the pre-2007 survey areas were all closer to the camp, with less travel time compared to the 2007-2009 data. Further, the average site size for the pre-2007 data is less than the 2007-2009 data. These conditions should favor a higher rate of recording for the 2007-2009 data. Table \@ref(tab:mobilegisefficiency) shows that prior to adopting the mobile GIS in 2007 we recorded `r rate_for_pre_2007` sites per person per day. With the mobile GIS our rate increased substantially to an average of `r rate_for_2007_thru_2009` sites per person per day for 2007-2009. 
-
-While this is a substantial difference, not all of this increase in the rate of recording can be attributed to the use of the mobile GIS. This is because the rate of recording is strongly predicted by the density of sites (F(1, `r mobile_gis_efficiency_lm_df`) = `r mobile_gis_efficiency_lm_F`, R^2^~adj~ = `r mobile_gis_efficiency_lm_r_squared`, p = `r mobile_gis_efficiency_lm_p_value`). To isolate the effect of site density on recording rate we computed a linear model for the 2007-2009 data, which resulted in a rate of site recording that can by predicted by `r mobile_gis_efficiency_lm_2007_2009_inter` (`r mobile_gis_efficiency_lm_2007_2009_inter_error`) + `r mobile_gis_efficiency_lm_2007_2009_est`(site density) (`r mobile_gis_efficiency_lm_2007_2009_est_error`) +  (standard errors in parentheses). This model gave a good fit (R^2^~adj~ = `r mobile_gis_efficiency_lm_2007_2009_r_sq_adj`, p = `r mobile_gis_efficiency_lm_2007_2009_p_value`), and was then used to predict the site recording rate using a mobile GIS given the density of 19 sites/km^2^ observed in the pre-2007 data. The resulting rate is `r resulting_rate` sites/person/day, which is what the model predicts if a mobile GIS had been used to record sites in an area with 19 sites/km^2^. The difference of `r difference_in_rates_pre_2007_and_2007_2009` sites/person/day between the actual pre-2007 average rate of `r rate_for_pre_2007` and the predicted average rate of `r resulting_rate` is most likely due to the use of mobile GIS. This represents a `r percentage_increase`% increase in the site recording rate, although we caution that this may be an overestimate due to overfitting from the relatively small number of data points in our efficiency analysis. 
-
-Nevertheless, this demonstrates an advantage for using mobile GIS in a context where data collection was intensive, data volume was high, a highly structured data collection form was used, and the start-up, purchasing, and training costs could be amortized over multiple years of data collection. Our gain of `r percentage_increase`% is within the range documented by other studies using mobile data collection technologies. For example, Poehler and Ellis (2012) report a 371% increase in efficiency using iPads at Pompeii, and Austin (2014) reports a 21-32% increase when using Open Data Kit (Hartung et al. 2010) to record skeletal remains. This wide variation in efficiency gains suggests that the magnitude of the gain is highly dependent on the context in which the mobile technologies are employed. 
-
 ## Conclusion
 
-The substantive archaeological contribution of this study has been to show that when choosing habitations, prehistoric people in the Roxby dunefield were sensitive to relatively small variations in the landscape, such as the spacing of dunes. The implication of this finding is that even in relatively homogeneous landscapes, such as the desert investigated here, there are gradient-like patterns in the distribution of archaeological sites the reveal how people adapted to the landscape (cf. Attwell and Fletcher 1987). These gradients allow for more sophisticated interpretations of prehistoric behaviour beyond the obvious attraction of prominent landscape features (Wilson 2007; Kowalewski 2008: 233). Given a large enough dataset, such as the one presented here, these patterns can be quickly quantified using a geographical information system and explained with relatively simple behavioral ecological models. We hope that this data-intensive approach to using gradients of changes in archaeological site attributes across the landscape might suggest a new direction for investigating past human behaviour at ecological interfaces, avoiding the problematic assumptions of previous work on edge effects.  
+The substantive archaeological contribution of this study has been to show that when choosing habitations, prehistoric people in the Roxby dunefield were sensitive to relatively small variations in the landscape, such as the spacing of dunes. The implication of this finding is that even in relatively homogeneous landscapes, such as the desert investigated here, there are gradient-like patterns in the distribution of archaeological sites the reveal how people adapted to the landscape (cf. Attwell and Fletcher 1987). Although Australian deserts are home to some unique flora and fauna, the general patterns of gradients of human behaviour observed here are not contingent on any specific taxa. We expect that beyond the sand dunes of Australia, gradients might also be observed in the archaeological record of the U.S. Great Basin, the coastal and high altitude deserts of South America, and the core deserts of Africa. Gradients are likely to be an indicator of a generic adaptation to landscape variation that can be found in many ecosystems. These gradients allow for more sophisticated interpretations of prehistoric behaviour beyond the obvious attraction of prominent landscape features (Wilson 2007; Kowalewski 2008: 233). Given a large enough dataset, such as the one presented here, these patterns can be quickly quantified using a geographical information system and explained with relatively simple behavioral ecological models. We hope that this data-intensive approach to using gradients of changes in archaeological site attributes across the landscape might suggest a new direction for investigating past human behaviour at ecological interfaces, avoiding the problematic assumptions of previous work on edge effects.  
 
 ## Acknowledgments
 
