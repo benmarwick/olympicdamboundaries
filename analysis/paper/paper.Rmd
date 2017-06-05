@@ -22,7 +22,8 @@ library(knitr)
 opts_chunk$set(echo = FALSE,
                warning = FALSE,
                message = FALSE,
-               dpi = 900)
+               dpi = 900,
+               cache = TRUE)
 options(warn = -1)
 
 ```
@@ -490,7 +491,111 @@ About `r round(sites_in_Czs4 + sites_in_Czs5,0)`% of all sites were recorded in 
 
 ### Landscape boundary effects 
 
-```{r distanceofsitetoboundary, fig.cap="Distribution of distances of archaeological sites to terrain pattern bounaries. Distance is shows the vertical axis with a logarithmic scale.  Data points show distance values for individual sites.", fig.width=fig_width_one_col}
+```{r}
+# get shapefiles
+library(units)
+library(sf)
+odx_polygons <- read_sf("../data/ODX_TP_2010_data/CLipped_ODO_terrain_patterns_2010_Ja.shp")
+```
+
+
+```{r tpelongationandlength,  fig.cap="Upper: Distribution of elongation ratios of terrain pattern polygons in the study area. The ANOVA output in the upper right of the plot indicates that there is no significant difference in the elongation ratios of the terrain patterns. Lower: Distribution of calliper lengths (longest distance between two points) of the terrain patterns in the study area. The Krukall-Wallis test in the upper right of the plot indicates that there is no significant difference in the lengths of the terrain patterns.", fig.width=fig_width_two_cols}
+
+# compute elongation of each landform area
+
+# subset to get only TPs 1 km or more accross
+
+odx_polygons <- 
+  filter(odx_polygons,  GREGLANDF %in% c("A4", "Czs4", "Q4", "K4", "Czs5", "Q5", "Q6"))
+
+# simplify to reduce slivers
+
+library(rmapshaper)
+
+odx_polygons_simpl <- vector("list", length = nrow(odx_polygons))
+for(i in seq_len(nrow(odx_polygons))) {
+  t1 <- ms_simplify(as(odx_polygons[i, ], 'Spatial'), keep = 0.2)
+  t2 <- st_as_sf(t1)
+  odx_polygons_simpl[[i]] <- t2
+  # print(i)
+}
+
+# get coords of polygons to put into Momocs
+
+odx_polygons_coords <- apply(odx_polygons, 1,  function(i) st_coordinates(i$geometry))
+
+odx_polygons_coords <- lapply(odx_polygons_simpl, function(i) st_coordinates(i$geometry))
+
+# create Momocs outlines object
+
+library(Momocs)
+
+odx_polygons_outline <- Out(odx_polygons_coords,
+                            fac = data.frame(TP_NO = odx_polygons$TP_NO))
+
+# compute elongation for each shape
+
+odx_polygons_elongation <- 
+  data.frame(GEOLREGIME = odx_polygons$GEOLREGIME,
+             LF = odx_polygons$LANDFORM,
+             GREGLANDF = odx_polygons$GREGLANDF,
+             ID = odx_polygons$TP_NO,
+             elongation = sapply(odx_polygons_outline$coo, coo_elongation),
+             calliper_length = sapply(odx_polygons_outline$coo, coo_calliper))
+
+# how varied are the shapes of each TP?
+
+#  hist(odx_polygons_elongation$elong) it's normal
+tp_elong_anova <- summary(aov(elongation ~ GREGLANDF, data = odx_polygons_elongation))
+# no signifant difference
+
+fval <- round(tp_elong_anova[[1]]$`F value`[1], 3)
+pval <- round(tp_elong_anova[[1]]$`Pr(>F)`[1], 3)
+df <-  paste0(tp_elong_anova[[1]]$Df, collapse = ", ")
+
+anova_string <- paste0("F(", df, ") = ", fval, ", p = ", pval)
+
+library(ggplot2)
+elong <- ggplot(odx_polygons_elongation,
+       aes(reorder(GREGLANDF, -elongation),
+           elongation)) +
+  geom_boxplot() +
+  theme_bw(base_size = text_size-1) +
+  xlab("") +
+  ylab("Elongation ratio") +
+  annotate("text",  x = "Q5", y = 0.85, label = anova_string)
+
+
+# similar analysis for maximum dimension (calliper length or Feret's diameter)
+
+#  hist(odx_polygons_elongation$calliper_length) it's NOT normal
+tp_length_kruskal <- kruskal.test(calliper_length ~ GREGLANDF, data = odx_polygons_elongation)
+# no signifant difference
+
+hval <- unname(round(tp_length_kruskal$statistic, 3))
+pval <- round(tp_length_kruskal$p.value, 3)
+df <-  unname(tp_length_kruskal$parameter)
+
+kruskal_string <- paste0("H(", df, ") = ", hval, ", p = ", pval)
+
+library(ggplot2)
+calliper <- ggplot(odx_polygons_elongation,
+       aes(reorder(GREGLANDF, -calliper_length),
+           calliper_length/1000)) +
+  geom_boxplot() +
+  theme_bw(base_size = text_size-1) +
+  xlab("Terrain Pattern") +
+  ylab("Calliper length (km)") +
+  annotate("text",  x = "Q4", y = 18, label = kruskal_string)
+
+library(gridExtra)
+grid.arrange(elong, calliper, ncol = 1)
+
+
+```
+
+
+```{r distanceofsitetoboundary}
 
 ODX_allsites_2010.s <- subset(ODX_allsites_2010, GREGLANDF=='A4' | GREGLANDF=='Czs4' | GREGLANDF=='Q4' | GREGLANDF=='K4' | GREGLANDF=='Czs5' | GREGLANDF=='Q5' | GREGLANDF=='Q6')
 ODX_allsites_2010.s$GREGLANDF <- factor(ODX_allsites_2010.s$GREGLANDF)
@@ -503,7 +608,7 @@ ODX_allsites_2010.s$GREGLANDF <- factor(ODX_allsites_2010.s$GREGLANDF,
 # plot
 library(ggplot2)
 library(ggforce)
-ggplot(ODX_allsites_2010.s, 
+d2b <- ggplot(ODX_allsites_2010.s, 
        aes(reorder(GREGLANDF, -RASTERVALU),
            RASTERVALU)) + 
   geom_boxplot() + 
@@ -514,6 +619,85 @@ ggplot(ODX_allsites_2010.s,
   xlab("Terrain pattern") +
   ylab("Distance of site to boundary (m)")
 ```
+
+```{r maxmindistancetoboundary, fig.cap="Left: Distributions of distances of archaeological sites to terrain pattern bounaries. Right: Distributions of ratios of observed distance of site to terrain pattern boundary and the maximum possible distance to boundary for each terrain pattern. Distance is shown on the vertical axis with a logarithmic scale. Data points show distance values for individual sites.", fig.width=fig_width_two_cols}
+
+# "a new variable should be created for each site which is a ratio of 
+# minimum distance to boundary [of that site] to maximum possible 
+# minimum distance to boundary for any location within a polygon."
+
+library(dplyr)
+library(tidyr)
+
+# make a fn to ut random points on a polygon, and compute areas to boundary for all points in that polygon
+
+library(sp)
+library(rgeos)
+
+random_points_to_boundary <- function(poly, n = 1000, ...){
+  # convert st to sp poly <- odx_polygons[2,]
+  t1 <- as(poly, 'Spatial')
+  # generate random points in that polygon
+  t2 <- spsample(t1, n = n,type = "random")
+  # compute distance of points to polygon boundary
+  gd <- gDistance(t2, as(t1, "SpatialLines"), byid = TRUE) 
+  return(as.vector(unname(gd)))
+}
+
+# run that fn for each poly in the study area
+odx_polygons_dists <- vector("list", length = nrow(odx_polygons))
+for(i in seq_len(length(odx_polygons_dists))){
+  odx_polygons_dists[[i]] <-random_points_to_boundary(odx_polygons[i,])
+  # print(i)
+}
+
+names(odx_polygons_dists) <- odx_polygons$TP_NO
+
+odx_polygons_dists <- as.data.frame(do.call('cbind', odx_polygons_dists))
+
+odx_polygons_dists <- stack(odx_polygons_dists)
+
+odx_polygons_dists <- separate(odx_polygons_dists, 
+                               ind, c("TP", "LF"), 
+                               sep = "/",
+                               remove = FALSE)
+
+odx_polygons_dists_max <- 
+odx_polygons_dists %>% 
+  group_by(TP) %>% 
+  dplyr::summarise(values = max(values))
+
+
+# ratio of actual site distance to boundary and max TP distance to boundary
+
+odx_polygons_dists_LF_max <- 
+  odx_polygons_dists %>% 
+  group_by(ind) %>% 
+  dplyr::summarise(values = max(values)) %>% 
+  mutate(TP_NO = ind)
+
+ODX_allsites_2010.s_with_rand <- 
+  ODX_allsites_2010.s %>% 
+    left_join(odx_polygons_dists_LF_max) %>% 
+    mutate(ratio = RASTERVALU/values)
+
+library(ggplot2)
+library(ggforce)
+r2b <- ggplot(ODX_allsites_2010.s_with_rand, 
+       aes(reorder(GREGLANDF, -ratio),
+           ratio)) + 
+  geom_boxplot() + 
+  scale_y_log10() + 
+  theme_bw(base_size = text_size-1) +
+  theme(axis.title.y = element_text(angle = 90))  +
+  geom_sina(alpha = 0.03) +
+  xlab("Terrain pattern") +
+  ylab("Ratio of site distance to boundary \nto maximum possible distance to boundary")
+
+grid.arrange(d2b, r2b, ncol = 2)
+
+```
+
 
 Figure \@ref(fig:distanceofsitetoboundary) depicts distances of sites from the boundaries of the terrain pattern that contains those sites. The sample of sites in this figure is limited to terrain pattern areas that are on average more than 1 km across (cf. Figure \@ref(fig:mapofstudyarea1)). The general pattern is clear, with distances to the boundary being substantially further in widely spaced dunefields such landform type 4 (e.g. A4, Czs4 and Q4) than in more closely spaced dunefields such as landform types 5 and 6 (e.g. Czs5, Q5and Q5). This means that sites tend to be nearer to the centers of landform type 4, but nearer to the boundaries of landform type 5. Visual inspection of Figure \@ref(fig:mapofstudyarea1) shows that this relationship is not dependent simply on the size or shape of the terrain patterns.
 

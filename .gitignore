@@ -2,3 +2,5 @@ packrat/lib*/
 .Rproj.user
 .Rhistory
 analysis/data/
+analysis/paper/paper_cache/
+analysis/paper/paper_files/
