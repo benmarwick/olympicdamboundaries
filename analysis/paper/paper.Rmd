@@ -1025,7 +1025,7 @@ kable(devtools::session_info()$packages,
       caption = "Packages that this report depends on")
 
 # what commit is this file at?
-library(git2r)
+library("git2r")
 repo <- repository(path = "../..")
 last_commit <- commits(repo)[[1]]
 ```
