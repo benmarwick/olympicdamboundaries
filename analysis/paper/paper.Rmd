@@ -66,7 +66,7 @@ Our work is motivated by previous archaeological work on cultural landscapes of 
 ##### . 
 <!-- page break -->
 
-Our study area in the Roxby dunefield in northern South Australia (Figure \@ref(fig:overviewmap)), offers a unique opportunity to study landscape interfaces for two key reasons. First, in our study area these interfaces are relatively well-defined by landform attributes, such as the surface geology (Table \@ref(tab:table2)) and physical features such as the spacing between sand dune ridges or the presence of water bodies (Table \@ref(tab:table1)). The interfaces in our study area can be recognized as linear boundaries, often following the ridges or swales of the sand dunes and bounaries other physical features, making them convenient for spatial analysis of archaeological features (Figure \@ref(fig:aerialphoto)). With clear landscape unit boundaries, our study area is well-placed to explore relationships between archaeological attributes and distances from these boundaries. 
+Our study area in the Roxby dunefield in northern South Australia (Figure \@ref(fig:overviewmap)), offers a unique opportunity to study landscape interfaces for two key reasons. First, in our study area these interfaces are relatively well-defined by landform attributes, such as the surface geology (Table \@ref(tab:table2)) and physical features such as the spacing between sand dune ridges or the presence of water bodies (Table \@ref(tab:table1)). The interfaces in our study area can be recognized as linear boundaries, often following the ridges or swales of the sand dunes and boundaries other physical features, making them convenient for spatial analysis of archaeological features (Figure \@ref(fig:aerialphoto)). With clear landscape unit boundaries, our study area is well-placed to explore relationships between archaeological attributes and distances from these boundaries. 
 
 The second reason why our data are uniquely suited to investigating landscape boundary effects is that we have a large number of sites spread across several landscape types. The relatively high density of sites provides an opportunity to investigate fine-grained gradients of archaeological change over multiple landscapes and their interfaces. More specifically, we can test whether a boundary effect exists at the edge of landscape units by examining how the size and density of surface clusters of stone artefacts changes with their distance from the boundaries. 
 
@@ -278,7 +278,11 @@ percentage_increase <- round((resulting_rate - rate_for_pre_2007) / rate_for_pre
 
 Our pre-2007 data were collected by more experienced archaeologists than the 2007-2009 data, using a recording form with less variables than our mobile GIS recording forms, and the pre-2007 survey areas were all closer to the camp, with less travel time compared to the 2007-2009 data. Further, the average site size for the pre-2007 data is less than the 2007-2009 data. These conditions should favor a higher rate of recording for the 2007-2009 data. Table \@ref(tab:mobilegisefficiency) shows that prior to adopting the mobile GIS in 2007 we recorded `r rate_for_pre_2007` sites per person per day. With the mobile GIS our rate increased substantially to an average of `r rate_for_2007_thru_2009` sites per person per day for 2007-2009. 
 
-While this is a substantial difference, not all of this increase in the rate of recording can be attributed to the use of the mobile GIS. This is because the rate of recording is strongly predicted by the density of sites (F(1, `r mobile_gis_efficiency_lm_df`) = `r mobile_gis_efficiency_lm_F`, R^2^~adj~ = `r mobile_gis_efficiency_lm_r_squared`, p = `r mobile_gis_efficiency_lm_p_value`). To isolate the effect of site density on recording rate we computed a linear model for the 2007-2009 data, which resulted in a rate of site recording that can by predicted by `r mobile_gis_efficiency_lm_2007_2009_inter` (`r mobile_gis_efficiency_lm_2007_2009_inter_error`) + `r mobile_gis_efficiency_lm_2007_2009_est`(site density) (`r mobile_gis_efficiency_lm_2007_2009_est_error`) +  (standard errors in parentheses). This model gave a good fit (R^2^~adj~ = `r mobile_gis_efficiency_lm_2007_2009_r_sq_adj`, p = `r mobile_gis_efficiency_lm_2007_2009_p_value`), and was then used to predict the site recording rate using a mobile GIS given the density of 19 sites/km^2^ observed in the pre-2007 data. The resulting rate is `r resulting_rate` sites/person/day, which is what the model predicts if a mobile GIS had been used to record sites in an area with 19 sites/km^2^. The difference of `r difference_in_rates_pre_2007_and_2007_2009` sites/person/day between the actual pre-2007 average rate of `r rate_for_pre_2007` and the predicted average rate of `r resulting_rate` is most likely due to the use of mobile GIS. This represents a `r percentage_increase`% increase in the site recording rate, although we caution that this may be an overestimate due to overfitting from the relatively small number of data points in our efficiency analysis. 
+While this is a substantial difference, not all of this increase in the rate of recording can be attributed to the use of the mobile GIS. This is because the rate of recording is strongly predicted by the density of sites (F(1, `r mobile_gis_efficiency_lm_df`) = `r mobile_gis_efficiency_lm_F`, R^2^~adj~ = `r mobile_gis_efficiency_lm_r_squared`, p = `r mobile_gis_efficiency_lm_p_value`). To isolate the effect of site density on recording rate we computed a linear model for the 2007-2009 data, which resulted in a rate of site recording that can by predicted by the following model (standard errors in parentheses): 
+
+rate = `r mobile_gis_efficiency_lm_2007_2009_est` (`r mobile_gis_efficiency_lm_2007_2009_est_error`) * site density + `r mobile_gis_efficiency_lm_2007_2009_inter` (`r mobile_gis_efficiency_lm_2007_2009_inter_error`) 
+
+This model gave a good fit (R^2^~adj~ = `r mobile_gis_efficiency_lm_2007_2009_r_sq_adj`, p = `r mobile_gis_efficiency_lm_2007_2009_p_value`), and was then used to predict the site recording rate using a mobile GIS given the density of 19 sites/km^2^ observed in the pre-2007 data. The resulting rate is `r resulting_rate` sites/person/day, which is what the model predicts if a mobile GIS had been used to record sites in an area with 19 sites/km^2^. The difference of `r difference_in_rates_pre_2007_and_2007_2009` sites/person/day between the actual pre-2007 average rate of `r rate_for_pre_2007` and the predicted average rate of `r resulting_rate` is most likely due to the use of mobile GIS. This represents a `r percentage_increase`% increase in the site recording rate, although we caution that this may be an overestimate due to overfitting from the relatively small number of data points in our efficiency analysis. 
 
 ### Model validation
 
@@ -499,14 +503,14 @@ odx_polygons <- read_sf("../data/ODX_TP_2010_data/CLipped_ODO_terrain_patterns_2
 ```
 
 
-```{r tpelongationandlength,  fig.cap="Upper: Distribution of elongation ratios of terrain pattern polygons in the study area. The ANOVA output in the upper right of the plot indicates that there is no significant difference in the elongation ratios of the terrain patterns. Lower: Distribution of calliper lengths (longest distance between two points) of the terrain patterns in the study area. The Krukall-Wallis test in the upper right of the plot indicates that there is no significant difference in the lengths of the terrain patterns.", fig.width=fig_width_two_cols}
+```{r tpelongationandlength, fig.cap="Upper: Distribution of elongation ratios of terrain pattern polygons in the study area. The ANOVA output in the upper right of the plot indicates that there is no significant difference in the elongation ratios of the terrain patterns. Lower: Distribution of calliper lengths (longest distance between two points) of the terrain patterns in the study area. The Kruskall-Wallis test in the upper right of the plot indicates that there is no significant difference in the lengths of the terrain patterns.", fig.width=fig_width_two_cols}
 
 # compute elongation of each landform area
 
 # subset to get only TPs 1 km or more accross
 
 odx_polygons <- 
-  filter(odx_polygons,  GREGLANDF %in% c("A4", "Czs4", "Q4", "K4", "Czs5", "Q5", "Q6"))
+  dplyr::filter(odx_polygons,  GREGLANDF %in% c("A4", "Czs4", "Q4", "K4", "Czs5", "Q5", "Q6"))
 
 # simplify to reduce slivers
 
@@ -521,8 +525,6 @@ for(i in seq_len(nrow(odx_polygons))) {
 }
 
 # get coords of polygons to put into Momocs
-
-odx_polygons_coords <- apply(odx_polygons, 1,  function(i) st_coordinates(i$geometry))
 
 odx_polygons_coords <- lapply(odx_polygons_simpl, function(i) st_coordinates(i$geometry))
 
@@ -594,6 +596,7 @@ grid.arrange(elong, calliper, ncol = 1)
 
 ```
 
+Measurements of the distance from a site to the boundary of its containing terrain pattern could be strongly affected by the size and shape of the terrain pattern areas in our study area. For example, the minimum distance that any site could be the a boundary in a long, thin terrain pattern area would be much less than the minimum distance on a round or square area of the area. To ensure we can provide a meaningful comparison of boundary effects in the different terrain patterns, we tested to see if there were any significant differences in the elongation ratios and calliper lengths (also known as Feret diameters, or longest distance between two points of the shape) of all terrain pattern units in the study area. Figure \@ref(fig:tpelongationandlength) shows the distributions of elongation ratios and calliper lengths for each terrain pattern. The statistical hypothesis tests summarised in Figure \@ref(fig:tpelongationandlength) indicate that there are no signficant differences between the terrain patterns in the shapes of their polygons. Based on this result we conclude that the effect of the shapes of the terrain patterns on the distributions of distances from sites to boundaries does not greatly vary between different terrain patterns. This means that any boundary effects apparently in these data are not dependent simply on the shapes of the terrain patterns.  
 
 ```{r distanceofsitetoboundary}
 
@@ -620,7 +623,7 @@ d2b <- ggplot(ODX_allsites_2010.s,
   ylab("Distance of site to boundary (m)")
 ```
 
-```{r maxmindistancetoboundary, fig.cap="Left: Distributions of distances of archaeological sites to terrain pattern bounaries. Right: Distributions of ratios of observed distance of site to terrain pattern boundary and the maximum possible distance to boundary for each terrain pattern. Distance is shown on the vertical axis with a logarithmic scale. Data points show distance values for individual sites.", fig.width=fig_width_two_cols}
+```{r maxmindistancetoboundary, fig.cap="Left: Distributions of distances of archaeological sites to terrain pattern boundaries. Distance is shown on the vertical axis with a logarithmic scale. Right: Distributions of ratios of observed distance of site to terrain pattern boundary and the maximum possible distance to boundary for each terrain pattern.  Data points show distance values for individual sites.", fig.width=fig_width_two_cols}
 
 # "a new variable should be created for each site which is a ratio of 
 # minimum distance to boundary [of that site] to maximum possible 
@@ -647,7 +650,7 @@ random_points_to_boundary <- function(poly, n = 1000, ...){
 # run that fn for each poly in the study area
 odx_polygons_dists <- vector("list", length = nrow(odx_polygons))
 for(i in seq_len(length(odx_polygons_dists))){
-  odx_polygons_dists[[i]] <-random_points_to_boundary(odx_polygons[i,])
+  odx_polygons_dists[[i]] <- random_points_to_boundary(odx_polygons[i,])
   # print(i)
 }
 
@@ -678,8 +681,10 @@ odx_polygons_dists_LF_max <-
 
 ODX_allsites_2010.s_with_rand <- 
   ODX_allsites_2010.s %>% 
-    left_join(odx_polygons_dists_LF_max) %>% 
-    mutate(ratio = RASTERVALU/values)
+  left_join(odx_polygons_dists_LF_max) %>% 
+  mutate(ratio = RASTERVALU/values) %>% 
+  group_by(GREGLANDF) %>% 
+  mutate(z = scale(ratio)[,1]) 
 
 library(ggplot2)
 library(ggforce)
@@ -688,7 +693,7 @@ r2b <- ggplot(ODX_allsites_2010.s_with_rand,
            ratio)) + 
   geom_boxplot() + 
   scale_y_log10() + 
-  theme_bw(base_size = text_size-1) +
+  theme_bw(base_size = text_size - 1) +
   theme(axis.title.y = element_text(angle = 90))  +
   geom_sina(alpha = 0.03) +
   xlab("Terrain pattern") +
@@ -699,9 +704,9 @@ grid.arrange(d2b, r2b, ncol = 2)
 ```
 
 
-Figure \@ref(fig:distanceofsitetoboundary) depicts distances of sites from the boundaries of the terrain pattern that contains those sites. The sample of sites in this figure is limited to terrain pattern areas that are on average more than 1 km across (cf. Figure \@ref(fig:mapofstudyarea1)). The general pattern is clear, with distances to the boundary being substantially further in widely spaced dunefields such landform type 4 (e.g. A4, Czs4 and Q4) than in more closely spaced dunefields such as landform types 5 and 6 (e.g. Czs5, Q5and Q5). This means that sites tend to be nearer to the centers of landform type 4, but nearer to the boundaries of landform type 5. Visual inspection of Figure \@ref(fig:mapofstudyarea1) shows that this relationship is not dependent simply on the size or shape of the terrain patterns.
+The left panel of Figure \@ref(fig:maxmindistancetoboundary) depicts distances of sites from the boundaries of the terrain pattern that contains those sites. The right panel shows a ratio the observed distance of each site to its boundary and the maximum possible distance to boundary for any location within a its terrain pattern. We computed this maximum possible distance by simulating 1000 points randomly placed over each terrain pattern, measuring the distance to the boundary for each point, and taking the maximum distance from the boundary from this set of randomly distributed points. This ratio variable is relative to terrain pattern polygon shape and size for every site, and so attmpets the control for differences between the shapes of the terrain patterns. The sample of sites in this figure is limited to terrain pattern areas that are on average more than 1 km across (cf. Figure \@ref(fig:mapofstudyarea1)). The general pattern is clear, with distances to the boundary being substantially further in widely spaced dunefields such landform type 4 (e.g. A4, Czs4 and Q4) than in more closely spaced dunefields such as landform types 5 and 6 (e.g. Czs5, Q5and Q5). This means that sites tend to be nearer to the centers of landform type 4, but nearer to the boundaries of landform type 5. 
 
-```{r sitesinbuffers, fig.cap="Site density by distance to the boundary of the terrain pattern for Czs4 and Czs5. Data points show site density values for each buffer zone.", fig.width=fig_width_two_cols}
+```{r sitesinbuffers, fig.cap="Site density by distance to the boundary of the terrain pattern for Czs4 and Czs5. Data points show site density values for each buffer zone. Shaded region indicates the 95% confidence interval of a Loess regression line.", fig.width=fig_width_two_cols}
 
 # start with OUTER buffers
 bd_files <- list.files("../data/outer_buffers", full.names = TRUE)
@@ -773,6 +778,10 @@ ggplot(inner_outer,
 inner_outer$Buf <- as.character(inner_outer$Buf)
 two_way_anova_data <- inner_outer[inner_outer$GREGLANDF %in% c('Czs5','Czs4') &
                                       !inner_outer$Buf %in% c("-100-000", "000-100"), ]
+two_way_anova_data <- inner_outer[inner_outer$GREGLANDF %in% c('Czs5','Czs4') &
+                                      !inner_outer$SiteDens > 200, ]
+
+
 two_way_anova_summary <- summary(fit <- aov(data = two_way_anova_data, 
                    SiteDens ~  GREGLANDF * Buf))[[1]]
 two_way_anova_F  <- round(two_way_anova_summary$`F value`[3],3)
@@ -845,7 +854,96 @@ ggplot(bound.sc.m,
 
 ```
 
-Figure \@ref(fig:sitesinbuffers) shows that in Czs4 landscapes the density of sites increases toward the center of the landform while in Czs5 landforms site density decreases towards the center of the landform. The results of a two-way ANOVA show that the interaction of terrain patterns and the distances from the boundary have a significant effect on the density of archaeological sites at increasing distance from the boundary of the terrain pattern units (F(`r two_way_anova_df`) = `r two_way_anova_F`, p = `r two_way_anova_p`, excluding the 0-100 m zone). 
+```{r disttobdrybyneighbour1, fig.cap="Distribution of distances of archaeological sites to terrain pattern boundaries for sites located in Czs5, by the nearest neighbouring Terrain Pattern. Data points show distance values for individual sites.", fig.width=fig_width_two_cols}
+# how the sites were positioned in the Czs5 relative to which terrain patterns surrounded them?
+
+library(rgeos)
+
+# convert sites data frame to SPDF
+ODX_allsites_spdf <- 
+SpatialPointsDataFrame(cbind(ODX_allsites_2010.s_with_rand$POINT_X,
+                             ODX_allsites_2010.s_with_rand$POINT_Y),
+                       data = as.data.frame(ODX_allsites_2010.s_with_rand),
+                       proj4string = CRS(st_crs(odx_polygons)$proj4string))
+
+# convert polys to sp
+odx_polygons_spdf <- as(odx_polygons, 'Spatial')
+
+
+# for each point, get distance to each polygon
+xx <- gDistance(odx_polygons_spdf,
+                ODX_allsites_spdf, 
+                byid=TRUE)
+
+# now find the closest poly(the one that contains the point), and the
+# second closest (the one on the other side of the closest boundary)
+
+xx <- data.frame(xx)
+names(xx) <- odx_polygons$GREGLANDF
+
+# get details of closest and second closest polygons
+xx_1st_min <- unlist(lapply(1:nrow(xx), function(i) order(xx[i,])[1]))
+xx_2nd_min <- unlist(lapply(1:nrow(xx), function(i) order(xx[i,])[2]))
+
+xx_1st_min_LF <- odx_polygons$GREGLANDF[xx_1st_min]
+xx_2nd_min_LF <- odx_polygons$GREGLANDF[xx_2nd_min]
+
+containing_and_neareest_poly <- 
+  data.frame(xx_1st_min_LF, 
+             xx_2nd_min_LF)
+
+# What about developing a new variable for each site within the Czs5 which describes the nature of the boundary (or the nearest other terrain pattern), and looking at how distance to boundary and density of sites in different buffer zones vary within and between these new groups?
+
+ODX_allsites_min_poly <- 
+  cbind(as.data.frame(ODX_allsites_spdf), 
+      containing_and_neareest_poly)
+
+
+ODX_allsites_min_poly_Czs5 <- 
+ODX_allsites_min_poly %>% 
+  filter(GREGLANDF == "Czs5")  
+
+# see how distance to boundary varies by the LF of the neighbouring polygon
+
+#  hist(ODX_allsites_min_poly_Czs5$RASTERVALU) it's NOT normal
+dt_length_kruskal <- kruskal.test(ratio ~ xx_2nd_min_LF, 
+                                  data = ODX_allsites_min_poly_Czs5)
+# is a signifant difference
+
+hval <- unname(round(dt_length_kruskal$statistic, 3))
+pval <- round(dt_length_kruskal$p.value, 3)
+pval <- ifelse(pval == 0, "< 0.001", pval)
+df <-  unname(dt_length_kruskal$parameter)
+
+kruskal_string <- paste0("H(", df, ") = ", hval, ", p = ", pval)
+
+#  there is a sig result, so let's do a post-hoc test
+library(FSA)
+dt <- dunnTest(RASTERVALU ~ xx_2nd_min_LF,
+               data = ODX_allsites_min_poly_Czs5,
+               method = "bonferroni")
+
+what_pair_is_different <- dplyr::filter(dt$res, P.adj < 0.05)
+
+kruskal_string <- paste0(kruskal_string, 
+                         " (", what_pair_is_different$Comparison, ")")
+
+ggplot(ODX_allsites_min_poly_Czs5,
+       aes(reorder(xx_2nd_min_LF, 
+                   -RASTERVALU),
+           RASTERVALU)) +
+  geom_boxplot()  + 
+  geom_sina(alpha = 0.04) + 
+  theme_bw(base_size = text_size - 1) +
+  xlab("Neighbouring Terrain Pattern for sites located in Czs5") +
+  ylab("Distance from boundary (m)") +
+  # annotate("text",  x = "Q5", y = 1300, label = kruskal_string) +
+  scale_y_log10(breaks = seq(0,1400,200)) 
+
+```
+
+
+Figure \@ref(fig:sitesinbuffers) shows that in Czs4 landscapes the density of sites increases toward the center of the landform while in Czs5 landforms site density decreases towards the center of the landform. The results of a two-way ANOVA show that the interaction of terrain patterns and the distances from the boundary have a significant effect on the density of archaeological sites at increasing distance from the boundary of the terrain pattern units (F(`r two_way_anova_df`) = `r two_way_anova_F`, p = `r two_way_anova_p`, excluding one outlier buffer (0-100m) in a Czs4 terrain pattern where the site density is anomalously high, more than twice the value of the next highest density). 
 
 When we use z-scores to standardize for differences in site density between two terrain patterns, we see that the pattern is even more stark. Figure \@ref(fig:zscoresonsitedensitybyzones) shows that in Czs4 landscapes the density of sites increases toward the center of the landform while in Czs5 landforms site density decreases towards the center of the landform. This also minimizes the effects of differences in the sizes of landscape units by limiting analysis to an area 300 m from the boundary of the terrain pattern, thereby excluding sites in the middle of very large area terrain patterns. These analyses give support to the prediction that resource-rich landscapes such as Csz4 have sites located away from their margin and far inside the terrain pattern areas while landscapes with lower resource levels such as Csz5 commonly have sites closer to their margins and fewer sites further in their interiors. 
 
@@ -853,15 +951,15 @@ When we use z-scores to standardize for differences in site density between two 
 
 In our measurements of site location and site densities, we observed that subtle differences in physical features of the landscape had significant effects on where people were active on the study area during the Holocene. Tests of our model's predictions were facilitated by two characteristics that are distinctive to this project. One is that the extensive survey area, the intensive level of survey and the resulting large sample size of archaeological sites, meant that observation of human choices and behaviour could be obtained at a very high spatial resolution. The second is that objective and robust environmental classifications, creating well-defined terrain patterns, made it possible to quantify landscape diversity in the study area at a high spatial resolution and reduce false associations that could result from less accurate environmental mapping.
 
-We found both more archaeological sites per square kilometer, and more artefacts per square kilometer, in landforms with more widely spaced dunes. This is consistent with our model, and our field observations that more and denser sites tended to occur occur near exposures of good-quality flakeable stone that are often found in interdunal swales (Hughes et al. 2014a). In areas where the sand dunes are more closely spaced, such as landform types 5 and 6, the dune flanks flow into each other, leaving few or no swales between the dunes where surface outcrops of flakable stone might be exposed. This differential availability of flakable stone may be an important factor that influenced ancient peoples' use of this landscape. 
+We found both more archaeological sites per square kilometer, and more artefacts per square kilometer, in landforms with more widely spaced dunes. This is consistent with our model, and our field observations that more and denser sites tended to occur near exposures of good-quality flakeable stone that are often found in interdunal swales (Hughes et al. 2014a). In areas where the sand dunes are more closely spaced, such as landform types 5 and 6, the dune flanks flow into each other, leaving few or no swales between the dunes where surface outcrops of flakable stone might be exposed. This differential availability of flakable stone may be an important factor that influenced ancient people's use of this landscape. 
 
-Our analysis of boundary effects shows people were sensitive to subtle gradients of change in the physical environment. We found that sites were generally located further from the terrain pattern boundary in landform type 4, compared to landform types 5 and 6. This indicates that people preferred to be located close to the center of areas with widely-spared dunes, but only on the edges of the areas with closely spaced dunes. Looking at this in more detail, we found that for Czs4 and Czs5 there is a clear contrast in the density of sites when we compare areas close to the middle of the terrain patterns with areas further away from the boundary of the terrain patterns. 
+Our analysis of boundary effects shows people were sensitive to subtle gradients of change in the physical environment. We found that sites were generally located further from the terrain pattern boundary in landform type 4, compared to landform types 5 and 6. This indicates that people preferred to be located close to the center of areas with widely-spaced dunes, but only on the edges of the areas with closely spaced dunes. Looking at this in more detail, we found that for Czs4 and Czs5 there is a clear contrast in the density of sites when we compare areas close to the middle of the terrain patterns with areas further away from the boundary of the terrain patterns. 
 
 This analysis suggests that prehistoric people in the Roxby dunefield  area were sensitive to fine-grained differences in the economic potential of dissimilar terrain patterns. The novel element of the data presented here is that the distribution of human activities varies substantially and predictably within as well as between terrain patterns. It is also noteworthy that relatively subtle geographic differences between landscapes – the different spacing of sand dunes between Czs4 and Czs5 – has a marked effect on the distribution of archaeological sites. We speculate that this is due to the relationship between dune spacing and the availability of flakable stone, as well as other resources. The causes of variation in dune spacing are poorly understood. Previous work has associated sand transport rates and directions, wind regime characteristics, grain size patterns, topography, and substrates with dune spacing, however there are no simple relationships (Lancaster 1988; Wasson and Hyde 1983; Wasson et al. 1988).
 
 ## Conclusion
 
-The substantive archaeological contribution of this study has been to show that when choosing habitations, prehistoric people in the Roxby dunefield were sensitive to relatively small variations in the landscape, such as the spacing of dunes. The implication of this finding is that even in relatively homogeneous landscapes, such as the desert investigated here, there are gradient-like patterns in the distribution of archaeological sites the reveal how people adapted to the landscape (cf. Attwell and Fletcher 1987). Although Australian deserts are home to some unique flora and fauna, the general patterns of gradients of human behaviour observed here are not contingent on any specific taxa. We expect that beyond the sand dunes of Australia, gradients might also be observed in the archaeological record of the U.S. Great Basin, the coastal and high altitude deserts of South America, and the core deserts of Africa. Gradients are likely to be an indicator of a generic adaptation to landscape variation that can be found in many ecosystems. These gradients allow for more sophisticated interpretations of prehistoric behaviour beyond the obvious attraction of prominent landscape features (Wilson 2007; Kowalewski 2008: 233). Given a large enough dataset, such as the one presented here, these patterns can be quickly quantified using a geographical information system and explained with relatively simple behavioural ecological models. We hope that this data-intensive approach to using gradients of changes in archaeological site attributes across the landscape might suggest a new direction for investigating past human behaviour at ecological interfaces, avoiding the problematic assumptions of previous work on edge effects.  
+The substantive archaeological contribution of this study has been to show that when choosing habitations, prehistoric people in the Roxby dunefield were sensitive to relatively small variations in the landscape, such as the spacing of dunes. The implication of this finding is that even in relatively homogeneous landscapes, such as the desert investigated here, there are gradient-like patterns in the distribution of archaeological sites that reveal how people adapted to the landscape (cf. Attwell and Fletcher 1987). Although Australian deserts are home to some unique flora and fauna, the general patterns of gradients of human behaviour observed here are not contingent on any specific taxa. We expect that beyond the sand dunes of Australia, gradients might also be observed in the archaeological record of the U.S. Great Basin, the coastal and high altitude deserts of South America, and the core deserts of Africa. Gradients are likely to be an indicator of a generic adaptation to landscape variation that can be found in many ecosystems. These gradients allow for more sophisticated interpretations of prehistoric behaviour beyond the obvious attraction of prominent landscape features (Wilson 2007; Kowalewski 2008: 233). Given a large enough dataset, such as the one presented here, these patterns can be quickly quantified using a geographical information system and explained with relatively simple behavioural ecological models. We hope that this data-intensive approach to using gradients of changes in archaeological site attributes across the landscape might suggest a new direction for investigating past human behaviour at ecological interfaces, avoiding the problematic assumptions of previous work on edge effects.  
 
 The methodological contribution of this study has been to demonstrate the advantage of using a mobile GIS for field data collection in a context where data collection is intensive, data volume is high, a highly structured data collection form is used, and the start-up, purchasing, and training costs could be amortized over multiple years of data collection. Our gain of `r percentage_increase`% is within the range documented by other studies using mobile data collection technologies. For example, Poehler and Ellis (2012) report a 371% increase in efficiency using iPads at Pompeii, and Austin (2014) reports a 21-32% increase when using Open Data Kit (Hartung et al. 2010) to record skeletal remains. This wide variation in efficiency gains suggests that the magnitude of the gain is highly dependent on the context in which the mobile technologies are employed. 
 
@@ -1030,4 +1128,4 @@ repo <- repository(path = "../..")
 last_commit <- commits(repo)[[1]]
 ```
 
-The current git commit of this file is `r last_commit@sha`, which is on the `r branches(repo)[[1]]@name` branch and was made by `r last_commit@committer@name` on `r when(last_commit)`. The current commit message is "`r last_commit@summary`". The repository is online at <https://github.com/benmarwick/olympicdamboundaries>
+The current git commit of this file is `r last_commit@sha`, which is on the `r git2r::branches(repo)[[1]]@name` branch and was made by `r last_commit@committer@name` on `r git2r::when(last_commit)`. The current commit message is "`r last_commit@summary`". The repository is online at <https://github.com/benmarwick/olympicdamboundaries>
