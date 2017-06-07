@@ -32,7 +32,7 @@ Affiliations:
 
 Ben Marwick (corresponding author)
 University of Washington
-Denny Hall 117, Box 353100
+Denny Hall, Box 353100
 Seattle, WA 98195-3100 USA
 
 t. (+1) 206.552.9450 
@@ -59,19 +59,19 @@ A key step in understanding past human use of landscapes is investigating how pe
 
 These uses of the ecotone and edge effect concepts declined in the archaeological literature after several critiques pointed out that archaeologists had been overly simplistic in their use of many ecological concepts (Rhoades 1978; Hardesty 1980; King and Graham 1981). Problems with these previous approaches include ignoring controversies among biologists about the definition of ecotones, unjustified assumptions about the uniformity of all ecotones, and unverified assumptions about edge effects always increasing the amount of food species available to humans. Alternative approaches to investigating landform boundary effects can be found in the work of Kimes et al. (1982), who used distribution of artefacts to see how culture group areas related to landform boundaries. However, much recent work on archaeological settlement patterns of hunter-gatherers has eschewed boundaries in favour of analysing straight line distances from key resources such as raw materials for stone artefacts, as these can be easier to measure and interpret than landscape boundaries (Daniel 2001; Jones et al. 2003). Here we pursue a new approach to understanding boundaries by focusing on subtle variations in landscape characteristics within a biome, rather than between them. By focusing on continuous variation, rather than step-wise shifts in the archaeological record across ecological interfaces, we introduce a new approach to studying behaviours of prehistoric forager groups at interface zones. 
 
-In this study we use the results from a sample of hand-held GIS-enabled archaeological site recordings to ask if it is possible to observe gradients of change in archaeological materials over distance to understand forager choices of the optimum locations for their activities in respect to environmental boundaries. We predict that prehistoric foragers were sensitive to subtle differences in resource structure as gradients across the landscape. This approach may be contrasted with concepts of linear boundaries with step-wise shifts in habitability. The step-wise approaches are useful because they make comparative landscape analysis more tractable in many contexts and at different scales. For example, the spatial scales of much previous work on prehistoric arid zone foragers has ranged from continental (Williams et al. 2013; Bird et al 2016) to ecological regions (Holdaway et al. 2013). In this paper, we introduce a novel focus on human behaviour in the arid zone: the interface between two types of subtly different landscapes. We show that prehistoric forager groups' decisions about how they occupied the study area were sensitive to subtle differences in local landscape characteristics.
+In this study we use the results from a sample of hand-held GIS-enabled archaeological site recordings to ask if it is possible to observe gradients of change in archaeological materials over distance to understand forager choices of the optimum locations for their activities in respect to environmental boundaries. We predict that prehistoric foragers were sensitive to subtle differences in resource structure as gradients across landscape boundaries. This approach may be contrasted with concepts of linear boundaries with step-wise shifts in habitability. The step-wise approaches are useful because they make comparative landscape analysis more tractable in many contexts and at different scales. For example, the spatial scales of much previous work on prehistoric arid zone foragers has ranged from continental (Williams et al. 2013; Bird et al 2016) to ecological regions (Holdaway et al. 2013). In this paper, we introduce a novel focus on human behaviour in the arid zone: the interface between two types of subtly different landscapes. We show that prehistoric forager groups' decisions about how they occupied the study area were sensitive to subtle differences in local landscape characteristics.
 
 Our work is motivated by previous archaeological work on cultural landscapes of foragers in Australian arid and semi-arid zones that emphasizes the relationship between settlement organization and both exploitable resources and prominent landscape features such as dunes, occurrences of flakeable rocks, pans, springs and salt lakes (Hughes and Hiscock 1982; Veth 1993; Napton and Greathouse 1996; Holdaway 1998; Barton 2003; Smith 2006; Fanning et al. 2008; Smith et al. 2008; Veth et al. 2008; Williams et al. 2013; Davies et al. 2015; Gould and Saggers 1985). The archaeological signature of landuse on these landscapes has typically been the distribution and composition of surface stone artefact scatters, which are by far the most abundant type of site. Sites in these landscapes are typically small, dense and discrete concentrations of stone artefacts that represent temporary, short-term activity areas. 
 
 ##### . 
 <!-- page break -->
 
-Our study area in the Roxby dunefield in northern South Australia (Figure \@ref(fig:overviewmap)), offers a unique opportunity to study landscape interfaces for two key reasons. First, in our study area these interfaces are relatively well-defined by landform attributes, such as the surface geology (Table \@ref(tab:table2)) and physical features such as the spacing between sand dune ridges or the presence of water bodies (Table \@ref(tab:table1)). The interfaces in our study area can be recognized as linear boundaries, often following the ridges or swales of the sand dunes and boundaries other physical features, making them convenient for spatial analysis of archaeological features (Figure \@ref(fig:aerialphoto)). With clear landscape unit boundaries, our study area is well-placed to explore relationships between archaeological attributes and distances from these boundaries. 
+Our study area in the Roxby dunefield in northern South Australia (Figure \@ref(fig:overviewmap)), offers a unique opportunity to study landscape interfaces for two key reasons. First, in our study area these interfaces are relatively well-defined by landform attributes, such as the surface geology (Table \@ref(tab:table2)) and physical features such as the presence of water bodies or the spacing between sand dune ridges (Table \@ref(tab:table1)). Although clearly visible, the causes of variation in dune spacing are poorly understood. Previous work has associated sand transport rates and directions, wind regime characteristics, grain size patterns, topography, and substrates with dune spacing, however there are no simple relationships (Lancaster 1988; Wasson and Hyde 1983; Wasson et al. 1988). The interfaces in our study area can be recognized as linear boundaries, often following the ridges or swales of the sand dunes and boundaries other physical features, making them convenient for spatial analysis of archaeological features (Figure \@ref(fig:aerialphoto)). With clear landscape unit boundaries, our study area is well-placed to explore relationships between archaeological attributes and distances from these boundaries. 
 
 The second reason why our data are uniquely suited to investigating landscape boundary effects is that we have a large number of sites spread across several landscape types. The relatively high density of sites provides an opportunity to investigate fine-grained gradients of archaeological change over multiple landscapes and their interfaces. More specifically, we can test whether a boundary effect exists at the edge of landscape units by examining how the size and density of surface clusters of stone artefacts changes with their distance from the boundaries. 
 
 
-```{r overviewmap, fig.cap="Map of region including the study area", fig.width=fig_width_one_col}
+```{r overviewmap, fig.cap="Map of Australia showing the location of the Roxby dunefield.", fig.width=fig_width_one_col}
 
 knitr::include_graphics("../figures/regional_map.png")
 
@@ -108,13 +108,13 @@ knitr::include_graphics("../figures/aerial_photo.jpg")
 ##### . 
 <!-- page break -->
 
-```{r tp-q4, fig.cap="Aerial photograph showing Terrain Pattern Q4 in the foreground, consisting of widely spaced sand dunes with only poorly developed pans and no rock outcrop in the swales. The more closely spaced dunes in the background are in Terrain Pattern Q5", fig.width=fig_width_one_col}
+```{r tp-q4, fig.cap="Aerial photograph showing terrain pattern Q4 in the foreground, consisting of widely spaced sand dunes with only poorly developed pans and no rock outcrop in the swales. The more closely spaced dunes in the background are in terrain pattern Q5", fig.width=fig_width_one_col}
 
 knitr::include_graphics("../figures/tp_q4_q5.jpg")
 
 ```
 
-```{r tp-qs4, fig.cap="Aerial photograph showing Terrain Pattern Qs4, consisting of widely spaced dunes with well-developed pans and patchy areas of bare rocky ground exposed in the swales. The exposed rock is predominantly silcrete.", fig.width=fig_width_two_cols}
+```{r tp-qs4, fig.cap="Aerial photograph showing terrain pattern Qs4, consisting of widely spaced dunes with well-developed pans and patchy areas of bare rocky ground exposed in the swales. The exposed rock is predominantly silcrete.", fig.width=fig_width_two_cols}
 
 knitr::include_graphics("../figures/tp_qs5.jpg")
 
@@ -127,13 +127,13 @@ knitr::include_graphics("../figures/tp_qs5.jpg")
 
 The Roxby dunefield is in the driest part of the Australian arid zone (Figure \@ref(fig:overviewmap)). Archaeological material is found across the broader region and partly reflects the long period of human occupation, the wide range of locally available resources and the extremely low rates of sediment movement that might otherwise obscure surface artefacts. Optically stimulated luminescence (OSL) dating of sediments underling buried artefacts in several sites demonstrate episodic human use of the area from the late Pleistocene deglacial period (from around 19 ka, Hughes et al. 2014b; Sullivan et al. 2012; Sullivan et al. 2014b). No organic materials have been found at any of the open sites or in the excavated deposits. Distinctive implement forms such as backed artefacts, unifacial points and tula adzes at many sites in the study area indicate a mid to late Holocene age for the main period of land use and for most of the surface artefact clusters recorded during the survey (Hughes and Hiscock 2005). A study of 78 OSL ages from geological contexts in the study area has shown that the mid to late Holocene period was a time of broad-scale dune stability (Hughes et al. 2014b). This means that site preservation and visibility is not strongly controlled by dune movement during that period. In 2013 we returned to sites that had been recorded 25 years earlier and found them to be in the same state as originally recorded, indicating that site visibility has changed little over 25 years. 
 
-```{r mapofstudyarea1, fig.cap="Map of our study area within the Roxby dunefield, showing landforms and terrain patterns. Each polygon is labelled with 1-3 letters that denote the surface geological regime (see Table \\@ref(tab:table2) for more details), and a number that denotes the landform type (see Table \\@ref(tab:table1) for more details).", fig.width=fig_width_two_cols}
+```{r mapofstudyarea1, fig.cap="Map of the study area within the Roxby dunefield, showing landforms and terrain patterns. Each polygon is labelled with 1-3 letters that denote the surface geological regime (see Table \\@ref(tab:table2) for more details), and a number that denotes the landform type (see Table \\@ref(tab:table1) for more details).", fig.width=fig_width_two_cols}
 
 knitr::include_graphics("../figures/landforms_only.png")
 
 ```
 
-```{r mapofstudyarea2, fig.cap="Map of study area showing the distribution of archaeological sites sampled for this study", fig.width=fig_width_two_cols}
+```{r mapofstudyarea2, fig.cap="Map of the study area showing the distribution of archaeological sites sampled for this study", fig.width=fig_width_two_cols}
 
 knitr::include_graphics("../figures/landforms_and_sites.png")
 
@@ -491,7 +491,7 @@ prettyNum(round(with(artefacts.per.sqkm, artefacts.per.sqkm[GREGLANDF == "Czs5",
 
 ```
 
-About `r round(sites_in_Czs4 + sites_in_Czs5,0)`% of all sites were recorded in these two terrain patterns (Czs4: `r sites_in_Czs4`%, Czs5: `r sites_in_Czs5`%) with no other terrain pattern having more than `r sites_in_other_TPs`% of all sites. When considered as homogeneous units, there are marked differences in the frequency of archaeological sites and the density of stone artefacts between these two terrain patterns. As predicted (Table \@ref(tab:table1)), sites are more frequent in fields of widely spaced dunes (Czs4) with `r site_density_in_Czs4` sites/km^2^ compared with more closely spaced dunes (Czs5) which have only `r site_density_in_Czs5` sites/km^2^ (t(`r t_test_for_two_TPs_df_value`) = `r t_test_for_two_TPs_t_value`, p-value = `r t_test_for_two_TPs_p_value`) (Figure \@ref(fig:sitesinterrainpatterns)). Also as predicted by the original model the density of surface-visible stone artefacts was substantially higher in areas of widely spaced dunes (Czs4), at `r artefacts_per_sqkm_Czs4` artefacts/km^2^, compared with closely spaced dunes Czs5 at `r artefacts_per_sqkm_Czs5` artefacts/km^2^. 
+About `r round(sites_in_Czs4 + sites_in_Czs5,0)`% of all sites were recorded in these two terrain patterns (Czs4: `r sites_in_Czs4`%, Czs5: `r sites_in_Czs5`%) with no other terrain pattern having more than `r sites_in_other_TPs`% of all sites. When considered as homogeneous units, there are marked differences in the frequency of archaeological sites and the density of stone artefacts between these two terrain patterns. As predicted in Table \@ref(tab:table1), sites are more frequent in fields of widely spaced dunes (Czs4) with `r site_density_in_Czs4` sites/km^2^ compared with more closely spaced dunes (Czs5) which have only `r site_density_in_Czs5` sites/km^2^ (t(`r t_test_for_two_TPs_df_value`) = `r t_test_for_two_TPs_t_value`, p-value = `r t_test_for_two_TPs_p_value`) (Figure \@ref(fig:sitesinterrainpatterns)). Also as predicted by the original model the density of surface-visible stone artefacts was substantially higher in areas of widely spaced dunes (Czs4), at `r artefacts_per_sqkm_Czs4` artefacts/km^2^, compared with closely spaced dunes Czs5 at `r artefacts_per_sqkm_Czs5` artefacts/km^2^. 
 
 ### Landscape boundary effects 
 
@@ -503,7 +503,7 @@ odx_polygons <- read_sf("../data/ODX_TP_2010_data/CLipped_ODO_terrain_patterns_2
 ```
 
 
-```{r tpelongationandlength, fig.cap="Upper: Distribution of elongation ratios of terrain pattern polygons in the study area. The ANOVA output in the upper right of the plot indicates that there is no significant difference in the elongation ratios of the terrain patterns. Lower: Distribution of calliper lengths (longest distance between two points) of the terrain patterns in the study area. The Kruskall-Wallis test in the upper right of the plot indicates that there is no significant difference in the lengths of the terrain patterns.", fig.width=fig_width_two_cols}
+```{r tpelongationandlength, fig.cap="Upper: Distribution of elongation ratios of terrain pattern polygons in the study area. The ANOVA output in the upper right of the plot indicates that there is no significant difference in the elongation ratios of the terrain patterns. Lower: Distribution of calliper lengths (longest distance between two points) of the terrain patterns in the study area. The Kruskal-Wallis test in the upper right of the plot indicates that there is no significant difference in the lengths of the terrain patterns.", fig.width=fig_width_two_cols}
 
 # compute elongation of each landform area
 
@@ -596,7 +596,7 @@ grid.arrange(elong, calliper, ncol = 1)
 
 ```
 
-Measurements of the distance from a site to the boundary of its containing terrain pattern could be strongly affected by the size and shape of the terrain pattern areas in our study area. For example, the minimum distance that any site could be the a boundary in a long, thin terrain pattern area would be much less than the minimum distance on a round or square area of the area. To ensure we can provide a meaningful comparison of boundary effects in the different terrain patterns, we tested to see if there were any significant differences in the elongation ratios and calliper lengths (also known as Feret diameters, or longest distance between two points of the shape) of all terrain pattern units in the study area. Figure \@ref(fig:tpelongationandlength) shows the distributions of elongation ratios and calliper lengths for each terrain pattern. The statistical hypothesis tests summarised in Figure \@ref(fig:tpelongationandlength) indicate that there are no signficant differences between the terrain patterns in the shapes of their polygons. Based on this result we conclude that the effect of the shapes of the terrain patterns on the distributions of distances from sites to boundaries does not greatly vary between different terrain patterns. This means that any boundary effects apparently in these data are not dependent simply on the shapes of the terrain patterns.  
+Measurements of the distance from a site to the boundary of its containing terrain pattern could be strongly affected by the size and shape of the terrain pattern areas in our study area. For example, the minimum distance that any site could be from the a boundary in a long, thin terrain pattern area would be much less than the minimum distance on a round or square area of the area. To ensure we can provide a meaningful comparison of boundary effects in the different terrain patterns, we tested to see if there were any significant differences in the elongation ratios and calliper lengths (also known as Feret diameters, or longest distance between two points of the shape) of all terrain pattern units in the study area. Figure \@ref(fig:tpelongationandlength) shows the distributions of elongation ratios and calliper lengths for each terrain pattern. The statistical hypothesis tests summarised in Figure \@ref(fig:tpelongationandlength) indicate that there are no signficant differences between the terrain patterns in the shapes of their polygons. Based on this result we conclude that the effect of the shapes of the terrain patterns on the distributions of distances from sites to boundaries does not greatly vary between different terrain patterns. This means that any boundary effects apparent in these data are not dependent simply on the shapes of the terrain patterns.  
 
 ```{r distanceofsitetoboundary}
 
@@ -703,8 +703,184 @@ grid.arrange(d2b, r2b, ncol = 2)
 
 ```
 
+##### . 
+<!-- page break -->
 
-The left panel of Figure \@ref(fig:maxmindistancetoboundary) depicts distances of sites from the boundaries of the terrain pattern that contains those sites. The right panel shows a ratio the observed distance of each site to its boundary and the maximum possible distance to boundary for any location within a its terrain pattern. We computed this maximum possible distance by simulating 1000 points randomly placed over each terrain pattern, measuring the distance to the boundary for each point, and taking the maximum distance from the boundary from this set of randomly distributed points. This ratio variable is relative to terrain pattern polygon shape and size for every site, and so attmpets the control for differences between the shapes of the terrain patterns. The sample of sites in this figure is limited to terrain pattern areas that are on average more than 1 km across (cf. Figure \@ref(fig:mapofstudyarea1)). The general pattern is clear, with distances to the boundary being substantially further in widely spaced dunefields such landform type 4 (e.g. A4, Czs4 and Q4) than in more closely spaced dunefields such as landform types 5 and 6 (e.g. Czs5, Q5and Q5). This means that sites tend to be nearer to the centers of landform type 4, but nearer to the boundaries of landform type 5. 
+
+```{r tablepairwisecomparisons, dependson='distanceofsitetoboundary'}
+# set dependson=distanceofsitetoboundary so that this chunk updates
+# when the previous one is updated, if no dependson, then the cache will not update
+
+#  hist(ODX_allsites_2010.s$RASTERVALU) it's NOT normal
+dst_length_kruskal <- kruskal.test(RASTERVALU ~ GREGLANDF, 
+                                  data = ODX_allsites_2010.s)
+# is a signifant difference
+
+hval <- unname(round(dst_length_kruskal$statistic, 3))
+pval <- round(dst_length_kruskal$p.value, 3)
+pval <- ifelse(pval == 0, "< 0.001", paste0("= ", pval))
+df <-  unname(dst_length_kruskal$parameter)
+
+kruskal_string <- paste0("H(", df, ") = ", hval, ", p ", pval)
+
+#  there is a sig result, so let's do a post-hoc test
+library(FSA)
+dt_dst <- dunnTest(RASTERVALU ~ GREGLANDF,
+               data = ODX_allsites_2010.s,
+               method = "bonferroni")
+
+all_pair_dst <- dt_dst$res
+
+# make a grid of pairwise differnces
+all_pair_grid_dst <- 
+all_pair_dst %>% 
+  separate(Comparison, c("pairA", "pairB"), sep = " - ") %>% 
+  select(pairA, pairB,  P.adj) %>% 
+  spread(pairA, P.adj)
+
+tp_column_dst <- all_pair_grid_dst$pairB
+
+all_pair_grid_dst <- all_pair_grid_dst[ , names(all_pair_grid_dst) != 'pairB']
+
+# and for the z stat
+all_pair_grid_dst_z <- 
+all_pair_dst %>% 
+  separate(Comparison, c("pairA", "pairB"), sep = " - ") %>% 
+  select(pairA, pairB,  Z) %>% 
+  spread(pairA, Z) %>% 
+  select(-pairB)
+
+# update the values suitable for a table to display
+# replace tiny values with <0.05
+pair_wide_comparison_grid_dst <- 
+data.frame(sapply(all_pair_grid_dst[,1:ncol(all_pair_grid_dst)],  
+                  function(i) ifelse(i < 0.001, 
+                                      "<0.001", 
+                                       as.character(round(i, 3)))),  
+           stringsAsFactors = FALSE)
+
+# add in z values
+dunn_test_table_dst <- 
+as.data.frame(do.call(cbind, 
+                      lapply(1:ncol(all_pair_grid_dst_z), 
+                                    function(i)
+                                    paste0(round(all_pair_grid_dst_z[ , i], 3), 
+                                     " (", 
+                                     pair_wide_comparison_grid_dst[ , i], 
+                                     ")"  ) )), 
+              stringsAsFactors = FALSE)
+
+# remove NA and replace with blank
+dunn_test_table_dst[dunn_test_table_dst == "NA (NA)"] <- ""
+
+# add laels columns and move this label col to front
+dunn_test_table_dst_labeled <- 
+  cbind(" " = tp_column_dst, 
+        dunn_test_table_dst)
+
+names(dunn_test_table_dst_labeled) <- c("", names(all_pair_grid_dst))
+
+kable(dunn_test_table_dst_labeled,
+      align = 'r',
+      caption = "Summary of Dunn's Kruskal-Wallis multiple comparisons test results for the distributions of distances of sites to boundaries for each terrain pattern. The cell values are the Z statistic, with p-values in parentheses.")
+
+```
+
+```{r tablepairwisecomparisonsratio}
+#  hist(ODX_allsites_2010.s_with_rand$ratio) it's NOT normal
+dstr_length_kruskal <- kruskal.test(ratio ~ GREGLANDF, 
+                                    data = ODX_allsites_2010.s_with_rand)
+# is a signifant difference
+
+hvalr <- unname(round(dstr_length_kruskal$statistic, 3))
+pvalr <- round(dstr_length_kruskal$p.value, 3)
+pvalr <- ifelse(pvalr == 0, "< 0.001", paste0("= ", pvalr))
+dfr <-  unname(dstr_length_kruskal$parameter)
+
+kruskalr_string <- paste0("H(", dfr, ") = ", hvalr, ", p ", pvalr)
+
+#  there is a sig result, so let's do a post-hoc test
+library(FSA)
+dt_dstr <- dunnTest(ratio ~ GREGLANDF,
+               data = ODX_allsites_2010.s_with_rand,
+               method = "bonferroni")
+
+all_pair <- dt_dstr$res
+
+# make a grid of pairwise differnces
+all_pair_grid <- 
+all_pair %>% 
+  separate(Comparison, c("pairA", "pairB"), sep = " - ") %>% 
+  select(pairA, pairB,  P.adj) %>% 
+  spread(pairA, P.adj) 
+
+tp_column <- all_pair_grid$pairB
+
+all_pair_grid <- all_pair_grid[ , names(all_pair_grid) != 'pairB']
+
+all_pair_grid_z <- 
+all_pair %>% 
+  separate(Comparison, c("pairA", "pairB"), sep = " - ") %>% 
+  select(pairA, pairB,  Z) %>% 
+  spread(pairA, Z) %>% 
+  select(-pairB)
+
+# update the values suitable for a table to display
+# replace tiny values with <0.05
+pair_wide_comparison_grid_ratios <- 
+data.frame(sapply(all_pair_grid[,1:ncol(all_pair_grid)],  
+                  function(i) ifelse(i < 0.001, 
+                                      "<0.001", 
+                                       as.character(round(i, 3)))),    
+           stringsAsFactors = FALSE)
+
+
+# add in z values
+dunn_test_table <- 
+as.data.frame(do.call(cbind, 
+                      lapply(1:ncol(all_pair_grid_z), 
+                                    function(i)
+                                    paste0(round(all_pair_grid_z[ , i], 3), 
+                                     " (", 
+                                     pair_wide_comparison_grid_ratios[ , i], 
+                                     ")"  ) )), 
+              stringsAsFactors = FALSE)
+
+# remove NA and replace with blank
+dunn_test_table[dunn_test_table == "NA (NA)"] <- ""
+
+# add laels columns and move this label col to front
+dunn_test_table_labeled <- 
+  cbind(" " = tp_column, 
+        dunn_test_table)
+
+names(dunn_test_table_labeled) <- c("", names(all_pair_grid))
+
+kable(dunn_test_table_labeled,
+      align = 'r',
+      caption = "Summary of Dunn's Kruskal-Wallis multiple comparisons test results for the distributions of minimum distance ratios of sites to boundaries for each terrain pattern. The cell values are the Z statistic, with p-values in parentheses.")
+```
+
+```{r k4exception}
+n_and_percent_of_sites <- 
+ODX_allsites_2010.s_with_rand %>% 
+  dplyr::count(GREGLANDF) %>%
+  mutate(prop = n / sum(n),
+         perc = n / sum(n) * 100)
+
+k4_percent_of_all_sites <- 
+ n_and_percent_of_sites %>% 
+  filter(GREGLANDF == "K4") 
+
+k4_n <- k4_percent_of_all_sites$n
+k4_perc <- round(k4_percent_of_all_sites$perc, 1)
+
+k4 <- paste0("(n = ", k4_n, ", ", k4_perc, "%)" )
+
+```
+
+
+The left panel of Figure \@ref(fig:maxmindistancetoboundary) depicts distances of sites from the boundaries of the terrain pattern that contains those sites. There are statistically significant differences between the terrain patterns (`r kruskal_string`). The right panel shows a ratio the observed distance of each site to its boundary and the maximum possible distance to boundary for any location within a its terrain pattern. The differences is the distributions of ratios between the terrain patterns are also statistically significant (`r kruskalr_string`). We computed the maximum possible distance by simulating 1000 points randomly placed over each terrain pattern, then measuring the distance to the boundary for each point, and then taking the maximum distance from the boundary from this set of randomly distributed points. This ratio variable is relative to terrain pattern polygon shape and size for every site, and so attmpets the control for differences between the shapes of the terrain patterns. Tables \@ref(tab:tablepairwisecomparisons) and \@ref(tab:tablepairwisecomparisonsratio) show the bonferroni-adjusted p-values from Dunn's (1964) test of multiple comparisons following the significant Kruskal-Wallis tests. These tables indicate that the differences in the values observed in Figure \@ref(fig:maxmindistancetoboundary) are unikely to result from chance alone The sample of sites in this figure is limited to terrain pattern areas that are on average more than 1 km across (cf. Figure \@ref(fig:mapofstudyarea1)). The general pattern is clear, with distances to the boundary being substantially further in widely spaced dunefields such landform type 4 (e.g. A4, Czs4 and Q4) than in more closely spaced dunefields such as landform types 5 and 6 (e.g. Czs5, Q5 and Q5). This means that sites tend to be nearer to the centers of landform type 4, but nearer to the boundaries of landform type 5. K4 appears to be the exception to this, probably because it has the smallest number of sites  in our sample `r k4`, an order of magnitude less than Czs4 and Czs5, so we do not have a robust indication of the true distribution of sites in K4. 
 
 ```{r sitesinbuffers, fig.cap="Site density by distance to the boundary of the terrain pattern for Czs4 and Czs5. Data points show site density values for each buffer zone. Shaded region indicates the 95% confidence interval of a Loess regression line.", fig.width=fig_width_two_cols}
 
@@ -790,7 +966,7 @@ two_way_anova_p <- round(two_way_anova_summary$`Pr(>F)`[3],3)
 
 ```
 
-```{r zscoresonsitedensitybyzones, fig.cap="Z-scores for site density in interior buffer zones for Czs4 and Czs5", fig.width=fig_width_one_col}
+```{r zscoresonsitedensitybyzones, fig.cap="Z-scores for site density in interior buffer zones for Czs4 and Czs5. The values for the interior buffer zones indicate the distance in m from the boundary of the terrain pattern to the center of the terrain pattern.", fig.width=fig_width_one_col}
 
 # Czs5
 # site densities in 0-100 m inner buffer divided by total density of TP
@@ -845,7 +1021,7 @@ ggplot(bound.sc.m,
   coord_flip() +
   scale_color_viridis(discrete = TRUE) +
   theme(axis.title.y = element_text(angle = 90)) + 
-  xlab("interior buffer region (distance in m from \nboundary to the center of the terrain pattern)") + 
+  xlab("Interior buffer region (m)") + 
   ylab("z-score of site density \nin buffer area")  +
   labs(shape="Terrain\nPattern", colour="Terrain\nPattern") +
   theme(legend.position = c(0.4, 1.01), 
@@ -854,7 +1030,7 @@ ggplot(bound.sc.m,
 
 ```
 
-```{r disttobdrybyneighbour1, fig.cap="Distribution of distances of archaeological sites to terrain pattern boundaries for sites located in Czs5, by the nearest neighbouring Terrain Pattern. Data points show distance values for individual sites.", fig.width=fig_width_two_cols}
+```{r disttobdrybyneighbour1, fig.cap="Distribution of distances of archaeological sites to terrain pattern boundaries for sites located in Czs5, by the nearest neighbouring terrain pattern. Data points show distance values for individual sites.", fig.width=fig_width_two_cols}
 # how the sites were positioned in the Czs5 relative to which terrain patterns surrounded them?
 
 library(rgeos)
@@ -912,10 +1088,10 @@ dt_length_kruskal <- kruskal.test(ratio ~ xx_2nd_min_LF,
 
 hval <- unname(round(dt_length_kruskal$statistic, 3))
 pval <- round(dt_length_kruskal$p.value, 3)
-pval <- ifelse(pval == 0, "< 0.001", pval)
+pval <- ifelse(pval == 0, "< 0.001", paste0("= ", pval))
 df <-  unname(dt_length_kruskal$parameter)
 
-kruskal_string <- paste0("H(", df, ") = ", hval, ", p = ", pval)
+kruskal_string <- paste0("H(", df, ") = ", hval, ", p ", pval)
 
 #  there is a sig result, so let's do a post-hoc test
 library(FSA)
@@ -925,8 +1101,7 @@ dt <- dunnTest(RASTERVALU ~ xx_2nd_min_LF,
 
 what_pair_is_different <- dplyr::filter(dt$res, P.adj < 0.05)
 
-kruskal_string <- paste0(kruskal_string, 
-                         " (", what_pair_is_different$Comparison, ")")
+
 
 ggplot(ODX_allsites_min_poly_Czs5,
        aes(reorder(xx_2nd_min_LF, 
@@ -935,7 +1110,7 @@ ggplot(ODX_allsites_min_poly_Czs5,
   geom_boxplot()  + 
   geom_sina(alpha = 0.04) + 
   theme_bw(base_size = text_size - 1) +
-  xlab("Neighbouring Terrain Pattern for sites located in Czs5") +
+  xlab("Neighbouring terrain pattern for sites located in Czs5") +
   ylab("Distance from boundary (m)") +
   # annotate("text",  x = "Q5", y = 1300, label = kruskal_string) +
   scale_y_log10(breaks = seq(0,1400,200)) 
@@ -945,7 +1120,7 @@ ggplot(ODX_allsites_min_poly_Czs5,
 
 Figure \@ref(fig:sitesinbuffers) shows that in Czs4 landscapes the density of sites increases toward the center of the landform while in Czs5 landforms site density decreases towards the center of the landform. The results of a two-way ANOVA show that the interaction of terrain patterns and the distances from the boundary have a significant effect on the density of archaeological sites at increasing distance from the boundary of the terrain pattern units (F(`r two_way_anova_df`) = `r two_way_anova_F`, p = `r two_way_anova_p`, excluding one outlier buffer (0-100m) in a Czs4 terrain pattern where the site density is anomalously high, more than twice the value of the next highest density). 
 
-When we use z-scores to standardize for differences in site density between two terrain patterns, we see that the pattern is even more stark. Figure \@ref(fig:zscoresonsitedensitybyzones) shows that in Czs4 landscapes the density of sites increases toward the center of the landform while in Czs5 landforms site density decreases towards the center of the landform. This also minimizes the effects of differences in the sizes of landscape units by limiting analysis to an area 300 m from the boundary of the terrain pattern, thereby excluding sites in the middle of very large area terrain patterns. These analyses give support to the prediction that resource-rich landscapes such as Csz4 have sites located away from their margin and far inside the terrain pattern areas while landscapes with lower resource levels such as Csz5 commonly have sites closer to their margins and fewer sites further in their interiors. 
+When we use z-scores to standardize for differences in site density between two terrain patterns, we see that the pattern is even more stark. Figure \@ref(fig:zscoresonsitedensitybyzones) shows that in Czs4 landscapes the density of sites increases toward the center of the landform while in Czs5 landforms site density decreases towards the center of the landform. This also minimizes the effects of differences in the sizes of landscape units by limiting analysis to an area 300 m from the boundary of the terrain pattern, thereby excluding sites in the middle of very large area terrain patterns. These analyses give support to the prediction that resource-rich landscapes such as Csz4 have sites located away from their margin and far inside the terrain pattern areas while landscapes with lower resource levels such as Csz5 commonly have sites closer to their margins and fewer sites further in their interiors. If we consider just sites within Czs5 (Figure \@ref(fig:disttobdrybyneighbour1)), we see that sites tend to be closer to the boundary when the neighbouring terrain pattern is landform four, such as Czs4, however this is not a statistically significant difference (`r kruskal_string`) . 
 
 ## Discussion
 
@@ -953,9 +1128,9 @@ In our measurements of site location and site densities, we observed that subtle
 
 We found both more archaeological sites per square kilometer, and more artefacts per square kilometer, in landforms with more widely spaced dunes. This is consistent with our model, and our field observations that more and denser sites tended to occur near exposures of good-quality flakeable stone that are often found in interdunal swales (Hughes et al. 2014a). In areas where the sand dunes are more closely spaced, such as landform types 5 and 6, the dune flanks flow into each other, leaving few or no swales between the dunes where surface outcrops of flakable stone might be exposed. This differential availability of flakable stone may be an important factor that influenced ancient people's use of this landscape. 
 
-Our analysis of boundary effects shows people were sensitive to subtle gradients of change in the physical environment. We found that sites were generally located further from the terrain pattern boundary in landform type 4, compared to landform types 5 and 6. This indicates that people preferred to be located close to the center of areas with widely-spaced dunes, but only on the edges of the areas with closely spaced dunes. Looking at this in more detail, we found that for Czs4 and Czs5 there is a clear contrast in the density of sites when we compare areas close to the middle of the terrain patterns with areas further away from the boundary of the terrain patterns. 
+Our analysis of boundary effects shows people were sensitive to subtle gradients of change in the physical environment. We found that sites were generally located further from the terrain pattern boundary in landform type 4, compared to landform types 5 and 6. This indicates that preferred to be located away from the boundary of areas with widely spaced dunes, but only on the edges of the areas with closely spaced dunes. Looking at this in more detail, we found that for Czs4 and Czs5 there is a clear contrast in the density of sites when we compare areas further away from the boundary of the terrain patterns with areas 'closer to from the boundary of the terrain patterns. 
 
-This analysis suggests that prehistoric people in the Roxby dunefield  area were sensitive to fine-grained differences in the economic potential of dissimilar terrain patterns. The novel element of the data presented here is that the distribution of human activities varies substantially and predictably within as well as between terrain patterns. It is also noteworthy that relatively subtle geographic differences between landscapes – the different spacing of sand dunes between Czs4 and Czs5 – has a marked effect on the distribution of archaeological sites. We speculate that this is due to the relationship between dune spacing and the availability of flakable stone, as well as other resources. The causes of variation in dune spacing are poorly understood. Previous work has associated sand transport rates and directions, wind regime characteristics, grain size patterns, topography, and substrates with dune spacing, however there are no simple relationships (Lancaster 1988; Wasson and Hyde 1983; Wasson et al. 1988).
+This analysis suggests that prehistoric people in the Roxby dunefield  area were sensitive to fine-grained differences in the economic potential of dissimilar terrain patterns. The novel element of the data presented here is that the distribution of human activities varies substantially and predictably within as well as between terrain patterns. It is also noteworthy that relatively subtle geographic differences between landscapes – the different spacing of sand dunes between Czs4 and Czs5 – has a marked effect on the distribution of archaeological sites. We speculate that this is due to the relationship between dune spacing and the availability of flakable stone, as well as other resources. 
 
 ## Conclusion
 
@@ -994,6 +1169,8 @@ Daniel, I. R., Jr. (2001). "Stone Raw Material Availability and Early Archaic Se
 Davies, B., S. J. Holdaway and P. C. Fanning (2015). "Modelling the palimpsest: An exploratory agent-based model of surface archaeological deposit formation in a fluvial arid Australian landscape." The Holocene: 0959683615609754.
 
 de la Vega, S. G.-D. and S. O. Agulla (2010). Using mobile GIS. for Field Digital Data Acquisition (FDA) in archaeological field survey. Geoinformation Technologies for Geo-Cultural Landscapes: European Perspectives. A. Vassilopoulos, N. Evelpidou, O. Bender and A. Krek: 35-46.
+
+Dunn, O.J. 1964. "Multiple comparisons using rank sums". Technometrics 6:241-252.
 
 Dunnell, R. C. and W. S. Dancey (1983). "The Siteless Survey: A Regional Scale Data Collection Strategy." Advances in Archaeological Method and Theory 6: 267-287.
 
@@ -1054,7 +1231,8 @@ Lancaster, N. (1988). Controls of eolian dune size and spacing. Geology, 16(11),
 
 McPherron, S. and H. Dibble (2003). "Using computers In adverse field conditions: Tales from the Egyptian desert." The SAA Archaeological Record 3(5): 28-32.
 
-Marwick, B. (2016). Computational reproducibility in archaeological research: Basic principles and a case study of their implementation. Journal of Archaeological Method and Theory, 1-27, doi: 10.1007/s10816-015-9272-9
+Marwick, B. (2016). Computational reproducibility in archaeological research: Basic principles and a case study of their implementation. Journal of Archaeological Method and Theory, 1-27, doi: 10.1007/s10816-015-9272-9.
+
 Napton, L. K. and E. A. Greathouse (1996). Archaeological investigations in the Simpson Desert, Northern Territory. Archaeology of Northern Australia. P. Veth and P. Hiscock. Brisbane, University of Queensland. TEMPUS Volume 4: 106-136.
 
 Newhard, J. M. L., N. S. Levine, A. D. Phebus, S. Craft and J. D. Littlefield (2013). "A geoinformatic approach to the collection of archaeological survey data." Cartography and Geographic Information Science 40(1): 3-17.
