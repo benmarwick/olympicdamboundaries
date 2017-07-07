@@ -1,9 +1,9 @@
 Package: olympicdamboundaries
 Type: Package
 Title: Research compendium for a study
-Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
+Version: 0.2.0
+Author: Ben Marwick
+Maintainer: Ben Marwick <benmarwick@gmail.com>
 Description: More about what it does (maybe more than one line)
     Use four spaces when indenting paragraphs within the Description.
 License: What license is it under?
